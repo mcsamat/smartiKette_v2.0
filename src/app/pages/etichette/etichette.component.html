@@ -1,0 +1,68 @@
+<div class="header bg-gradient-info pb-8 pt-5 pt-md-5"></div>
+
+<!-- Contenuto della pagina -->
+<div class="container-fluid mt--7">
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <!-- Header -->
+                <div class="card-header bg-transparent">
+                    <h2 class="mb-0">Lista Etichette</h2>
+                    <!-- Registra Etichetta -->
+                    <div class="text-right">
+                        <div ngbDropdown class="d-inline-block">
+                            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+								<i class="fas fa-caret-down"></i> Registra Etichetta
+							</button>
+                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                <button ngbDropdownItem>Manualmente</button>
+                                <button ngbDropdownItem>Da file</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<!-- Contenuto -->
+                <div class="card-body">
+                    <!-- Tabella Etichette -->
+                    <div class="table-responsive">
+                        <table class="display table table-striped align-items-center table-flush" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">ID Etichetta</th>
+                                    <th scope="col">Tipo</th>
+                                    <th scope="col">Power Status</th>
+                                    <th scope="col">Data Revisione</th>
+                                    <th scope="col">Connection Status</th>
+                                    <th scope="col">ID Access Point</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let label of labels$">
+                                    <th scope="col">{{ label.LabelId }}</th>
+                                    <td scope="col">{{ label.Type }}</td>
+                                    <td scope="col">{{ label.PowerStatus }}</td>
+                                    <td scope="col">{{ label.UpdatedAt }}</td>
+                                    <td scope="col">{{ label.ConnectionStatus }}</td>
+                                    <td scope="col">{{ label.AccessPointId }}</td>
+                                    <td scope="col">
+                                        <div ngbDropdown placement="bottom-right">
+                                            <a class="btn btn-sm btn-icon-only text-light" ngbDropdownToggle>
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+                                            <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                                                <a class="dropdown-item" href="javascript:void(0)">Visualizza</a>
+                                                <a class="dropdown-item" href="javascript:void(0)">Elimina</a>
+                                                <a class="dropdown-item" href="javascript:void(0)">Modifica</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<nav class="navbar navbar-vertical navbar-expand-md navbar-light bg-white" id="sidenav-main">
+	<div class="container-fluid">
+		<!-- Toggler -->
+		<button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
+		aria-controls="sidenav-collapse-main">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<!-- Logo -->
+	<a class="navbar-brand pt-0" routerLinkActive="active" [routerLink]="['/dashboard']">
+		<img src="./assets/img/brand/red.png" class="navbar-brand-img" alt="Logo SmartiKette">
+	</a>
+	<!-- Sidebar -->
+	<div class="collapse navbar-collapse"  [ngbCollapse]="isCollapsed" id="sidenav-collapse-main">
+		<!-- Voci del menu -->
+		<ul class="navbar-nav">
+			<li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+				<a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
+					<i class="ni {{menuItem.icon}}"></i>
+					{{menuItem.title}}
+				</a>
+			</li>
+		</ul>
+		<!-- Divisore -->
+		<hr class="my-3">
+		<!-- Intestazione -->
+		<h6 class="navbar-heading text-muted">Strumenti</h6>
+		<!-- Voci del menu -->
+		<ul class="navbar-nav mb-md-3">
+			<li class="nav-item">
+				<a class="nav-link" href="#">
+					<i class="fas fa-arrows-alt"></i>Schermo Intero
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">
+					<i class="fas fa-print"></i>Stampa
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+</nav>
