@@ -3,7 +3,7 @@
 <!-- Contenuto della pagina -->
 <div class="container-fluid mt--7">
     <div class="row">
-        <div class="col">
+       <div class="col">
             <div class="card shadow">
                 <!-- Header -->
                 <div class="card-header bg-transparent">
@@ -30,32 +30,43 @@
                                 <tr>
                                     <th scope="col">ID Etichetta</th>
                                     <th scope="col">Tipo</th>
-                                    <th scope="col">Power Status</th>
+									<th scope="col">Power Status</th>
+									<th scope="col">Connection Status</th>
                                     <th scope="col">Data Revisione</th>
-                                    <th scope="col">Connection Status</th>
                                     <th scope="col">ID Access Point</th>
                                     <th></th>
                                 </tr>
-                            </thead>
+                             </thead>
                             <tbody>
                                 <tr *ngFor="let label of labels$">
-                                    <th scope="col">{{ label.LabelId }}</th>
-                                    <td scope="col">{{ label.Type }}</td>
-                                    <td scope="col">{{ label.PowerStatus }}</td>
-                                    <td scope="col">{{ label.UpdatedAt }}</td>
-                                    <td scope="col">{{ label.ConnectionStatus }}</td>
-                                    <td scope="col">{{ label.AccessPointId }}</td>
-                                    <td scope="col">
-                                        <div ngbDropdown placement="bottom-right">
-                                            <a class="btn btn-sm btn-icon-only text-light" ngbDropdownToggle>
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </a>
-                                            <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                                                <a class="dropdown-item" href="javascript:void(0)">Visualizza</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Elimina</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Modifica</a>
-                                            </div>
-                                        </div>
+                                    <th>{{ label.LabelId }}</th>
+                                    <td>{{ label.Type }}</td>
+                                    <td class="alert alert-success" *ngIf=" label.PowerStatus > 20; else elseBlock">
+										{{ label.PowerStatus }}
+									</td>
+									<ng-template #elseBlock>
+										<td class="alert alert-warning">
+											{{ label.PowerStatus }}
+										</td>
+									</ng-template>	
+									<td>
+											<i class="fas fa-power-off"></i>
+											<strong> {{ label.ConnectionStatus }}</strong>
+									</td>						
+                                    <td>{{ label.UpdatedAt }}</td>
+                                    <td>{{ label.AccessPointId }}</td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Tools">
+											<button type="button" class="btn btn-secondary">
+												<i class="fas fa-eye"></i>
+											</button>
+											<button type="button" class="btn btn-secondary">
+												<i class="fas fa-unlink"></i>
+											</button>
+											<button type="button" class="btn btn-danger">
+												<i class="fas fa-trash"></i>
+											</button>
+										</div>
                                     </td>
                                 </tr>
                             </tbody>

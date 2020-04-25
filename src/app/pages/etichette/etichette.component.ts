@@ -1,9 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { __core_private_testing_placeholder__ } from '@angular/core/testing';
-import { AppModule } from '../../app.module'; 
 import { Subject } from 'rxjs';
-import { DataTablesModule } from 'angular-datatables';
 
 
 @Component({
@@ -19,6 +16,7 @@ export class EtichetteComponent implements OnInit, OnDestroy {
   labels$: any[] = [];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
+  
 
   constructor(private httpClient: HttpClient) { }
 
@@ -26,13 +24,13 @@ export class EtichetteComponent implements OnInit, OnDestroy {
     // Header generale
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
 
-    // DataTables First Test
+    // DataTables
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 5,
       processing: true
     };
-    this.httpClient.get(this.ROOT_URL + '/labelinfo', { headers })
+    this.httpClient.get(this.ROOT_URL + '/labelinfo?recordsPerPage=999999999999', { headers })
     .toPromise().then((data:any) => {
       // Passo i valori presi da API
       this.labels$ = data.label_info;

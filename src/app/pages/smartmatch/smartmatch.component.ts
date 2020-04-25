@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { Subject } from 'rxjs';
+
 
 @Component({
   selector: 'app-smartmatch',
@@ -9,26 +11,35 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 export class SmartmatchComponent implements OnInit {
   // Root URL per API
   readonly ROOT_URL = 'http://pietro-test.dlinkddns.com:10082/api/matching';
-  // Variabili Tabella
-  matchs;
+  
+  // DT var
+  matchs$: any[] = [];
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
 
-  public copy: string;
+
   constructor(private httpClient: HttpClient) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     // Header generale
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
 
-    // Tabella Tutti i Match
-    this.httpClient.get(this.ROOT_URL, { headers })
+    // DataTables
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true
+    };
+    this.httpClient.get(this.ROOT_URL + '?recordsPerPage=999999999999', { headers })
     .toPromise().then((data:any) => {
       // Passo i valori presi da API
-      this.matchs = data.matching;
-      console.log(this.matchs)
+      this.matchs$ = data.matching;
+      this.dtTrigger.next();
     });
-
-
-
-
   }
+
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
+  }
+
 }
