@@ -7,7 +7,7 @@
 			<div class="card shadow">
 				<!-- Header -->
 				<div class="card-header bg-transparent">
-					<h3 class="mb-0">Lista Articoli</h3>
+					<h2 class="mb-0">Lista Articoli</h2>
 					<!-- Crea Nuovo Articolo -->
 					<div class="text-right">
                         <div ngbDropdown class="d-inline-block">
@@ -47,10 +47,12 @@
 									<td>{{ item.item_type }}</td>
 									<td>
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Tools">
-											<button type="button" class="btn btn-secondary">
+											<!-- Visualizza Item -->
+											<button type="button" class="btn btn-secondary" [disabled]="true">
 												<i class="fas fa-eye"></i>
 											</button>
-											<button type="button" class="btn btn-danger">
+											<!-- Elimina Item con Modal -->
+											<button type="button" class="btn btn-danger" (click)="open(item)">
 												<i class="fas fa-trash"></i>
 											</button>
 										</div>
