@@ -30,9 +30,9 @@ export class SmartmatchComponent implements OnInit {
       pageLength: 5,
       processing: true
     };
+    // Richiesta GET
     this.httpClient.get(this.ROOT_URL + '?recordsPerPage=999999999999', { headers })
     .toPromise().then((data:any) => {
-      // Passo i valori presi da API
       this.matchs$ = data.matching;
       this.dtTrigger.next();
     });

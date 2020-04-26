@@ -32,6 +32,7 @@ export class NgbdModalContent {
   readonly ROOT_URL = 'http://pietro-test.dlinkddns.com:10082/api/item';
 
   constructor(private httpClient: HttpClient, public activeModal: NgbActiveModal) {}
+
   deleteItem(): void {
     // Header apikey + Content-Type
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
@@ -73,9 +74,9 @@ export class ArticoliComponent implements OnInit {
       pageLength: 5,
       processing: true
     };
+    // Richiesta GET
     this.httpClient.get(this.ROOT_URL + '/concrete?recordsPerPage=999999999999', { headers })
     .toPromise().then((data:any) => {
-      // Passo i valori presi da API
       this.items$ = data.items;
       this.dtTrigger.next();
     });

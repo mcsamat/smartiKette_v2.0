@@ -30,9 +30,9 @@ export class EtichetteComponent implements OnInit, OnDestroy {
       pageLength: 5,
       processing: true
     };
+    // Richiesta GET
     this.httpClient.get(this.ROOT_URL + '/labelinfo?recordsPerPage=999999999999', { headers })
     .toPromise().then((data:any) => {
-      // Passo i valori presi da API
       this.labels$ = data.label_info;
       this.dtTrigger.next();
     });
