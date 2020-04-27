@@ -21,11 +21,11 @@ export class LocationComponent implements OnInit {
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
 
     // Elenco Corsie
-    this.httpClient.get(this.ROOT_URL + '', { headers })
+    this.httpClient.get(this.ROOT_URL, { headers })
     .toPromise().then((corsieAPI:any) => {
       // Passo i valori presi da API
         this.corsie$ = corsieAPI.locations;
-        console.log(this.corsie$[0].location_type.id)
+        // console.log(this.corsie$[0].location_type.id)
     });
   }
 

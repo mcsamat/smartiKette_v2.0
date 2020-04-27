@@ -269,24 +269,25 @@
 					<!-- Form di aggiunta template
 					<form>
 						<div class="form-group">
-							<label for="exampleFormControlSelect1">Tiplogia</label>
-							<select class="form-control" id="exampleFormControlSelect1">
-								<option>farmaco_cgm</option>
-								<option>altro</option>
-							</select>
-						</div>
-						<div class="form-group">
 							<label for="exampleFormControlFile1">Importa da file</label>
 							<input type="file" class="form-control-file" id="exampleFormControlFile1">
 						</div>
 					</form>
 					<br/>  -->
-					<!-- Lista templates -->
-					<label>Lista Template</label>
+					<!-- Item Type -->
+						<div class="form-group">
+							<label for="itemType">Tiplogia</label>
+							<select [(ngModel)]="selectedOption" class="form-control" name="itemType" id="itemType">
+								<option *ngFor="let item of items_t" [value]="item.id">{{ item.name }}</option>
+							</select>
+						</div>					
+					<!-- Lista templates* -->
+					<label>Lista Template&nbsp;&nbsp;&nbsp;</label> 
+					<button class="btn btn-sm" (click)="getItemTypeTemplate(selectedOption)" type="button">Aggiorna</button>
 					<ul class="list-group list-group-flush">
-						<li class="list-group-item"><small>Farmaco generico</small></li>
-						<li class="list-group-item"><small>Altro</small></li>
-						<li class="list-group-item"><small>Template 3</small></li>
+						<li class="list-group-item" *ngFor="let template of templates">
+							<small>{{ template.title }}</small>
+						</li>
 					</ul>
 				</div>
 			</div>

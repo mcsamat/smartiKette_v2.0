@@ -25,7 +25,8 @@ import { DataTablesModule } from 'angular-datatables';
     HttpClientModule,
     NgbModule,
     ClipboardModule,
-    DataTablesModule
+    DataTablesModule,
+    ReactiveFormsModule
   ],
   declarations: [
     DashboardComponent,

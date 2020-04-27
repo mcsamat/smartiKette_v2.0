@@ -38,6 +38,9 @@ export class DashboardComponent implements OnInit {
   titem: number;
   tmatch: number;
 
+  // Var Templates via ItemType.ID
+  templates;
+
   
   constructor(private httpClient: HttpClient) { }
 
@@ -112,5 +115,19 @@ export class DashboardComponent implements OnInit {
     .toPromise().then((tot_match:any) => {
       this.tmatch = tot_match.total_matching;
     });
+  }
+
+  getItemTypeTemplate(tid: number){
+    // Header generale
+    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+
+    // Elenco Template
+    this.httpClient.get(this.ROOT_URL + '/template/itemtype/' + tid, { headers })
+    .toPromise().then((data:any) => {
+      // Passo i valori presi da API
+      this.templates = data.templates;
+      console.log(this.templates)
+    });
+
   }
 }
