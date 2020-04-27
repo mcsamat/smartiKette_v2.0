@@ -3,6 +3,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { ResourceLoader } from '@angular/compiler';
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {debounceTime} from 'rxjs/operators';
 
 var ditemm;
 var ditemal: String;
@@ -56,7 +57,7 @@ export class NgbdModalContent {
 }
 
 
-// Componente principale
+// Componente principale ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 @Component({
   selector: 'app-articoli',
   templateUrl: './articoli.component.html',
@@ -72,6 +73,11 @@ export class ArticoliComponent implements OnInit, OnDestroy {
   items$: any[] = [];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
+
+  // Alert
+  private _success = new Subject<string>();
+  staticAlertClosed = false;
+  successMessage = '';
 
   constructor(private httpClient: HttpClient, private modalService: NgbModal) { }
 
@@ -93,6 +99,9 @@ export class ArticoliComponent implements OnInit, OnDestroy {
       this.items$ = data.items;
       this.dtTrigger.next();
     });
+
+    // Alert
+    setTimeout(() => this.staticAlertClosed = true, 20000);
   }
 
   ngOnDestroy(): void {
@@ -111,9 +120,22 @@ export class ArticoliComponent implements OnInit, OnDestroy {
     modalRef.componentInstance.name = 'Conferma Eliminazione';
   }
 
+  // WiP - Table Update
   identify(index, item){
     if(!item) return null;
     return item.id; 
  }
+
+ // Alert
+ public showAlert() {
+  setTimeout(() => this.staticAlertClosed = true, 20000);
+
+  this._success.subscribe(message => this.successMessage = message);
+  this._success.pipe(
+    debounceTime(5000)
+  ).subscribe(() => this.successMessage = '');
+
+  this._success.next('Articolo rimosso con successo! - Sparirò in 5 secondi');
+}
 
 }
