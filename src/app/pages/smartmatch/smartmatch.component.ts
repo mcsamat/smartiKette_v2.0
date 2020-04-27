@@ -27,7 +27,7 @@ export class SmartmatchComponent implements OnInit {
     // DataTables
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 5,
+      pageLength: 10,
       processing: true
     };
     // Richiesta GET

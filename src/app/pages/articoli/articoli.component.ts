@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { ResourceLoader } from '@angular/compiler';
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 var ditemm;
+var ditemal: String;
 
 // Modal Conferma DELETE Item - Template
 @Component({
@@ -17,7 +18,7 @@ var ditemm;
       </button>
     </div>
     <div class="modal-body">
-      <p>Sicuro di voler elimare questo articolo?</p>
+      <p>Sicuro di voler elimare l'articolo <strong>{{ alias }}</strong>?</p>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-danger" (click)="deleteItem()">Sì, elimina</button>
@@ -27,9 +28,17 @@ var ditemm;
 })
 // Modal Conferma DELETE Item - Funzione
 export class NgbdModalContent {
-  @Input() name;
   // Root URL per API
   readonly ROOT_URL = 'http://pietro-test.dlinkddns.com:10082/api/item';
+
+  // Modal - Alias
+  alias = ditemal;
+
+  // DT var
+  items$: any[] = [];
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
+  @Input() name;
 
   constructor(private httpClient: HttpClient, public activeModal: NgbActiveModal) {}
 
@@ -39,9 +48,11 @@ export class NgbdModalContent {
     headers.set('Content-Type', 'application/x-www-form-urlencoded');
     // API - DELETE
     this.httpClient.delete(this.ROOT_URL + '/concrete/' + ditemm.id, { headers }).subscribe(res =>
-      window.location.reload()
+      // window.location.reload()
+      console.log("Eliminato")
       );
   }
+
 }
 
 
@@ -53,7 +64,7 @@ export class NgbdModalContent {
 })
 
 
-export class ArticoliComponent implements OnInit {
+export class ArticoliComponent implements OnInit, OnDestroy {
   // Root URL per API
   readonly ROOT_URL = 'http://pietro-test.dlinkddns.com:10082/api/item';
 
@@ -71,8 +82,10 @@ export class ArticoliComponent implements OnInit {
     // DataTables
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 5,
-      processing: true
+      pageLength: 10,
+      processing: true,
+      order: [],
+      // dom: 'lfti',
     };
     // Richiesta GET
     this.httpClient.get(this.ROOT_URL + '/concrete?recordsPerPage=999999999999', { headers })
@@ -87,10 +100,20 @@ export class ArticoliComponent implements OnInit {
   }
   
   // DELETE item
-  open(ditem: String) {
+  open(ditem: String, ditema: String) {
     ditemm = ditem;
+    // console.log(ditemm);
+    ditemal = ditema;
+    // console.log(ditemal);
+
+    // ditemal = ditem.reserved_alias;
     const modalRef = this.modalService.open(NgbdModalContent);
     modalRef.componentInstance.name = 'Conferma Eliminazione';
   }
+
+  identify(index, item){
+    if(!item) return null;
+    return item.id; 
+ }
 
 }
