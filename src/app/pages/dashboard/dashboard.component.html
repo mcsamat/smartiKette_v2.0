@@ -95,7 +95,9 @@
 					<!-- Contenuto -->
 					<p class="card-text">Nome: <strong>{{ confname }}</strong></p>
 					<p class="card-text">Tipologia: <strong>{{ conftype }}</strong></p>
-					<p class="card-text">Ruolo: <strong></strong></p>
+					<ng-template [ngIf]="conftype == 'multistore'">
+						<p class="card-text">Ruolo: <i class="fab fa-linode" aria-hidden="true"></i><strong> Nodo</strong></p>
+					</ng-template>
 					<p class="card-text">Import patch: <strong>{{ confpath }}</strong></p>
 				</div>
 			</div>
@@ -264,7 +266,7 @@
 					</div>
 				</div>
 				<div class="card-body">
-					<!-- Form di aggiunta template -->
+					<!-- Form di aggiunta template
 					<form>
 						<div class="form-group">
 							<label for="exampleFormControlSelect1">Tiplogia</label>
@@ -278,7 +280,7 @@
 							<input type="file" class="form-control-file" id="exampleFormControlFile1">
 						</div>
 					</form>
-					<br/>
+					<br/>  -->
 					<!-- Lista templates -->
 					<label>Lista Template</label>
 					<ul class="list-group list-group-flush">
