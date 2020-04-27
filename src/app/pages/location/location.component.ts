@@ -10,7 +10,7 @@ export class LocationComponent implements OnInit {
   // Root URL per API
   readonly ROOT_URL = 'http://pietro-test.dlinkddns.com:10082/api/location';
   // Variabili Location
-  corsie;
+  corsie$;
   posizioni;
   ripiano;
 
@@ -21,11 +21,11 @@ export class LocationComponent implements OnInit {
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
 
     // Elenco Corsie
-    this.httpClient.get(this.ROOT_URL + '?locationTypeId=1', { headers })
+    this.httpClient.get(this.ROOT_URL + '', { headers })
     .toPromise().then((corsieAPI:any) => {
       // Passo i valori presi da API
-      this.corsie = corsieAPI.locations;
-      console.log(this.corsie)
+        this.corsie$ = corsieAPI.locations;
+        console.log(this.corsie$[0].location_type.id)
     });
   }
 
