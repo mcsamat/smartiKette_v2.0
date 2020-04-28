@@ -2,28 +2,20 @@
 
 <!-- Modal DELETE Label -->
 <ng-template #content let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Delete</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <div class="modal-header"  data-backdrop="static">
+        <h4 class="modal-title" id="modal-basic-title">Conferma eliminazione</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.close()">
         <span aria-hidden="true">&times;</span>
-      </button>
+        </button>
     </div>
     <div class="modal-body">
-      <form>
-        <div class="form-group">
-          <label for="dateOfBirth">Sicuro?</label>
-          <div class="input-group">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button">Elimina</button>
-            </div>
-          </div>
-        </div>
-      </form>
+        <p>Sicuro di voler el'iminare l'etichetta <strong>{{ label_name }}</strong>?</p>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+		<button class="btn btn-danger" (click)="deleteLabel()" type="button">Elimina</button>
+        <button type="button" class="btn btn-outline-default" (click)="modal.close()">Anulla</button>
     </div>
-  </ng-template>
+</ng-template>
 
 <!-- Contenuto della pagina -->
 <div class="container-fluid mt--7">
@@ -88,7 +80,7 @@
 											<button type="button" class="btn btn-secondary" [disabled]="true">
 												<i class="fas fa-unlink"></i>
 											</button>
-											<button type="button" class="btn btn-danger" [disabled]="false" (click)="open(content)">
+											<button type="button" class="btn btn-danger" [disabled]="false" (click)="open(content, label.LabelId)">
 												<i class="fas fa-trash"></i>
 											</button>
 										</div>

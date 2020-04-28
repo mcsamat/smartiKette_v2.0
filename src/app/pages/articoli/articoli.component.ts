@@ -17,7 +17,6 @@ var del_item_id: String;
   styleUrls: ['./articoli.component.scss']
 })
 
-
 export class ArticoliComponent implements OnInit, OnDestroy {
   // Root URL per API
   readonly ROOT_URL = 'http://pietro-test.dlinkddns.com:10082/api/item';
@@ -53,7 +52,7 @@ export class ArticoliComponent implements OnInit, OnDestroy {
       // dom: 'lfti',
     };
     // GET Label
-    this.getLabel();
+    this.getItems();
   }
 
   ngOnDestroy(): void {
@@ -61,7 +60,7 @@ export class ArticoliComponent implements OnInit, OnDestroy {
   }
 
   // API GET Item
-  getLabel() {
+  getItems() {
     // Header generale
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
 
@@ -105,7 +104,7 @@ export class ArticoliComponent implements OnInit, OnDestroy {
       dtInstance.destroy();
       // Nuova chiamata agli API (il delay di 100ms serve per ottenere API aggiornati)
       setTimeout(() => {
-        this.getLabel();
+        this.getItems();
       }, 100);
     });
   }
@@ -113,8 +112,6 @@ export class ArticoliComponent implements OnInit, OnDestroy {
 
  // Alert 
  public showAlert() {
-  setTimeout(() => this.staticAlertClosed = true, 20000);
-
   this._success.subscribe(message => this.successMessage = message);
   this._success.pipe(
     debounceTime(5000)
