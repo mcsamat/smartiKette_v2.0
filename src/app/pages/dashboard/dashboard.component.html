@@ -277,13 +277,13 @@
 					<!-- Item Type -->
 						<div class="form-group">
 							<label for="itemType">Tiplogia</label>
-							<select [(ngModel)]="selectedOption" class="form-control" name="itemType" id="itemType">
+							<select [(ngModel)]="selectedOption" class="form-control" name="itemType" id="itemType"
+							(click)="getItemTypeTemplate($event.target.value)">
 								<option *ngFor="let item of items_t" [value]="item.id">{{ item.name }}</option>
 							</select>
 						</div>					
 					<!-- Lista templates* -->
-					<label>Lista Template&nbsp;&nbsp;&nbsp;</label> 
-					<button class="btn btn-sm" (click)="getItemTypeTemplate(selectedOption)" type="button">Aggiorna</button>
+					<label>Lista Template</label> 
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item" *ngFor="let template of templates">
 							<small>{{ template.title }}</small>
