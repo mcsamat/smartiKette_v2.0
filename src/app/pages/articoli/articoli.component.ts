@@ -1,15 +1,13 @@
 import { Component, OnInit, Input, OnDestroy, ViewChild } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
-import { ResourceLoader } from '@angular/compiler';
 
 import { NgbModal, ModalDismissReasons, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { DataTableDirective } from 'angular-datatables';
 
 import { debounceTime } from 'rxjs/operators';
 
-var ditemm: String;
-var ditemal: String;
+var del_item_id: String;
 
 
 // Componente principale
@@ -35,10 +33,9 @@ export class ArticoliComponent implements OnInit, OnDestroy {
   // Alert e Modal
   private _success = new Subject<string>();
   staticAlertClosed = false;
-  successMessage = '';
   alias: String;
   providers: [NgbModalConfig, NgbModal]
-  
+  successMessage = '';
 
 
   constructor(private httpClient: HttpClient, private modalService: NgbModal, config: NgbModalConfig) { 
@@ -47,26 +44,21 @@ export class ArticoliComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // DataTables
+    // DataTables Options
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
       processing: true,
       order: [],
-      // retrieve: true,
       // dom: 'lfti',
     };
+    // GET Label
     this.getLabel();
-    // Alert timeout
-    setTimeout(() => this.staticAlertClosed = true, 20000);
   }
-
-  
 
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
   }
-
 
   // API GET Item
   getLabel() {
@@ -81,74 +73,45 @@ export class ArticoliComponent implements OnInit, OnDestroy {
     });
   }
 
-
-
-
-
-
-
-
-
-  // Funzione Modal +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  open(content, ditem: String, ditema: String) {
-    // Var ID
-    ditemm = ditem;
-    //Alias
-    ditemal = ditema;
-    this.alias = ditemal;
-
+  // ----------------------------------------------------------------------------------------------------------------------------
+  // Funzione OpenModal
+  open(content, d_item_id: String, d_item_a: String) {
+    // Passo le info dell'item da eliminare
+    del_item_id = d_item_id;
+    this.alias = d_item_a;
+    // Mostro il Modal per la conferma
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'})
-    //.result.then((result) => {
-    //  console.log('Azione 1 - Esci');
-    //}, (reason) => {
-    //  console.log('Azione 2 - Elimina');
-    //  this.deleteItem();
-      
-    //  this.modalService.dismissAll();
-    //});
   }
 
-  
-  
-  // DELETE item
+  // API DELETE Item
   deleteItem(): void {
     // Header apikey + Content-Type
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
     headers.set('Content-Type', 'application/x-www-form-urlencoded');
     // API - DELETE
-     this.httpClient.delete(this.ROOT_URL + '/concrete/' + ditemm, { headers }).subscribe(res =>
-      this.showAlert()
-      );
+    this.httpClient.delete(this.ROOT_URL + '/concrete/' + del_item_id, { headers }).subscribe();
 
-      this.modalService.dismissAll();
-      this.rerender();
+    // Chiuso il modal mostro l'alert, e renderizzo nuovamente la tabella
+    this.modalService.dismissAll();
+    this.showAlert();
+    this.rerender();
       
   }
 
- 
+  // Render Tabella
   rerender(): void {
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-      // Destroy the table first
+      // Distruggo la vecchia tabella
       dtInstance.destroy();
-      // Call the dtTrigger to rerender again
+      // Nuova chiamata agli API (il delay di 100ms serve per ottenere API aggiornati)
       setTimeout(() => {
         this.getLabel();
       }, 100);
-       
-      // this.dtTrigger.next();
     });
   }
 
 
-
-
-
-
-
-
-
-
- // Alert
+ // Alert 
  public showAlert() {
   setTimeout(() => this.staticAlertClosed = true, 20000);
 
@@ -157,7 +120,7 @@ export class ArticoliComponent implements OnInit, OnDestroy {
     debounceTime(5000)
   ).subscribe(() => this.successMessage = '');
 
-  this._success.next('Articolo rimosso con successo! - Sparirò in 5 secondi');
+  this._success.next('Articolo ' + this.alias + ' rimosso con successo!');
 }
 
 }
