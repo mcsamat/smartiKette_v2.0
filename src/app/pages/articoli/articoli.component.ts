@@ -1,63 +1,18 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ViewChild } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { ResourceLoader } from '@angular/compiler';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { NgbModal, ModalDismissReasons, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { DataTableDirective } from 'angular-datatables';
+
 import { debounceTime } from 'rxjs/operators';
 
-var ditemm;
+var ditemm: String;
 var ditemal: String;
 
-// Modal Conferma DELETE Item - Template
-@Component({
-  selector: 'ngbd-modal-content',
-  template: `
-    <div class="modal-header">
-      <h4 class="modal-title">Elimina Articolo</h4>
-      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <p>Sicuro di voler elimare l'articolo <strong>{{ alias }}</strong>?</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-danger" (click)="deleteItem()">Sì, elimina</button>
-      <button type="button" class="btn btn-outline-primary" (click)="activeModal.close('Close click')">Annulla</button>
-    </div>
-  `
-})
-// Modal Conferma DELETE Item - Funzione
-export class NgbdModalContent {
-  // Root URL per API
-  readonly ROOT_URL = 'http://pietro-test.dlinkddns.com:10082/api/item';
 
-  // Modal - Alias
-  alias = ditemal;
-
-  // DT var
-  items$: any[] = [];
-  dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any> = new Subject();
-  @Input() name;
-
-  constructor(private httpClient: HttpClient, public activeModal: NgbActiveModal) {}
-
-  deleteItem(): void {
-    // Header apikey + Content-Type
-    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-    headers.set('Content-Type', 'application/x-www-form-urlencoded');
-    // API - DELETE
-    this.httpClient.delete(this.ROOT_URL + '/concrete/' + ditemm.id, { headers }).subscribe(res =>
-      // window.location.reload()
-      console.log("Eliminato")
-      );
-  }
-
-}
-
-
-// Componente principale ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// Componente principale
 @Component({
   selector: 'app-articoli',
   templateUrl: './articoli.component.html',
@@ -70,61 +25,128 @@ export class ArticoliComponent implements OnInit, OnDestroy {
   readonly ROOT_URL = 'http://pietro-test.dlinkddns.com:10082/api/item';
 
   // DT var
+  @ViewChild(DataTableDirective, {static: false})
+  dtElement: DataTableDirective;
+
   items$: any[] = [];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
-  // Alert
+  // Alert e Modal
   private _success = new Subject<string>();
   staticAlertClosed = false;
   successMessage = '';
+  alias: String;
+  providers: [NgbModalConfig, NgbModal]
+  
 
-  constructor(private httpClient: HttpClient, private modalService: NgbModal) { }
+
+  constructor(private httpClient: HttpClient, private modalService: NgbModal, config: NgbModalConfig) { 
+    config.backdrop = 'static';
+    config.keyboard = false;
+  }
 
   ngOnInit(): void {
-    // Header generale
-    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-
     // DataTables
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
       processing: true,
       order: [],
+      // retrieve: true,
       // dom: 'lfti',
     };
-    // Richiesta GET
+    this.getLabel();
+    // Alert timeout
+    setTimeout(() => this.staticAlertClosed = true, 20000);
+  }
+
+  
+
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
+  }
+
+
+  // API GET Item
+  getLabel() {
+    // Header generale
+    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+
+    // Richiesta
     this.httpClient.get(this.ROOT_URL + '/concrete?recordsPerPage=999999999999', { headers })
     .toPromise().then((data:any) => {
       this.items$ = data.items;
       this.dtTrigger.next();
     });
-
-    // Alert
-    setTimeout(() => this.staticAlertClosed = true, 20000);
   }
 
-  ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe();
+
+
+
+
+
+
+
+
+  // Funzione Modal +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  open(content, ditem: String, ditema: String) {
+    // Var ID
+    ditemm = ditem;
+    //Alias
+    ditemal = ditema;
+    this.alias = ditemal;
+
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'})
+    //.result.then((result) => {
+    //  console.log('Azione 1 - Esci');
+    //}, (reason) => {
+    //  console.log('Azione 2 - Elimina');
+    //  this.deleteItem();
+      
+    //  this.modalService.dismissAll();
+    //});
   }
+
+  
   
   // DELETE item
-  open(ditem: String, ditema: String) {
-    ditemm = ditem;
-    // console.log(ditemm);
-    ditemal = ditema;
-    // console.log(ditemal);
+  deleteItem(): void {
+    // Header apikey + Content-Type
+    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+    headers.set('Content-Type', 'application/x-www-form-urlencoded');
+    // API - DELETE
+     this.httpClient.delete(this.ROOT_URL + '/concrete/' + ditemm, { headers }).subscribe(res =>
+      this.showAlert()
+      );
 
-    // ditemal = ditem.reserved_alias;
-    const modalRef = this.modalService.open(NgbdModalContent);
-    modalRef.componentInstance.name = 'Conferma Eliminazione';
+      this.modalService.dismissAll();
+      this.rerender();
+      
   }
 
-  // WiP - Table Update
-  identify(index, item){
-    if(!item) return null;
-    return item.id; 
- }
+ 
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      // Destroy the table first
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      setTimeout(() => {
+        this.getLabel();
+      }, 100);
+       
+      // this.dtTrigger.next();
+    });
+  }
+
+
+
+
+
+
+
+
+
 
  // Alert
  public showAlert() {
