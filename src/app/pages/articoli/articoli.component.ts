@@ -2,8 +2,8 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { ResourceLoader } from '@angular/compiler';
-import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {debounceTime} from 'rxjs/operators';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { debounceTime } from 'rxjs/operators';
 
 var ditemm;
 var ditemal: String;

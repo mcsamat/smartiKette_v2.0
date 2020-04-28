@@ -19,12 +19,14 @@
 				<!-- Body -->
 				<div class="card-body">
 					<!-- Aggiungi Corsia -->
-					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Aggiungi corsia" aria-label="Recipient's username" aria-describedby="button-addon2">
-						<div class="input-group-append">
-							<button class="btn btn-inline-primary" type="button" id="button-addon2" [disabled]="true"><i class="ni ni-fat-add"></i></button>
+						<div class="input-group mb-3">
+							<input type="text" class="form-control" #nomeCorsia name="nomeCorsia" placeholder="Aggiungi corsia" aria-label="Recipient's username" aria-describedby="button-addon2">
+							<div class="input-group-append">
+								<button class="btn btn-inline-primary" type="submit" id="button-addon2" (click)="postCorsia(nomeCorsia.value)" for='nomeCorsia'>
+									<i class="ni ni-fat-add"></i>
+								</button>
+							</div>
 						</div>
-					</div>
 					<!-- Elenco Corsie -->
 						<table class="table align-items-center table-flush">
 							<thead class="thead-light">
