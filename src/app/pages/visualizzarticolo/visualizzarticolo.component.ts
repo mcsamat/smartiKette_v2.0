@@ -21,11 +21,11 @@ export class VisualizzarticoloComponent implements OnInit {
 
   ngOnInit(): void {
     this.item_id = localStorage.getItem('item_id');
-    console.log(this.item_id);
+    // console.log(this.item_id);
     this.getDetails();
   }
 
-  // Richiesta
+  // Richiesta API dettagli articolo
   getDetails() {
     // Header generale
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
@@ -38,6 +38,7 @@ export class VisualizzarticoloComponent implements OnInit {
     });
   }
     
+  // Pulsante Annulla
   goBack(){
     this.router.navigateByUrl('/articoli');
   }

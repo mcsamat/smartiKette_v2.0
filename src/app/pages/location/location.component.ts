@@ -10,13 +10,16 @@ export class LocationComponent implements OnInit {
   // Root URL per API
   readonly ROOT_URL = 'http://pietro-test.dlinkddns.com:10082/api/location';
   // Variabili Location
-  corsie$;
-  posizioni;
-  ripiano;
+  locations$;
 
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
+    this.getLocations();
+  }
+
+  // Metodo GET - Visualizzare Locations
+  getLocations() {
     // Header generale
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
 
@@ -24,23 +27,32 @@ export class LocationComponent implements OnInit {
     this.httpClient.get(this.ROOT_URL, { headers })
     .toPromise().then((corsieAPI:any) => {
       // Passo i valori presi da API
-        this.corsie$ = corsieAPI.locations;
-        // console.log(this.corsie$[0].location_type.id)
+      this.locations$ = corsieAPI.locations;
+      // console.log(this.corsie$[0].location_type.id)
     });
   }
 
-  // Metodo POST - Aggiungere corsia
-  postCorsia(nomeCorsia) {
+  // Metodo POST - Aggiungere Location
+  postCorsia(nomeLocation: string, tipoLocation: string) {
     // Header generale
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+    console.log(localStorage.getItem('apikey'));
     headers.set('Content-Type', 'application/x-www-form-urlencoded');
+
+    // Params
+    let params = new HttpParams()
+    .set('locationTypeId', tipoLocation)
+    .set('locationName', nomeLocation)
+    .set('isActive', 'true');
     
-    // Aggiungo una corsia
-    this.httpClient.post(this.ROOT_URL, 'locationTypeId=1&locationName=Prova3&isActive=true', { headers })
-    .subscribe(res =>
-      console.log("Aggiunto")
-    );
-    console.log(nomeCorsia)
+    // Aggiungo Location
+    this.httpClient.post(this.ROOT_URL, params, { headers }).subscribe();
+
+    // Aspetto 100ms e richiedo i nuovi dati
+    setTimeout(()=>{
+      this.getLocations();
+    }, 100);
   }
+
 
 }

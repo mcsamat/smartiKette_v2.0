@@ -19,37 +19,37 @@
 				<!-- Body -->
 				<div class="card-body">
 					<!-- Aggiungi Corsia -->
-						<div class="input-group mb-3">
-							<input type="text" class="form-control" #nomeCorsia name="nomeCorsia" placeholder="Aggiungi corsia" aria-label="Recipient's username" aria-describedby="button-addon2">
-							<div class="input-group-append">
-								<button class="btn btn-inline-primary" type="submit" id="button-addon2" (click)="postCorsia(nomeCorsia.value)" for='nomeCorsia'>
-									<i class="ni ni-fat-add"></i>
-								</button>
-							</div>
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" #nomeCorsia name="nomeCorsia" placeholder="Aggiungi corsia" aria-label="Recipient's username" aria-describedby="button-addon2">
+						<div class="input-group-append">
+							<button class="btn btn-inline-primary" type="submit" id="button-addon2" (click)="postCorsia(nomeCorsia.value, 1)" for='nomeCorsia'>
+								<i class="ni ni-fat-add"></i>
+							</button>
 						</div>
+					</div>
 					<!-- Elenco Corsie -->
-						<table class="table align-items-center table-flush">
-							<thead class="thead-light">
-								<tr>
-									<th scope="col">Nome</th>
-									<th scope="col"></th>
-								</tr>
-							</thead>
-							<tbody>	
-								<tr *ngFor="let corsia of corsie$">
-									<ng-template [ngIf]="corsia.location_type.id == 1 && corsia.is_active">
-										<th>{{ corsia.name }}</th>
-										<td align="right">
-											<div class="btn-group btn-group-sm" role="group" aria-label="Tools">
-												<button type="button" class="btn btn-danger" [disabled]="true">
-													<i class="fas fa-trash"></i>
-												</button>
-											</div>
-										</td>
-									</ng-template>
-								</tr>	
-							</tbody>
-						</table>
+					<table class="table align-items-center table-flush">
+						<thead class="thead-light">
+							<tr>
+								<th scope="col">Nome</th>
+								<th scope="col"></th>
+							</tr>
+						</thead>
+						<tbody>	
+							<tr *ngFor="let corsia of locations$">
+								<ng-template [ngIf]="corsia.location_type.id == 1 && corsia.is_active">
+									<th>{{ corsia.name }}</th>
+									<td align="right">
+										<div class="btn-group btn-group-sm" role="group" aria-label="Tools">
+											<button type="button" class="btn btn-danger" [disabled]="true">
+												<i class="fas fa-trash"></i>
+											</button>
+										</div>
+									</td>
+								</ng-template>
+							</tr>	
+						</tbody>
+					</table>
 					</div>
 				</div>
 			</div>
@@ -70,9 +70,11 @@
 				<div class="card-body">
 					<!-- Aggiungi Posizione -->
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Aggiungi posizione" aria-label="Recipient's username" aria-describedby="button-addon2">
+						<input type="text" class="form-control" #nomePosizione name="nomePosizione" placeholder="Aggiungi posizione" aria-label="Recipient's username" aria-describedby="button-addon2">
 						<div class="input-group-append">
-							<button class="btn btn-inline-primary" type="button" id="button-addon2" [disabled]="true"><i class="ni ni-fat-add"></i></button>
+							<button class="btn btn-inline-primary" type="submit" id="button-addon2" (click)="postCorsia(nomePosizione.value, 2)" for='nomePosizione'>
+								<i class="ni ni-fat-add"></i>
+							</button>
 						</div>
 					</div>
 					<!-- Elenco Posizioni -->
@@ -84,7 +86,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr *ngFor="let corsia of corsie$">
+							<tr *ngFor="let corsia of locations$">
 								<ng-template [ngIf]="corsia.location_type.id == 2 && corsia.is_active">
 									<th>{{ corsia.name }}</th>
 									<td align="right">
@@ -118,9 +120,11 @@
 				<div class="card-body">
 					<!-- Aggiungi Ripiano -->
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="Aggiungi ripiano" aria-label="Recipient's username" aria-describedby="button-addon2">
+						<input type="text" class="form-control" #nomeRipiano name="nomeRipiano" placeholder="Aggiungi posizione" aria-label="Recipient's username" aria-describedby="button-addon2">
 						<div class="input-group-append">
-							<button class="btn btn-inline-primary" type="button" id="button-addon2" [disabled]="true"><i class="ni ni-fat-add"></i></button>
+							<button class="btn btn-inline-primary" type="submit" id="button-addon2" (click)="postCorsia(nomeRipiano.value, 3)" for='nomeRipiano'>
+								<i class="ni ni-fat-add"></i>
+							</button>
 						</div>
 					</div>
 					<!-- Elenco Ripiani -->
@@ -132,7 +136,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr *ngFor="let corsia of corsie$">
+							<tr *ngFor="let corsia of locations$">
 								<ng-template [ngIf]="corsia.location_type.id == 3 && corsia.is_active">
 									<th>{{ corsia.name }}</th>
 									<td align="right">
