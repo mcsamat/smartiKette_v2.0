@@ -120,3 +120,4 @@ export class EtichetteComponent implements OnInit, OnDestroy {
 }
 
 }
+

@@ -6,6 +6,7 @@ import { NgbModal, ModalDismissReasons, NgbModalConfig } from '@ng-bootstrap/ng-
 import { DataTableDirective } from 'angular-datatables';
 
 import { debounceTime } from 'rxjs/operators';
+import { NgForOf } from '@angular/common';
 
 var del_item_id: String;
 
@@ -29,12 +30,21 @@ export class ArticoliComponent implements OnInit, OnDestroy {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
+  // Var Crea Nuovo
+  // Variabili ItemType
+  items_t;
+  titems_t: number;
+
   // Alert e Modal
   private _success = new Subject<string>();
   staticAlertClosed = false;
   alias: String;
   providers: [NgbModalConfig, NgbModal]
   successMessage = '';
+
+  // Test
+  parametri$: any[] = [];
+  valori$: any[] = [];
 
 
   constructor(private httpClient: HttpClient, private modalService: NgbModal, config: NgbModalConfig) { 
@@ -53,6 +63,28 @@ export class ArticoliComponent implements OnInit, OnDestroy {
     };
     // GET Label
     this.getItems();
+
+    this.getItemType();
+
+
+    // Prova Test
+    // let parametri$: any[] = [];
+
+    // Richiesta
+    // Header generale
+    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+    let item_id = '5e8c9f86c70442668917693b';
+    this.httpClient.get(this.ROOT_URL + '/concrete/' + item_id, { headers })
+    .toPromise().then((data:any) => {
+      // console.log(Object.keys(data.current_fields));
+      this.parametri$ = Object.keys(data.current_fields);
+      // console.log(this.parametri$);
+
+      this.valori$ = data.current_fields;
+
+      // console.log(this.valori$);
+
+    });
   }
 
   ngOnDestroy(): void {
@@ -68,9 +100,71 @@ export class ArticoliComponent implements OnInit, OnDestroy {
     this.httpClient.get(this.ROOT_URL + '/concrete?recordsPerPage=999999999999', { headers })
     .toPromise().then((data:any) => {
       this.items$ = data.items;
+      // console.log(this.items$);
       this.dtTrigger.next();
     });
   }
+
+  // --------------------------------------------------------------------------------------------------------------------------------------------
+  // Funzione viewItem
+  viewItem(item_id: String) {
+    // Header generale
+    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+    let parametri$: any[] = [];
+
+    // Richiesta
+    this.httpClient.get(this.ROOT_URL + '/concrete/' + item_id, { headers })
+    .toPromise().then((data:any) => {
+      // console.log(Object.keys(data.current_fields));
+      parametri$ = Object.keys(data.current_fields);
+      console.log(parametri$);
+
+      console.log(data.current_fields);
+
+    });
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // --------------------------------------------------------------------------------------------------------------------
+  // Funzione Crea Nuovo Articolo
+  getItemType() {
+    // Header generale
+    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+    // Item Type API
+    this.httpClient.get(this.ROOT_URL + '/type', { headers })
+    .toPromise().then((itemtAPI:any) => {
+      // console.log(itemtAPI);
+      this.titems_t = itemtAPI.total_itemtype;
+      this.items_t = itemtAPI.itemtype;
+    });
+  }
+
+  addItem() {
+    
+  }
+
+
+
+
 
   // ----------------------------------------------------------------------------------------------------------------------------
   // Funzione OpenModal
