@@ -6,7 +6,8 @@ import { NgbModal, ModalDismissReasons, NgbModalConfig } from '@ng-bootstrap/ng-
 import { DataTableDirective } from 'angular-datatables';
 
 import { debounceTime } from 'rxjs/operators';
-import { NgForOf } from '@angular/common';
+
+import { Router } from '@angular/router';
 
 var del_item_id: String;
 
@@ -43,11 +44,10 @@ export class ArticoliComponent implements OnInit, OnDestroy {
   successMessage = '';
 
   // Test
-  parametri$: any[] = [];
-  valori$: any[] = [];
+  item_r_id;
 
 
-  constructor(private httpClient: HttpClient, private modalService: NgbModal, config: NgbModalConfig) { 
+  constructor(private httpClient: HttpClient, private modalService: NgbModal, config: NgbModalConfig, private router: Router) { 
     config.backdrop = 'static';
     config.keyboard = false;
   }
@@ -66,25 +66,6 @@ export class ArticoliComponent implements OnInit, OnDestroy {
 
     this.getItemType();
 
-
-    // Prova Test
-    // let parametri$: any[] = [];
-
-    // Richiesta
-    // Header generale
-    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-    let item_id = '5e8c9f86c70442668917693b';
-    this.httpClient.get(this.ROOT_URL + '/concrete/' + item_id, { headers })
-    .toPromise().then((data:any) => {
-      // console.log(Object.keys(data.current_fields));
-      this.parametri$ = Object.keys(data.current_fields);
-      // console.log(this.parametri$);
-
-      this.valori$ = data.current_fields;
-
-      // console.log(this.valori$);
-
-    });
   }
 
   ngOnDestroy(): void {
@@ -106,39 +87,12 @@ export class ArticoliComponent implements OnInit, OnDestroy {
   }
 
   // --------------------------------------------------------------------------------------------------------------------------------------------
-  // Funzione viewItem
-  viewItem(item_id: String) {
-    // Header generale
-    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-    let parametri$: any[] = [];
-
-    // Richiesta
-    this.httpClient.get(this.ROOT_URL + '/concrete/' + item_id, { headers })
-    .toPromise().then((data:any) => {
-      // console.log(Object.keys(data.current_fields));
-      parametri$ = Object.keys(data.current_fields);
-      console.log(parametri$);
-
-      console.log(data.current_fields);
-
-    });
-
-
+  // Funzione viewItem - routing per la pagina dei dettagli
+  viewItem(item_id: string) {
+    localStorage.removeItem('item_id');
+    localStorage.setItem('item_id', item_id);
+    this.router.navigateByUrl('/view-item');
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -159,7 +113,7 @@ export class ArticoliComponent implements OnInit, OnDestroy {
   }
 
   addItem() {
-    
+    // WiP
   }
 
 

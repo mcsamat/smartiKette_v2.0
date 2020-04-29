@@ -15,6 +15,7 @@ import { ComponentsModule } from './components/components.module';
 
 import { DataTablesModule } from 'angular-datatables';
 
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,

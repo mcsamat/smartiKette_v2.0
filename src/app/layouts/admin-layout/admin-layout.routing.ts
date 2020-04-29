@@ -5,11 +5,13 @@ import { SmartmatchComponent } from '../../pages/smartmatch/smartmatch.component
 import { ArticoliComponent } from '../../pages/articoli/articoli.component';
 import { EtichetteComponent } from '../../pages/etichette/etichette.component';
 import { LocationComponent } from '../../pages/location/location.component';
+import { VisualizzarticoloComponent } from '../../pages/visualizzarticolo/visualizzarticolo.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'etichette',      component: EtichetteComponent },
     { path: 'location',       component: LocationComponent },
     { path: 'smartmatch',     component: SmartmatchComponent },
-    { path: 'articoli',       component: ArticoliComponent }
+    { path: 'articoli',       component: ArticoliComponent },
+    { path: 'view-item',      component: VisualizzarticoloComponent  },
 ];
