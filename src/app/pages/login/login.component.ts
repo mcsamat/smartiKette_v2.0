@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Credentials } from 'src/app/variables/credentials';
 import { Router } from '@angular/router';
+import { Global } from '../../variables/global';
 
 
 @Component({
@@ -10,8 +11,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  // Root URL per API
-  readonly ROOT_URL = 'http://pietro-test.dlinkddns.com:10082/api';
   // Credenziali d'accesso
   userModel = new Credentials(localStorage.getItem('username'), localStorage.getItem('password'), false);
   // Apikey
@@ -34,7 +33,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     // Header
     let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
     // Richiesta ApiKey
-    this.httpClient.post(this.ROOT_URL + '/apikey', 'username=' + this.userModel.username + '&password=' + this.userModel.password, { headers })
+    this.httpClient.post(Global.URL_ROOT + '/apikey', 'username=' + this.userModel.username + '&password=' + this.userModel.password, { headers })
     .toPromise().then((data:any) => {
       // Assegno il valore di apikey alla variabile key - e al localStorage
       this.key = data.apikey;

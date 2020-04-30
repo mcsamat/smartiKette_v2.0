@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { System } from '../../variables/system';
 import { Global } from '../../variables/global';
 
@@ -23,30 +24,35 @@ export class DashboardComponent implements OnInit {
   varImport;
   // Var Mobile Device
   varMobile;
-  
+
   // Variabili System
   system_info = new System('', '', '', '', '',  '',  '',  '',  '',  '',  '');
   // Var Templates via ItemType.ID
   templates;
 
   
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
     ngOnInit() {
-      // Richiamo le funzioni per API
-      this.getInstallation();
+      // Controllo l'accesso
+      if (localStorage.getItem('apikey') != null) {
+        // Richiamo le funzioni per API
+        this.getInstallation();
 
-      this.getDisplay();
-      this.getTotalMatch();
-      this.getAps();
+        this.getDisplay();
+        this.getTotalMatch();
+        this.getAps();
 
-      this.getItems();
-      this.getTotItem();
-      this.getImport();
+        this.getItems();
+        this.getTotItem();
+        this.getImport();
 
-      this.getMobile();
+        this.getMobile();
 
-      this.getInfo();    
+        this.getInfo();         
+      } else {
+        this.router.navigate(['../login']);
+      }
     }
 
     // -------- API Requests -------------------------------------------------------------------------------------------------------------------------------------
