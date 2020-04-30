@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 import { Credentials } from 'src/app/variables/credentials';
 import { Router } from '@angular/router';
 
@@ -15,13 +14,22 @@ export class LoginComponent implements OnInit, OnDestroy {
   readonly ROOT_URL = 'http://pietro-test.dlinkddns.com:10082/api';
   // Credenziali d'accesso
   userModel = new Credentials(localStorage.getItem('username'), localStorage.getItem('password'), false);
-  // var per passare apikey
+  // Apikey
   key: string;
+  // Login Fallito
+  showErrorMessage = false;
+
  
   // Costruttore
   constructor(private httpClient: HttpClient, private router: Router) { }
 
-  // Pulsante Accedi
+  ngOnInit() {
+  }
+
+  ngOnDestroy() {
+  }
+
+  // Accedi
   onSubmit() {
     // Header
     let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
@@ -34,7 +42,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
       // Redirect alla Dashboard
       if (this.key == null) {
-        console.log('Credenziali errate');
+        this.showErrorMessage = true;
       } else {
         this.router.navigate(['../dashboard']);
       }
@@ -45,17 +53,9 @@ export class LoginComponent implements OnInit, OnDestroy {
       localStorage.setItem('username', this.userModel.username);
       localStorage.setItem('password', this.userModel.password);
     } else {
-      localStorage.setItem('username', this.userModel.username);
+      localStorage.setItem('username', '');
       localStorage.setItem('password', '');
-  };
-}
-
-  ngOnInit() {
-
+    };
   }
-  ngOnDestroy() {
-    
-  }
-
 
 }
