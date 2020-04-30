@@ -1,272 +1,123 @@
+<!-- Sfondo Header e Cards -->
 <div class="header bg-gradient-info pb-8 pt-5 pt-md-6">
-	<div class="container-fluid">
-		<div class="header-body">
-			<!-- Info Cards -->
-			<div class="row">
-				<!-- Sistema-->
-				<div class="col-xl-4 col-lg-6">
-					<div class="card card-stats mb-4 mb-xl-0">
-						<div class="card-body">
-							<div class="row">
-								<div class="col">
-									<h5 class="card-title text-uppercase text-muted mb-0">Informazioni</h5>
-									<span class="h2 font-weight-bold mb-0">{{ confname }}</span>
-								</div>
-								<div class="col-auto">
-									<div class="icon icon-shape bg-default text-white rounded-circle shadow">
-										<i class="ni ni-settings"></i>
-									</div>
-								</div>
-							</div>
-							<p class="mt-3 mb-0 text-muted text-sm">
-								<span class="text-success mr-2">{{ conftype }}</span>
-								<span class="text-nowrap">Tipologia installazione</span>
-							</p>
-						</div>
-					</div>
-				</div>
-				<!-- Etichette-->
-				<div class="col-xl-4 col-lg-6">
-					<div class="card card-stats mb-4 mb-xl-0">
-						<div class="card-body">
-							<div class="row">
-								<div class="col">
-									<h5 class="card-title text-uppercase text-muted mb-0">Etichette online</h5>
-									<span class="h2 font-weight-bold mb-0">{{ onl }}</span>
-								</div>
-								<div class="col-auto">
-									<div class="icon icon-shape bg-success text-white rounded-circle shadow">
-										<i class="ni ni-button-play"></i>
-									</div>
-								</div>
-							</div>
-							<p class="mt-3 mb-0 text-muted text-sm">
-								<span class="text-danger mr-2">{{ offl }}</span>
-								<span class="text-nowrap">Etichette offline</span>
-							</p>
-						</div>
-					</div>
-				</div>
-				<!-- Batterie-->
-				<div class="col-xl-4 col-lg-6">
-					<div class="card card-stats mb-4 mb-xl-0">
-						<div class="card-body">
-							<div class="row">
-								<div class="col">
-									<h5 class="card-title text-uppercase text-muted mb-0">Batterie scariche</h5>
-									<span class="h2 font-weight-bold mb-0">{{ bbad }}</span>
-								</div>
-								<div class="col-auto">
-									<div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-										<i class="ni ni-button-power"></i>
-									</div>
-								</div>
-							</div>
-							<p class="mt-3 mb-0 text-muted text-sm">
-								<span class="text-success mr-2">{{ bgood }}</span>
-								<span class="text-nowrap">In buono stato</span>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container-fluid">
+        <div class="header-body">
+            <!-- Info Cards -->
+            <div class="row">
+                <!-- Sistema -->
+                <div class="col-xl-4 col-lg-6">
+                    <div class="card card-stats mb-4 mb-xl-0">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Informazioni</h5>
+                                    <span class="h2 font-weight-bold mb-0">{{ varInstallation.installation_name }}</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="icon icon-shape bg-default text-white rounded-circle shadow">
+                                        <i class="ni ni-settings"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-3 mb-0 text-muted text-sm">
+                                <span class="text-success mr-2">{{ varInstallation.installation_type }}</span>
+                                <span class="text-nowrap">Tipologia installazione</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Etichette -->
+                <div class="col-xl-4 col-lg-6">
+                    <div class="card card-stats mb-4 mb-xl-0">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Etichette online</h5>
+                                    <span class="h2 font-weight-bold mb-0">{{ varLabelStat.connection.online }}</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="icon icon-shape bg-success text-white rounded-circle shadow">
+                                        <i class="ni ni-button-play"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-3 mb-0 text-muted text-sm">
+                                <span class="text-danger mr-2">{{ varLabelStat.connection.offline }}</span>
+                                <span class="text-nowrap">Etichette offline</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Batterie -->
+                <div class="col-xl-4 col-lg-6">
+                    <div class="card card-stats mb-4 mb-xl-0">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Batterie scariche</h5>
+                                    <span class="h2 font-weight-bold mb-0">{{ varLabelStat.battery.bad }}</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                                        <i class="ni ni-button-power"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-3 mb-0 text-muted text-sm">
+                                <span class="text-success mr-2">{{ varLabelStat.battery.good }}</span>
+                                <span class="text-nowrap">In buono stato</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<!-- Contenuto della pagina -->
+<!-- Contenuto della Dashboard -->
 <div class="container-fluid mt--7">
-	<!-- Prima riga -->
-	<div class="row">
-
-		<!-- Informazioni Installazione -->
-		<div class="col-xl-4">
-			<div class="card shadow">
+    <!-- Prima riga -->
+    <div class="row">
+        <!-- Informazioni Installazione & Templates -->
+        <div class="col-xl-4">
+			<!-- Informazioni Installazione -->
+            <div class="card shadow">
+                <!-- Header Info -->
+                <div class="card-header bg-transparent">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h6 class="text-uppercase text-muted ls-1 mb-1">Installazione</h6>
+                            <h2 class="mb-0"><i class="fas fa-info-circle"></i> Informazioni Installazione</h2>
+                        </div>
+                    </div>
+				</div>
+				<!-- Contenuto Info -->
+                <div class="card-body">
+                    <p class="card-text">Nome: <strong>{{ varInstallation.installation_name }}</strong></p>
+                    <p class="card-text">Tipologia: <strong>{{ varInstallation.installation_type }}</strong></p>
+                    <ng-template [ngIf]="varInstallation.installation_type == 'multistore'">
+                        <p class="card-text">Ruolo: <i class="fab fa-linode" aria-hidden="true"></i><strong> Nodo</strong></p>
+                    </ng-template>
+                    <p class="card-text">Import patch: <strong>{{ varInstallation.import_base_path }}</strong></p>
+                </div>
+            </div>
+			<br>
+			
+            <!-- Templates -->
+            <div class="card shadow">
 				<!-- Header -->
-				<div class="card-header bg-transparent">
-					<div class="row align-items-center">
-						<div class="col">
-							<h6 class="text-uppercase text-muted ls-1 mb-1">Installazione</h6>
-							<h2 class="mb-0"><i class="fas fa-info-circle"></i> Informazioni Installazione</h2>
-						</div>
-					</div>
+                <div class="card-header bg-transparent">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h6 class="text-uppercase text-muted ls-1 mb-1">Lista Custom Templates</h6>
+                            <h2 class="mb-0"><i class="fas fa-crop"></i> Templates</h2>
+                        </div>
+                    </div>
 				</div>
-				<div class="card-body">
-					<!-- Contenuto -->
-					<p class="card-text">Nome: <strong>{{ confname }}</strong></p>
-					<p class="card-text">Tipologia: <strong>{{ conftype }}</strong></p>
-					<ng-template [ngIf]="conftype == 'multistore'">
-						<p class="card-text">Ruolo: <i class="fab fa-linode" aria-hidden="true"></i><strong> Nodo</strong></p>
-					</ng-template>
-					<p class="card-text">Import patch: <strong>{{ confpath }}</strong></p>
-				</div>
-			</div>
-		</div>
-
-		<!-- Display Etichette -->
-		<div class="col-xl-4">
-			<div class="card shadow">
-				<!--Display-->
-				<div class="card-header bg-transparent">
-					<div class="row align-items-center">
-						<div class="col">
-							<h6 class="text-uppercase text-muted ls-1 mb-1">Display</h6>
-							<h2 class="mb-0"><i class="fas fa-desktop"></i> Display</h2>
-							<small>Stato display a disposizione</small>
-						</div>
-					</div>
-				</div>
-				<!--Etichette-->
-				<div class="card-header bg-transparent">
-					<div class="row align-items-center">
-						<div class="col">
-							<h2 class="mb-0"><i class="fas fa-tags"></i> Etichette</h2>
-							<br/>
-							<!-- Stato etichette -->
-							<p class="card-text">Online <span class="badge badge-success">{{ onl }}</span></p>
-							<p class="card-text">Offline <span class="badge badge-danger">{{ offl }}</span></p>
-							<br/>
-							<p class="card-text">Battery Good <span class="badge badge-success">{{ bgood }}</span></p>
-							<p class="card-text">Battery Bad <span class="badge badge-danger">{{ bbad }}</span></p>
-							<br/>
-							<p class="card-text">Totale Etichette Match Attivi <span class="badge badge-success">{{ tmatch }}</span></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Articoli-->
-		<div class="col-xl-4">
-			<div class="card shadow">
-				<div class="card-header bg-transparent">
-					<div class="row align-items-center">
-						<div class="col">
-							<h6 class="text-uppercase text-muted ls-1 mb-1">Oggetti</h6>
-							<h2 class="mb-0"><i class="fas fa-list"></i> Articoli <span class="badge badge-pill badge-default">{{ titem }}</span></h2>
-						</div>
-					</div>
-				</div>
-				<div class="card-body">
-					<!-- Contenuto -->
-					<h3>Tipologie di articoli <span class="badge badge-pill badge-default">{{ titems_t }}</span></h3>
-					<!-- Tabella -->
-					<div class="table-responsive">
-						<table class="table align-items-center table-flush">
-							<!-- Intestazione tabella -->
-							<thead class="thead-light">
-								<tr>
-									<th scope="col">Tipo</th>
-									<th scope="col">Tiplogia</th>
-									<th scope="col">Propagabile</th>
-								</tr>
-							</thead>
-							<!-- Contenuto tabella -->
-							<tbody>
-								<tr *ngFor="let item of items_t">
-									<th>{{ item.id }}</th>
-									<td>{{ item.name }}</td>
-									<td>
-										<div *ngIf="item.propagable == true; else elseBlock"><span class="badge badge-success">SI</span></div>
-										<ng-template #elseBlock><span class="badge badge-danger">NO</span></ng-template>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<br/>
-
-	<!-- Seconda riga -->
-	<div class="row">
-		<!-- Importazioni -->
-		<div class="col-xl-4">
-			<div class="card shadow">
-				<div class="card-header bg-transparent">
-					<div class="row align-items-center">
-						<div class="col">
-							<h6 class="text-uppercase text-muted ls-1 mb-1">Dati</h6>
-							<h2 class="mb-0"><i class="fas fa-file-import"></i> Importazioni</h2>
-						</div>
-					</div>
-				</div>
-				<div class="card-body">
-					<!-- Tabella Importazioni -->
-					<div class="table-responsive">
-						<table class="table align-items-center table-flush">
-							<thead class="thead-light">
-								<tr>
-									<th scope="col">Ultima Importazione</th>
-									<th scope="col">Numero Articoli</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr *ngFor="let import of imports">
-									<th>{{ import.end_process_date }}</th>
-									<td>{{ import.updated_items }}</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!--APs-->
-		<div class="col-xl-4">
-			<div class="card shadow">
-				<div class="card-header bg-transparent">
-					<div class="row align-items-center">
-						<div class="col">
-							<h6 class="text-uppercase text-muted ls-1 mb-1">APs</h6>
-							<h2 class="mb-0"><i class="fas fa-wifi"></i> Access Points <span class="badge badge-pill badge-default">{{ taps }}</span></h2>
-						</div>
-					</div>
-				</div>
-				<div class="card-body">
-					<!-- Tabella APs -->
-					<div class="table-responsive">
-						<table class="table align-items-center table-flush">
-							<thead class="thead-light">
-								<tr>
-									<th scope="col">ID</th>
-									<th scope="col">Stato</th>
-									<th scope="col">Nome</th>
-									<th scope="col">Versione</th>
-									<th scope="col">IP</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr *ngFor="let ap of aps">
-									<th>{{ ap.id }}</th>
-									<td>{{ ap.connection_status }}</td>
-									<td>{{ ap.name }}</td>
-									<td>{{ ap.version }}</td>
-									<td>{{ ap.ip }}</td>
-								</tr> 
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Templates -->
-		<div class="col-xl-4">
-			<div class="card shadow">
-				<div class="card-header bg-transparent">
-					<div class="row align-items-center">
-						<div class="col">
-							<h6 class="text-uppercase text-muted ls-1 mb-1">Lista Custom Templates</h6>
-							<h2 class="mb-0"><i class="fas fa-crop"></i> Templates</h2>
-						</div>
-					</div>
-				</div>
-				<div class="card-body">
-					<!-- Form di aggiunta template
+				<!-- Contenuto -->
+                <div class="card-body">
+                    <!-- Form di aggiunta template
 					<form>
 						<div class="form-group">
 							<label for="exampleFormControlFile1">Importa da file</label>
@@ -274,116 +125,258 @@
 						</div>
 					</form>
 					<br/>  -->
-					<!-- Item Type -->
-						<div class="form-group">
-							<label for="itemType">Tiplogia</label>
-							<select [(ngModel)]="selectedOption" class="form-control" name="itemType" id="itemType"
-							(click)="getItemTypeTemplate($event.target.value)">
-								<option *ngFor="let item of items_t" [value]="item.id">{{ item.name }}</option>
-							</select>
-						</div>					
-					<!-- Lista templates* -->
-					<label>Lista Template</label> 
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item" *ngFor="let template of templates">
-							<small>{{ template.title }}</small>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	<br/>
+                    <!-- Scegli Tipologia Template -->
+                    <div class="form-group">
+                        <label for="itemType">Tiplogia</label>
+                        <select [(ngModel)]="selectedOption" class="form-control" name="itemType" id="itemType" (click)="getItemTypeTemplate($event.target.value)">
+                            <option *ngFor="let item of varItem.itemtype" [value]="item.id">{{ item.name }}</option>
+                        </select>
+                    </div>
+                    <!-- Lista templates -->
+                    <label>Lista Template</label>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" *ngFor="let template of templates">
+                            <small>{{ template.title }}</small>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-	<!-- Terza riga: Device mobili -->
-	<div class="row">
-		<div class="col">
-			<div class="card shadow">
-				<div class="card-header bg-transparent">
-					<h3 class="mb-0"><i class="fas fa-mobile-alt"></i> Device mobili</h3>
-				</div>
-				<div class="table-responsive">
-					<!-- Tabella Device mobili -->
-					<table class="table align-items-center table-flush">
-						<thead class="thead-light">
-							<tr>
-								<th scope="col">ID</th>
-								<th scope="col">IMEI</th>
-								<th scope="col">Nome</th>
-								<th scope="col">Firebase ID</th>
-								<th scope="col">Ultimo login</th>
-							</tr>
-						</thead>
 
-						<tbody>
-							<tr *ngFor="let mobile of mobiles">
-								<th>{{ mobile.id }}</th>
-								<td>{{ mobile.imei }}</td>
-								<td>{{ mobile.device_name }}</td>
-								<td>
-									<div *ngIf="mobile.firebase_id != null; else elseBlock"><i class="fas fa-check-circle"></i></div>
-									<ng-template #elseBlock><i class="fas fa-times-circle"></i></ng-template>
-								</td>
-								<td>{{ mobile.last_modified_date }}</td>
-							</tr>                           
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
-	<br/>
+        <!-- Display Etichette & APs -->
+        <div class="col-xl-4">
+			<!-- Display Etichette -->
+            <div class="card shadow">
+				<!-- Display -->
+                <div class="card-header bg-transparent">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h6 class="text-uppercase text-muted ls-1 mb-1">Display</h6>
+                            <h2 class="mb-0"><i class="fas fa-desktop"></i> Display</h2>
+                            <small>Stato display a disposizione</small>
+                        </div>
+                    </div>
+                </div>
+                <!-- Etichette-->
+                <div class="card-header bg-transparent">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h2 class="mb-0"><i class="fas fa-tags"></i> Etichette</h2>
+                            <!-- Stato etichette -->
+                            <p class="card-text">Online <span class="badge badge-success">{{ varLabelStat.connection.online }}</span> - Offline <span class="badge badge-danger">{{ varLabelStat.connection.offline }}</span></p>
+                            <p class="card-text">Battery Good <span class="badge badge-success">{{ varLabelStat.battery.good }}</span> - Battery Bad <span class="badge badge-danger">{{ varLabelStat.battery.bad }}</span></p>
+                            <p class="card-text">Totale Etichette Match Attivi <span class="badge badge-success">{{ varTotMatch }}</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
 
-	<!-- Quarta riga: Info Sistema -->
-	<div class="row">
-		<div class="col">
-			<div class="card shadow">
-				<div class="card-header bg-transparent">
-					<h3 class="mb-0"><i class="fas fa-rocket"></i> Stato Sistema e Versioni Software</h3>
+			<!-- APs -->
+            <div class="card shadow">
+				<!-- Header -->
+                <div class="card-header bg-transparent">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h6 class="text-uppercase text-muted ls-1 mb-1">APs</h6>
+                            <h2 class="mb-0"><i class="fas fa-wifi"></i> Access Points <span class="badge badge-pill badge-default">{{ varAps.total_access_point }}</span></h2>
+                        </div>
+                    </div>
 				</div>
-				<!-- Informazioni sul sistema -->
-				<div class="card-body">
-					<div class="row">
-						<div class="col-xl-3">
-							<h4><i class="far fa-hdd"></i> Sistema </h4>
-							<div class="progress-wrapper progress-info">
-								<div class="progress-label">
-									<span>Free Disk Space*</span>
-								</div>
-								<div class="progress-percentage">
-									<span>{{ system_info.system_disk_free_space / system_info.system_disk_total_space * 100.0 | number }}%</span>
-								</div>
-							</div>
-							<div class="progress">
-								<div class="progress-bar bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ system_info.system_disk_free_space / system_info.system_disk_total_space * 100.0 }}%;"></div>
-							</div>
-							<p class="card-text">Boot Time: <strong>{{ system_info.system_boot_time }}</strong></p>
-							<p class="card-text">Disk Total Space: <strong>{{ system_info.system_disk_total_space }} GB</strong></p>
-							<p class="card-text">Disk Free Space: <strong>{{ system_info.system_disk_free_space }} GB</strong></p>
-						</div>
-						<div class="col-xl-2">
-							<h4><i class="fas fa-code"></i> PHP <span class="badge badge-pill badge-info">{{ system_info.php_version }}</span></h4>
-							<p class="card-text">PHP version: <strong>{{ system_info.php_version }}</strong></p>
-						</div>
-						<div class="col-xl-2">
-							<h4><i class="fas fa-feather-alt"></i> Apache <span class="badge badge-pill badge-info">{{ system_info.apache_version }}</span></h4>
-							<p class="card-text">Apache version: <strong>{{ system_info.apache_version }}</strong></p>
-							<p class="card-text">Apache uptime: <strong>{{ system_info.apache_uptime }}</strong></p>
-						</div>
-						<div class="col-xl-2">
-							<h4><i class="fas fa-database"></i> MongoDB <span class="badge badge-pill badge-info">{{ system_info.mongodb_version }}</span></h4>
-							<p class="card-text">MongoDB version: <strong>{{ system_info.mongodb_version }}</strong></p>
-							<p class="card-text">MongoDB uptime: <strong>{{ system_info.mongodb_uptime }}</strong></p>
-						</div>
-						<div class="col-xl-2">
-							<h4><i class="fas fa-database"></i> MariaDB <span class="badge badge-pill badge-info">{{ system_info.mariadb_version }}</span></h4>
-							<p class="card-text">MariaDB version: <strong>{{ system_info.mariadb_version }}</strong></p>
-							<p class="card-text">MariaDB uptime: <strong>{{ system_info.mariadb_uptime }}</strong></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
+				<!-- Contenuto -->
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Stato</th>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Versione</th>
+                                    <th scope="col">IP</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let ap of varAps.access_point">
+                                    <th>{{ ap.id }}</th>
+                                    <td>{{ ap.connection_status }}</td>
+                                    <td>{{ ap.name }}</td>
+                                    <td>{{ ap.version }}</td>
+                                    <td>{{ ap.ip }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Articoli & Importazioni -->
+        <div class="col-xl-4">
+			<!-- Articoli -->
+            <div class="card shadow">
+				<!-- Header -->
+                <div class="card-header bg-transparent">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h6 class="text-uppercase text-muted ls-1 mb-1">Oggetti</h6>
+                            <h2 class="mb-0"><i class="fas fa-list"></i> Articoli <span class="badge badge-pill badge-default">{{ varTotItem.total_items }}</span></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Contenuto -->
+                    <h3>Tipologie di articoli <span class="badge badge-pill badge-default">{{ varItem.total_itemtype }}</span></h3>
+                    <!-- Tabella -->
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                            <!-- Intestazione tabella -->
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Tipo</th>
+                                    <th scope="col">Tiplogia</th>
+                                    <th scope="col">Propagabile</th>
+                                </tr>
+                            </thead>
+                            <!-- Contenuto tabella -->
+                            <tbody>
+                                <tr *ngFor="let item of varItem.itemtype">
+                                    <th>{{ item.id }}</th>
+                                    <td>{{ item.name }}</td>
+                                    <td>
+                                        <div *ngIf="item.propagable == true; else elseBlock"><span class="badge badge-success">SI</span></div>
+                                        <ng-template #elseBlock><span class="badge badge-danger">NO</span></ng-template>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+			<br>
+			
+			<!-- Importazioni -->
+            <div class="card shadow">
+                <div class="card-header bg-transparent">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h6 class="text-uppercase text-muted ls-1 mb-1">Dati</h6>
+                            <h2 class="mb-0"><i class="fas fa-file-import"></i> Importazioni</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Tabella Importazioni -->
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Ultima Importazione</th>
+                                    <th scope="col">Numero Articoli</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let import of varImport.importqueue">
+                                    <th>{{ import.end_process_date }}</th>
+                                    <td>{{ import.updated_items }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+
+    <!-- Terza riga: Device mobili -->
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header bg-transparent">
+                    <h3 class="mb-0"><i class="fas fa-mobile-alt"></i> Device mobili</h3>
+                </div>
+                <div class="table-responsive">
+                    <!-- Tabella Device mobili -->
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">IMEI</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Firebase ID</th>
+                                <th scope="col">Ultimo login</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let mobile of varMobile.mobile_device">
+                                <th>{{ mobile.id }}</th>
+                                <td>{{ mobile.imei }}</td>
+                                <td>{{ mobile.device_name }}</td>
+                                <td>
+                                    <div *ngIf="mobile.firebase_id != null; else elseBlock"><i class="fas fa-check-circle"></i></div>
+                                    <ng-template #elseBlock><i class="fas fa-times-circle"></i></ng-template>
+                                </td>
+                                <td>{{ mobile.last_modified_date }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+
+    <!-- Quarta riga: Info Sistema -->
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header bg-transparent">
+                    <h3 class="mb-0"><i class="fas fa-rocket"></i> Stato Sistema e Versioni Software</h3>
+                </div>
+                <!-- Informazioni sul sistema -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-xl-3">
+                            <h4><i class="far fa-hdd"></i> Sistema </h4>
+                            <div class="progress-wrapper progress-info">
+                                <div class="progress-label">
+                                    <span>Free Disk Space*</span>
+                                </div>
+                                <div class="progress-percentage">
+                                    <span>{{ system_info.system_disk_free_space / system_info.system_disk_total_space * 100.0 | number }}%</span>
+                                </div>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ system_info.system_disk_free_space / system_info.system_disk_total_space * 100.0 }}%;"></div>
+                            </div>
+                            <p class="card-text">Boot Time: <strong>{{ system_info.system_boot_time }}</strong></p>
+                            <p class="card-text">Disk Total Space: <strong>{{ system_info.system_disk_total_space }} GB</strong></p>
+                            <p class="card-text">Disk Free Space: <strong>{{ system_info.system_disk_free_space }} GB</strong></p>
+                        </div>
+                        <div class="col-xl-2">
+                            <h4><i class="fas fa-code"></i> PHP <span class="badge badge-pill badge-info">{{ system_info.php_version }}</span></h4>
+                            <p class="card-text">PHP version: <strong>{{ system_info.php_version }}</strong></p>
+                        </div>
+                        <div class="col-xl-2">
+                            <h4><i class="fas fa-feather-alt"></i> Apache <span class="badge badge-pill badge-info">{{ system_info.apache_version }}</span></h4>
+                            <p class="card-text">Apache version: <strong>{{ system_info.apache_version }}</strong></p>
+                            <p class="card-text">Apache uptime: <strong>{{ system_info.apache_uptime }}</strong></p>
+                        </div>
+                        <div class="col-xl-2">
+                            <h4><i class="fas fa-database"></i> MongoDB <span class="badge badge-pill badge-info">{{ system_info.mongodb_version }}</span></h4>
+                            <p class="card-text">MongoDB version: <strong>{{ system_info.mongodb_version }}</strong></p>
+                            <p class="card-text">MongoDB uptime: <strong>{{ system_info.mongodb_uptime }}</strong></p>
+                        </div>
+                        <div class="col-xl-2">
+                            <h4><i class="fas fa-database"></i> MariaDB <span class="badge badge-pill badge-info">{{ system_info.mariadb_version }}</span></h4>
+                            <p class="card-text">MariaDB version: <strong>{{ system_info.mariadb_version }}</strong></p>
+                            <p class="card-text">MariaDB uptime: <strong>{{ system_info.mariadb_uptime }}</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
