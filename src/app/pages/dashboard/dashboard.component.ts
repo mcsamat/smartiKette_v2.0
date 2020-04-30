@@ -62,6 +62,7 @@ export class DashboardComponent implements OnInit {
       this.httpClient.get(Global.URL_ROOT + '/system/configuration', { headers })
       .toPromise().then((data:any) => {
         this.varInstallation = data.configurations;
+        // console.log(this.varInstallation.installation_name);
       });
     }
     // Templates
@@ -72,7 +73,7 @@ export class DashboardComponent implements OnInit {
         this.templates = data.templates;
       });
     }
-
+    // +++++++++++++++++++++
     // Display & Etichette
     getDisplay() {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
@@ -97,7 +98,7 @@ export class DashboardComponent implements OnInit {
         this.varAps = data;
       });
     }
-
+    // +++++++++++++++++++++
     // Articoli
     getItems() {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
@@ -122,7 +123,7 @@ export class DashboardComponent implements OnInit {
       });
     }
 
-
+    // +++++++++++++++++++++
     // Mobile Device
     getMobile() {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
@@ -132,7 +133,7 @@ export class DashboardComponent implements OnInit {
       });
     }
 
-
+    // +++++++++++++++++++++
     // Info Sistema
     getInfo() {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));

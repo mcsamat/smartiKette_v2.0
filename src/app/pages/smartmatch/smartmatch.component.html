@@ -1,138 +1,153 @@
 <div class="header bg-gradient-info pb-8 pt-5 pt-md-5"></div>
 
+<!-- Modal DELETE Match -->
+<ng-template #content let-modal>
+    <div class="modal-header"  data-backdrop="static">
+      	<h4 class="modal-title" id="modal-basic-title">Conferma eliminazione</h4>
+      	<button type="button" class="close" aria-label="Close" (click)="modal.close()">
+		<span aria-hidden="true">&times;</span>
+      	</button>
+    </div>
+    <div class="modal-body">
+        <p>Sicuro di voler eliminare il Match #<strong>{{ alias }}</strong>?</p>
+    </div>
+    <div class="modal-footer">
+		<button class="btn btn-danger" (click)="deleteItem()" type="button">Elimina</button>
+      	<button type="button" class="btn btn-outline-default" (click)="modal.close()">Anulla</button>
+    </div>
+</ng-template>
+
 <!-- Contenuto della pagina -->
 <div class="container-fluid mt--7">
-	<div class="row">
-		<div class="col">
-			<div class="card shadow">
-				<!-- Header -->
-				<div class="card-header bg-transparent">
-					<h3 class="mb-0">Matches</h3>
-				</div>
-				<!-- Contenuto -->
-				<div class="card-body">
-					<!-- Tabella Smartmatches -->
-					<div class="table-responsive">
-						<table class="display table table-striped align-items-center table-flush" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+    <!-- Tabella Match -->
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <!-- Header -->
+                <div class="card-header bg-transparent">
+                    <h3 class="mb-0">Matches</h3>
+                </div>
+                <!-- Contenuto -->
+                <div class="card-body">
+                    <!-- Tabella Smartmatches -->
+                    <div class="table-responsive">
+                        <table class="display table table-striped align-items-center table-flush" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
                             <thead class="thead-light">
                                 <tr>
-									<th scope="col"></th>
-									<th scope="col">Template Name</th>
-									<th scope="col">Label ID</th>
-									<th scope="col">Items</th>
-									<th scope="col">Is Active</th>
-									<th scope="col">Bypass Promo</th>
-									<th scope="col"></th>
-								</tr>
-                             </thead>
+                                    <th scope="col"></th>
+                                    <th scope="col">Template Name</th>
+                                    <th scope="col">Label ID</th>
+                                    <th scope="col">Items</th>
+                                    <th scope="col">Is Active</th>
+                                    <th scope="col">Bypass Promo</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
                             <tbody>
                                 <tr *ngFor="let match of matchs$">
-									<th>{{ match.id }}</th>
-									<td>{{ match.template_name }}</td>
-									<td>{{ match.label_id }}</td>
-									<td>{{ match.items }}</td>
-									<td>{{ match.is_active }}</td>
-									<td>{{ match.bypass_promo }}</td>
-									<td>
+                                    <th>{{ match.id }}</th>
+                                    <td>{{ match.template_name }}</td>
+                                    <td>{{ match.label_id }}</td>
+                                    <td>{{ match.items }}</td>
+                                    <td>{{ match.is_active }}</td>
+                                    <td>{{ match.bypass_promo }}</td>
+                                    <td>
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Tools">
-											<button type="button" class="btn btn-secondary" [disabled]="true">
-												<i class="fas fa-eye"></i>
-											</button>
-											<button type="button" class="btn btn-danger" [disabled]="true">
+                                            <button type="button" class="btn btn-secondary" [disabled]="true">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-danger" (click)="open(content, match.id, match.id)">
 												<i class="fas fa-trash"></i>
 											</button>
-										</div>
+                                        </div>
                                     </td>
-								</tr>
+                                </tr>
                             </tbody>
                         </table>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
 
-	<!-- Aggiungi Match -->
-	<div class="row">
-		<div class="col">
-			<div class="card shadow">
-				<div class="card-header bg-transparent">
-					<h3 class="mb-0">Aggiungi Match</h3>
-				</div>
-				<!-- Form -->
-				<div class="card-body">
-					<form>
-						<!-- Prima Riga -->
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Tipo Articolo</label>
-									<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="tipo_articolo">
-								</div>
+    <!-- Aggiungi Match -->
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header bg-transparent">
+                    <h3 class="mb-0">Aggiungi Match</h3>
+                </div>
+                <div class="card-body">
+					<!-- Form -->
+                    <form>
+                        <!-- Prima Riga -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="itemType">Tipo Articolo</label>
+                                    <select [(ngModel)]="selectedOption" class="form-control" name="itemType" id="itemType" (click)="getItemTypeTemplate($event.target.value)">
+										<option *ngFor="let item of varItem.itemtype" [value]="item.id">{{ item.name }}</option>
+									</select>
+                                </div>
 							</div>
 							<div class="col-md-6">
-								<div class="form-group">
-									<label>ID Etichetta</label>
-									<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="id_etichetta">
-								</div>
-							</div>
-						</div>
-						<!-- Seconda Riga -->
-						<div class="row">
+                                <div class="form-group">
+                                    <label for="template">Template</label>
+                                    <select [(ngModel)]="selectedOption2" class="form-control" name="template" id="template">
+										<option *ngFor="let template of templates" [value]="template.title">{{ template.title }}</option>
+									</select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Seconda Riga -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Tipo Barcode</label>
+                                    <select [(ngModel)]="selectedOption2" class="form-control" name="template" id="template" disable="true">
+										<option [value]="barcode">--</option>
+									</select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Item Barcode</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="item_barcode">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Terza Riga -->
+                        <div class="row">
 							<div class="col-md-6">
-								<div class="form-group">
-									<label>Tipo Barcode</label>
-									<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="tipo_barcode">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Template</label>
-									<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="template">
-								</div>
-							</div>
-						</div>
-						<!-- Terza Riga -->
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Item Barcode</label>
-									<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="item_barcode">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Decorazioni</label>
-									<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="decoration">
-								</div>
-							</div>
-						</div>
-						<!-- Quarta riga Riga -->
-						<div class="row">
-							<div class="col-md-3">
-								<div class="form-group">
-									<label>Altre opzioni:</label>
-									<div class="custom-control custom-checkbox mb-3">
-										<input class="custom-control-input" id="customCheck1" type="checkbox">
-										<label class="custom-control-label" for="customCheck1">Is Active</label>
-									</div>
-									<div class="custom-control custom-checkbox mb-3">
-										<input class="custom-control-input" id="customCheck2" type="checkbox" checked="">
-										<label class="custom-control-label" for="customCheck2">Promo</label>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-8">
-							</div>
-							<div class="col-md-1">
-								<br/><br/><br/>
+                                <div class="form-group">
+                                    <label>ID Etichetta</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="id_etichetta">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Altre opzioni:</label>
+                                    <div class="custom-control custom-checkbox mb-3">
+                                        <input class="custom-control-input" id="customCheck1" type="checkbox" checked="">
+                                        <label class="custom-control-label" for="customCheck1">Is Active</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox mb-3">
+                                        <input class="custom-control-input" id="customCheck2" type="checkbox" checked="">
+                                        <label class="custom-control-label" for="customCheck2">Promo</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Quarta riga Riga -->
+                        <div class="row">
+							<div class="col">
 								<button type="button" class="btn btn-primary" [disabled]="true">Aggiungi</button>
 							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
