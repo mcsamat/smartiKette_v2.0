@@ -45,18 +45,24 @@ export class ArticoliComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // DataTables Options
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 10,
-      processing: true,
-      order: [],
-      // dom: 'lfti',
-    };
-    // Tabella Articoli
-    this.getItems();
-    // Crea Nuovo Articolo
-    this.getItemType();
+    // Controllo l'accesso
+    if (localStorage.getItem('apikey') != null || localStorage.getItem('apikey') != '') {
+      // DataTables Options
+      this.dtOptions = {
+        pagingType: 'full_numbers',
+        pageLength: 10,
+        processing: true,
+        order: [],
+        // dom: 'lfti',
+      };
+      // Tabella Articoli
+      this.getItems();
+      // Crea Nuovo Articolo
+      this.getItemType();        
+    } else {
+      this.router.navigate(['../login']);
+    }
+    
   }
 
   ngOnDestroy(): void {

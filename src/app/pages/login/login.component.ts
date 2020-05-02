@@ -23,6 +23,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(private httpClient: HttpClient, private router: Router) { }
 
   ngOnInit() {
+    if (localStorage.getItem('apikey') != null || localStorage.getItem('apikey') != '') {
+      this.router.navigate(['../dashboard']);
+    }
   }
 
   ngOnDestroy() {

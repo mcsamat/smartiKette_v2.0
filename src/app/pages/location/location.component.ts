@@ -16,8 +16,6 @@ var del_loc_id: String;
   styleUrls: ['./location.component.scss']
 })
 export class LocationComponent implements OnInit {
-  // Root URL per API
-  readonly ROOT_URL = 'http://pietro-test.dlinkddns.com:10082/api/location';
   // Variabili Location
   locations$;
   // Alert e Modal
@@ -28,13 +26,19 @@ export class LocationComponent implements OnInit {
   successMessage = '';
 
 
-  constructor(private httpClient: HttpClient, private modalService: NgbModal, config: NgbModalConfig) { 
+  constructor(private httpClient: HttpClient, private modalService: NgbModal, config: NgbModalConfig, private router: Router) { 
     config.backdrop = 'static';
     config.keyboard = false;
   }
 
   ngOnInit() {
-    this.getLocations();
+    // Controllo l'accesso
+    if (localStorage.getItem('apikey') != null || localStorage.getItem('apikey') != '') {
+      this.getLocations();        
+    } else {
+      this.router.navigate(['../login']);
+    }
+    
   }
 
   // Metodo GET - Visualizzare Locations
@@ -43,7 +47,7 @@ export class LocationComponent implements OnInit {
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
 
     // Elenco Corsie
-    this.httpClient.get(this.ROOT_URL, { headers })
+    this.httpClient.get(Global.URL_ROOT + '/location', { headers })
     .toPromise().then((data:any) => {
       // Passo i valori presi da API
       this.locations$ = data.locations;
@@ -65,7 +69,7 @@ export class LocationComponent implements OnInit {
     .set('isActive', 'true');
     
     // Aggiungo Location
-    this.httpClient.post(this.ROOT_URL, params, { headers }).subscribe();
+    this.httpClient.post(Global.URL_ROOT + '/location', params, { headers }).subscribe();
 
     // Aspetto 100ms e richiedo i nuovi dati
     setTimeout(()=>{

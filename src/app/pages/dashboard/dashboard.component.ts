@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit() {
       // Controllo l'accesso
-      if (localStorage.getItem('apikey') != null) {
+      if (localStorage.getItem('apikey') != null || localStorage.getItem('apikey') != '') {
         // Richiamo le funzioni per API
         this.getInstallation();
 

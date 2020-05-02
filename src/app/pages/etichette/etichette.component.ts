@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
-
+import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { DataTableDirective } from 'angular-datatables';
-
+import { Global } from '../../variables/global';
 import { debounceTime } from 'rxjs/operators';
+
 
 var del_label_id: String;
 
@@ -18,9 +19,6 @@ var del_label_id: String;
 })
 
 export class EtichetteComponent implements OnInit, OnDestroy {
-  // Root URL per API
-  readonly ROOT_URL = 'http://pietro-test.dlinkddns.com:10082/api';
-
   // DT var
   @ViewChild(DataTableDirective, {static: false})
   dtElement: DataTableDirective;
@@ -35,23 +33,31 @@ export class EtichetteComponent implements OnInit, OnDestroy {
   label_name: String;
   providers: [NgbModalConfig, NgbModal]
   successMessage = '';
+
+  // Aggiungi Label
+  valid_label_id: boolean = false;
   
 
-  constructor(private httpClient: HttpClient, private modalService: NgbModal, config: NgbModalConfig) { 
+  constructor(private httpClient: HttpClient, private modalService: NgbModal, config: NgbModalConfig, private router: Router) { 
     config.backdrop = 'static';
     config.keyboard = false;
   }
 
   ngOnInit(): void {
-    // DataTables Options
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 10,
-      processing: true
-      // dom: 'lfti',
-    };
-    // GET Label
-    this.getLabel();
+    // Controllo l'accesso
+    if (localStorage.getItem('apikey') != null || localStorage.getItem('apikey') != '') {
+      // DataTables Options
+      this.dtOptions = {
+        pagingType: 'full_numbers',
+        pageLength: 10,
+        processing: true
+        // dom: 'lfti',
+      };
+      // GET Label
+      this.getLabel();        
+    } else {
+      this.router.navigate(['../login']);
+    }
   }
 
   ngOnDestroy(): void {
@@ -64,7 +70,7 @@ export class EtichetteComponent implements OnInit, OnDestroy {
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
 
     // Richiesta GET
-    this.httpClient.get(this.ROOT_URL + '/labelinfo?recordsPerPage=999999999999', { headers })
+    this.httpClient.get(Global.URL_ROOT + '/labelinfo?recordsPerPage=999999999999', { headers })
     .toPromise().then((data:any) => {
       this.labels$ = data.label_info;
       this.dtTrigger.next();
@@ -118,6 +124,43 @@ export class EtichetteComponent implements OnInit, OnDestroy {
 
   this._success.next('Etichetta ' + this.label_name + ' rimossa con successo!');
 }
+
+
+  // --------------------------------------------------------
+  // Aggiungi Etichette
+
+  // Modal Etichetta Manuale
+  openManual(addManual) {
+    this.modalService.open(addManual, {ariaLabelledBy: 'modal-basic-title'})
+  }
+  postManual(ids: string){
+    if (ids == null || ids == '') {
+      this.valid_label_id = true;
+    } else {
+      let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+      let params = new HttpParams()
+      .set('label_id[]', ids)
+      this.httpClient.post(Global.URL_ROOT + '/label', params ,{ headers }).subscribe();
+      setTimeout(() => {
+        this.modalService.dismissAll();
+      }, 100);
+    }
+  }
+
+  // Modal Etichetta File
+  openFile(addFile) {
+    // Mostro il Modal per la conferma
+    this.modalService.open(addFile, {ariaLabelledBy: 'modal-basic-title'})
+  }
+  postFile(file: File){
+    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+    console.log(file);
+    //let params = new HttpParams()
+    //.set('label_id[]', file)
+    //this.httpClient.post(Global.URL_ROOT + '/label/file', params ,{ headers }).subscribe();
+
+  }
+
 
 }
 

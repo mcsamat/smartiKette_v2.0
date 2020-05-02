@@ -5,6 +5,7 @@ import { Global } from '../../variables/global';
 import { NgbModal, ModalDismissReasons, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { debounceTime } from 'rxjs/operators';
 import { DataTableDirective } from 'angular-datatables';
+import { Router } from '@angular/router';
 
 var del_item_id: String;
 
@@ -35,29 +36,34 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
   successMessage = '';
 
 
-  constructor(private httpClient: HttpClient, private modalService: NgbModal, config: NgbModalConfig) { 
+  constructor(private httpClient: HttpClient, private modalService: NgbModal, config: NgbModalConfig, private router: Router) { 
     config.backdrop = 'static';
     config.keyboard = false;
   }
 
-    ngOnInit(): void {
-      // Header generale
-      let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+    ngOnInit() {
+      // Controllo l'accesso
+      if (localStorage.getItem('apikey') != null || localStorage.getItem('apikey') != '') {
+        // Header generale
+        let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
 
-      // Add
-      this.httpClient.get(Global.URL_ROOT + '/item/type', { headers })
-      .toPromise().then((data:any) => {
-        this.varItem = data;
-      });
+        // Add
+        this.httpClient.get(Global.URL_ROOT + '/item/type', { headers })
+        .toPromise().then((data:any) => {
+          this.varItem = data;
+        });
 
-      // DataTables
-      this.dtOptions = {
-        pagingType: 'full_numbers',
-        pageLength: 10,
-        processing: true
-      };
+        // DataTables
+        this.dtOptions = {
+          pagingType: 'full_numbers',
+          pageLength: 10,
+          processing: true
+        };
 
-      this.getMatches();
+        this.getMatches();        
+      } else {
+        this.router.navigate(['../login']);
+      }
       
     }
 

@@ -17,6 +17,59 @@
     </div>
 </ng-template>
 
+<!-- Modal POST Label - Manual -->
+<ng-template #addManual let-modal>
+    <div class="modal-header"  data-backdrop="static">
+        <h4 class="modal-title" id="modal-basic-title">Richiesta registrazione etichette manuale</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Inserisci gli ID delle etichette separate da spazi o virgole.</label>
+                <input type="text" class="form-control" [(ngModel)]='stringaID' name='stringaID' [value]='stringaID' id="stringaID" placeholder="labelID0, labelID1, ...">
+                <div *ngIf="valid_label_id">
+                    <small>Inserisci almeno un ID!</small>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" (click)="postManual(stringaID)" type="submit">Registra</button>
+            <button type="button" class="btn btn-outline-default" (click)="modal.close()">Anulla</button>
+        </div>
+    </form>
+</ng-template>
+
+<!-- Modal POST Label - File -->
+<ng-template #addFile let-modal>
+    <div class="modal-header"  data-backdrop="static">
+        <h4 class="modal-title" id="modal-basic-title">Richiesta registrazione etichette con file</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Scegli il file da caricare:</label>
+                <div class="file-field md-form">
+                    <div mdbBtn color="primary" size="sm" class="waves-light" mdbWavesEffect>
+                      <input type="file" mdbFileSelect (uploadOutput)="onUploadOutput($event)" [(ngModel)]='filePath' name='filePath' id="filePath">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" (click)="postFile(stringaID)" type="submit" [disabled]="true">Carica</button>
+            <button type="button" class="btn btn-outline-default" (click)="modal.close()">Anulla</button>
+        </div>
+    </form>
+</ng-template>
+
+
 <!-- Contenuto della pagina -->
 <div class="container-fluid mt--7">
     <div class="row">
@@ -28,12 +81,12 @@
                     <!-- Registra Etichetta -->
                     <div class="text-right">
                         <div ngbDropdown class="d-inline-block">
-                            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle [disabled]="true">
+                            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
 								<i class="fas fa-caret-down"></i> Registra Etichetta
 							</button>
                             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                <button ngbDropdownItem>Manualmente</button>
-                                <button ngbDropdownItem>Da file</button>
+                                <button ngbDropdownItem (click)="openManual(addManual)">Manualmente</button>
+                                <button ngbDropdownItem (click)="openManual(addFile)">Da file</button>
                             </div>
                         </div>
                     </div>
@@ -67,8 +120,8 @@
 										</td>
 									</ng-template>	
 									<td>
-											<i class="fas fa-power-off"></i>
-											<strong> {{ label.ConnectionStatus }}</strong>
+                                        <i class="fas fa-power-off"></i>
+                                        <strong> {{ label.ConnectionStatus }}</strong>
 									</td>						
                                     <td>{{ label.UpdatedAt }}</td>
                                     <td>{{ label.AccessPointId }}</td>
