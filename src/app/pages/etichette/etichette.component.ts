@@ -36,6 +36,9 @@ export class EtichetteComponent implements OnInit, OnDestroy {
 
   // Aggiungi Label
   valid_label_id: boolean = false;
+
+  // Preview
+  prev;
   
 
   constructor(private httpClient: HttpClient, private modalService: NgbModal, config: NgbModalConfig, private router: Router) { 
@@ -159,6 +162,23 @@ export class EtichetteComponent implements OnInit, OnDestroy {
     //.set('label_id[]', file)
     //this.httpClient.post(Global.URL_ROOT + '/label/file', params ,{ headers }).subscribe();
 
+  }
+
+
+
+
+
+
+  // Preview -------------------------
+  openPreview(id) {
+    // Header generale
+    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+    headers.set('Content-Type', 'application/x-www-form-urlencoded');
+
+    // Richiesta preview
+    this.httpClient.get(Global.URL_ROOT + '/matching/preview/active/' + id, { headers }).subscribe(data =>{
+      this.prev = data.preview;
+    });
   }
 
 

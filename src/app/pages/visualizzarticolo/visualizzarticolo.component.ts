@@ -15,14 +15,17 @@ export class VisualizzarticoloComponent implements OnInit {
 
   // Var
   item_id;
-  // Test
   parametri$: any[] = [];
   valori$: any[] = [];
 
   ngOnInit(): void {
-    this.item_id = localStorage.getItem('item_id');
-    // console.log(this.item_id);
-    this.getDetails();
+    // Controllo l'accesso
+    if (localStorage.getItem('item_id') != null || localStorage.getItem('item_id') != '') {
+      this.item_id = localStorage.getItem('item_id');
+      this.getDetails();         
+    } else {
+      this.router.navigate(['../articoli']);
+    }
   }
 
   // Richiesta API dettagli articolo
@@ -31,9 +34,7 @@ export class VisualizzarticoloComponent implements OnInit {
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
     this.httpClient.get(this.ROOT_URL + '/item/concrete/' + this.item_id, { headers })
     .toPromise().then((data:any) => {
-      // console.log(Object.keys(data.current_fields));
       this.parametri$ = Object.keys(data.current_fields);
-      // console.log(this.parametri$);
       this.valori$ = data.current_fields;
     });
   }

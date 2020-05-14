@@ -41,22 +41,20 @@ export class LocationComponent implements OnInit {
     } else {
       this.router.navigate(['../login']);
     }
-    
   }
 
-  // Metodo GET - Visualizzare Locations
+  
+  // Metodo GET - Visualizzare Locations -----------------------------------------------------------------
   getLocations() {
     // Header generale
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-
     // Elenco Corsie
     this.httpClient.get(Global.URL_ROOT + '/location', { headers })
     .toPromise().then((data:any) => {
-      // Passo i valori presi da API
       this.locations$ = data.locations;
-      // console.log(this.corsie$[0].location_type.id)
     });
   }
+
 
   // Metodo POST - Aggiungere Location ------------------------------------------------------------------
   postCorsia(nomeLocation: string, tipoLocation: string) {
@@ -64,8 +62,7 @@ export class LocationComponent implements OnInit {
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
     console.log(localStorage.getItem('apikey'));
     headers.set('Content-Type', 'application/x-www-form-urlencoded');
-
-    // Params
+    // Parametri
     let params = new HttpParams()
     .set('locationTypeId', tipoLocation)
     .set('locationName', nomeLocation)
@@ -79,30 +76,6 @@ export class LocationComponent implements OnInit {
     });
   }
 
-
-
-
-  // Funzione Elimina Location - OpenModal
-  open(content, d_item_id: String, d_item_a: String) {
-    // Passo le info dell'item da eliminare
-    del_loc_id = d_item_id;
-    this.alias = d_item_a;
-    // Mostro il Modal per la conferma
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'})
-  }
-
-  // Metodo DELETE - Rimovi Location ---------------------------------------------------------------------
-  deleteLocation(): void {
-    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-    headers.set('Content-Type', 'application/x-www-form-urlencoded');
-    this.httpClient.delete(Global.URL_ROOT + '/location/' + del_loc_id, { headers }).subscribe(data => {
-      this.modalService.dismissAll();
-      this.showAlert();
-      this.getLocations();
-    });
-  
-  }
-
   // Alert di Conferma POST
   public showAlertSuccess() {
     this._successAdd.subscribe(message => this.successMessage = message);
@@ -113,6 +86,24 @@ export class LocationComponent implements OnInit {
   }
 
 
+  // Metodo DELETE - Rimovi Location ---------------------------------------------------------------------
+  deleteLocation(): void {
+    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+    headers.set('Content-Type', 'application/x-www-form-urlencoded');
+    this.httpClient.delete(Global.URL_ROOT + '/location/' + del_loc_id, { headers }).subscribe(data => {
+      this.modalService.dismissAll();
+      this.showAlert();
+      this.getLocations();
+    });
+  }
+
+  // Funzione OpenModal - Conferma Eliminazione
+  open(content, d_item_id: String, d_item_a: String) {
+    del_loc_id = d_item_id;
+    this.alias = d_item_a;
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'})
+  }
+
   // Alert di Conferma DELETE
   public showAlert() {
     this._success.subscribe(message => this.deleteMessage = message);
@@ -121,7 +112,6 @@ export class LocationComponent implements OnInit {
     ).subscribe(() => this.deleteMessage = '');
     this._success.next('Location ' + this.alias + ' rimossa con successo!');
   }
-
 
 
 }

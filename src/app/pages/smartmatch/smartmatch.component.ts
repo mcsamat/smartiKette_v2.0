@@ -35,6 +35,10 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
   providers: [NgbModalConfig, NgbModal]
   successMessage = '';
 
+  // Preview
+  prev;
+
+
 
   constructor(private httpClient: HttpClient, private modalService: NgbModal, config: NgbModalConfig, private router: Router) { 
     config.backdrop = 'static';
@@ -47,10 +51,11 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
         // Header generale
         let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
 
-        // Add
+        // Add (carica Tipo Articolo)
         this.httpClient.get(Global.URL_ROOT + '/item/type', { headers })
         .toPromise().then((data:any) => {
           this.varItem = data;
+          console.log(data)
         });
 
         // DataTables
@@ -120,7 +125,8 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
       // Chiuso il modal mostro l'alert, e renderizzo nuovamente la tabella
       this.modalService.dismissAll();
       this.showAlert();
-      this.rerender();
+      // this.rerender();
+      this.getMatches();
     }
 
     // Alert di Conferma ------- Da Aggiungere
@@ -136,10 +142,46 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
   rerender(): void {
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
       dtInstance.destroy();
-      // Nuova chiamata agli API (il delay di 200ms serve per ottenere API aggiornati)
-      setTimeout(() => {
-        this.getMatches();
-      }, 1000);
+    });
+  }
+
+
+  // Aggiungi SmartMatch ----------------------------------------------------------------------------
+  // addSm(items, template_name, label_id, decorators, is_active, bypass_promo) {
+    addSm(items: string, template_name, label_id: string, is_active, bypass_promo) {
+    // Header generale
+    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+    headers.set('Content-Type', 'application/x-www-form-urlencoded');
+    // Parametri
+    let params = new HttpParams()
+    .set('items[]', items)
+    .set('template_name', template_name)
+    .set('label_id', label_id)
+    //.set('decorators[]', decorators)
+    .set('is_active', is_active)
+    .set('bypass_promo', bypass_promo);
+
+    console.log('itemID: ' + items);
+    console.log('Template Name: ' + template_name);
+    console.log('Label ID: ' + is_active);
+    
+    // Aggiungo SmartMatch
+    this.httpClient.post(Global.URL_ROOT + '/matching', params, { headers }).subscribe(data =>{
+      this.getMatches();
+    });
+  }
+
+
+  // Preview -------------------------
+  openPreview(id) {
+    // Header generale
+    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+    headers.set('Content-Type', 'application/x-www-form-urlencoded');
+
+    // Richiesta preview
+    this.httpClient.get(Global.URL_ROOT + '/matching/preview/' + id, { headers }).subscribe(data =>{
+      this.prev = data.error.text;
+      console.log(this.prev);
     });
   }
 

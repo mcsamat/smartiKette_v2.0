@@ -58,17 +58,15 @@
                              </thead>
                             <tbody>
                                 <tr *ngFor="let item of items$">
-									<th>{{ item.reserved_alias }}</th>
+									<th>
+										<a [routerLink]="" (click)="viewItem(item.id)">{{ item.reserved_alias }}</a>
+									</th>
 									<td>{{ item.item_identifier }}</td>
 									<td>{{ item.id }}</td>
 									<td>{{ item.current_revision_date }}</td>
 									<td>{{ item.item_type }}</td>
 									<td>
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Tools">
-											<!-- Visualizza Item -->
-											<button type="button" class="btn btn-secondary" (click)="viewItem(item.id)">
-												<i class="fas fa-eye"></i>
-											</button>
 											<!-- Elimina Item con Modal -->
 											<button type="button" class="btn btn-danger" (click)="open(content, item.id, item.reserved_alias)">
 												<i class="fas fa-trash"></i>
