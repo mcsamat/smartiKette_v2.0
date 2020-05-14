@@ -20,9 +20,12 @@ export class LocationComponent implements OnInit {
   locations$;
   // Alert e Modal
   private _success = new Subject<string>();
+  private _successAdd = new Subject<string>();
   staticAlertClosed = false;
   alias: String;
+  aliasAdd: String;
   providers: [NgbModalConfig, NgbModal]
+  deleteMessage = '';
   successMessage = '';
 
 
@@ -55,7 +58,7 @@ export class LocationComponent implements OnInit {
     });
   }
 
-  // Metodo POST - Aggiungere Location
+  // Metodo POST - Aggiungere Location ------------------------------------------------------------------
   postCorsia(nomeLocation: string, tipoLocation: string) {
     // Header generale
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
@@ -69,12 +72,11 @@ export class LocationComponent implements OnInit {
     .set('isActive', 'true');
     
     // Aggiungo Location
-    this.httpClient.post(Global.URL_ROOT + '/location', params, { headers }).subscribe();
-
-    // Aspetto 100ms e richiedo i nuovi dati
-    setTimeout(()=>{
+    this.httpClient.post(Global.URL_ROOT + '/location', params, { headers }).subscribe(data =>{
+      this.aliasAdd = nomeLocation;
+      this.showAlertSuccess();
       this.getLocations();
-    }, 100);
+    });
   }
 
 
@@ -89,27 +91,35 @@ export class LocationComponent implements OnInit {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'})
   }
 
-  // API DELETE Item
+  // Metodo DELETE - Rimovi Location ---------------------------------------------------------------------
   deleteLocation(): void {
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
     headers.set('Content-Type', 'application/x-www-form-urlencoded');
-    this.httpClient.delete(Global.URL_ROOT + '/location/' + del_loc_id, { headers }).subscribe();
-    // Chiuso il modal mostro l'alert, e renderizzo nuovamente la tabella
-    this.modalService.dismissAll();
-    this.showAlert();
-    setTimeout(() => {
+    this.httpClient.delete(Global.URL_ROOT + '/location/' + del_loc_id, { headers }).subscribe(data => {
+      this.modalService.dismissAll();
+      this.showAlert();
       this.getLocations();
-    }, 1000);
+    });
+  
+  }
+
+  // Alert di Conferma POST
+  public showAlertSuccess() {
+    this._successAdd.subscribe(message => this.successMessage = message);
+    this._successAdd.pipe(
+      debounceTime(5000)
+    ).subscribe(() => this.successMessage = '');
+    this._successAdd.next('Location ' + this.aliasAdd + ' aggiunta con successo!');
   }
 
 
-  // Alert di Conferma ------- Da Aggiungere
+  // Alert di Conferma DELETE
   public showAlert() {
-    this._success.subscribe(message => this.successMessage = message);
+    this._success.subscribe(message => this.deleteMessage = message);
     this._success.pipe(
       debounceTime(5000)
-    ).subscribe(() => this.successMessage = '');
-    this._success.next('Articolo ' + this.alias + ' rimosso con successo!');
+    ).subscribe(() => this.deleteMessage = '');
+    this._success.next('Location ' + this.alias + ' rimossa con successo!');
   }
 
 

@@ -81,29 +81,23 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
       });
     }
 
+    // Templates
+    getItemTypeTemplate(tid: number){
+      let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+      this.httpClient.get(Global.URL_ROOT + '/template/itemtype/' + tid, { headers })
+      .toPromise().then((data:any) => {
+        this.templates = data.templates;
+      });
+    }
 
-
-
-
-
-
-  // Templates
-  getItemTypeTemplate(tid: number){
-    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-    this.httpClient.get(Global.URL_ROOT + '/template/itemtype/' + tid, { headers })
-    .toPromise().then((data:any) => {
-      this.templates = data.templates;
-    });
-  }
-
-  // Articoli
-  getItems() {
-    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-    this.httpClient.get(Global.URL_ROOT + '/item/type', { headers })
-    .toPromise().then((data:any) => {
-      this.varItem = data;
-    });
-  }
+    // Articoli
+    getItems() {
+      let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+      this.httpClient.get(Global.URL_ROOT + '/item/type', { headers })
+      .toPromise().then((data:any) => {
+        this.varItem = data;
+      });
+    }
 
 
 

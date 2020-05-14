@@ -24,7 +24,9 @@
 	<div class="row">
 		<div class="col-md-12">
 			<!-- Alert Conferma Eliminazione -->
-		<ngb-alert *ngIf="successMessage" type="danger" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
+			<ngb-alert *ngIf="deleteMessage" type="danger" (close)="deleteMessage = ''">{{ deleteMessage }}</ngb-alert>
+			<!-- Alert Conferma Aggiunta -->
+			<ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
 		</div>
 	</div>
 	<div class="row">
