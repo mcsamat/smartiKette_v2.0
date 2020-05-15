@@ -42,7 +42,7 @@
     </form>
 </ng-template>
 
-<!-- Modal POST Label - File -->
+<!-- Modal POST Label - File  (WiP) -->
 <ng-template #addFile let-modal>
     <div class="modal-header"  data-backdrop="static">
         <h4 class="modal-title" id="modal-basic-title">Richiesta registrazione etichette con file</h4>
@@ -72,21 +72,42 @@
 
 <!-- Contenuto della pagina -->
 <div class="container-fluid mt--7">
+    <!-- Alerts -->
+    <div class="row">
+		<div class="col-md-12">
+			<!-- Alert Conferma Eliminazione -->
+			<ngb-alert *ngIf="successMessage" type="danger" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
+			<!-- Alert Conferma Aggiunta -->
+			<ngb-alert *ngIf="successMessageAdd" type="success" (close)="successMessageAdd = ''">{{ successMessageAdd }}</ngb-alert>
+		</div>
+    </div>
+    
     <div class="row">
        <div class="col">
             <div class="card shadow">
                 <!-- Header -->
                 <div class="card-header bg-transparent">
-                    <h2 class="mb-0">Lista Etichette</h2>
-                    <!-- Registra Etichetta -->
-                    <div class="text-right">
-                        <div ngbDropdown class="d-inline-block">
-                            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-								<i class="fas fa-caret-down"></i> Registra Etichetta
-							</button>
-                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                <button ngbDropdownItem (click)="openManual(addManual)">Manualmente</button>
-                                <button ngbDropdownItem (click)="openManual(addFile)">Da file</button>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h2 class="mb-0">Lista Etichette</h2>
+                        </div>
+
+                        <div class="col-md-8 text-center">
+                            <div *ngIf="showPrev">
+                                <i class='fa fa-2x fa-picture-o'></i> <img style='max-width: 100%;max-height: 80%;' src='data:image/png;base64,{{ prev }}'/>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 text-right">
+                            <!-- Registra Etichetta -->
+                            <div ngbDropdown class="d-inline-block">
+                                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                                    <i class="fas fa-caret-down"></i> Registra Etichetta
+                                </button>
+                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                    <button ngbDropdownItem (click)="openManual(addManual)">Manualmente</button>
+                                    <button ngbDropdownItem (click)="openManual(addFile)" disabled="true">Da file</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -109,7 +130,11 @@
                              </thead>
                             <tbody>
                                 <tr *ngFor="let label of labels$">
-                                    <th>{{ label.LabelId }}</th>
+                                    <th>
+                                        <a [routerLink]="view-label" (click)="viewLabel(label.LabelId)">
+                                            {{ label.LabelId }}
+                                        </a>
+                                    </th>
                                     <td>{{ label.Type }}</td>
                                     <td class="alert alert-success" *ngIf=" label.PowerStatus > 20; else elseBlock">
 										{{ label.PowerStatus }}
@@ -143,9 +168,7 @@
                         </table>
 
 
-                        <br>
-
-                        <i class='fa fa-2x fa-picture-o'></i> <img style='max-width: 100%;max-height: 80%;' src='data:image/png;base64,{{ prev }}'/>
+                        
                     </div>
                 </div>
             </div>

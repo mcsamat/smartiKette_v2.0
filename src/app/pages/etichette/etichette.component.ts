@@ -29,16 +29,20 @@ export class EtichetteComponent implements OnInit, OnDestroy {
 
   // Alert e Modal
   private _success = new Subject<string>();
+  private _successAdd = new Subject<string>();
   staticAlertClosed = false;
   label_name: String;
   providers: [NgbModalConfig, NgbModal]
   successMessage = '';
+  successMessageAdd = '';
 
   // Aggiungi Label
   valid_label_id: boolean = false;
 
   // Preview
-  prev;
+  prevA;
+  prev: string = '';
+  showPrev: boolean = false;
   
 
   constructor(private httpClient: HttpClient, private modalService: NgbModal, config: NgbModalConfig, private router: Router) { 
@@ -136,6 +140,7 @@ export class EtichetteComponent implements OnInit, OnDestroy {
   openManual(addManual) {
     this.modalService.open(addManual, {ariaLabelledBy: 'modal-basic-title'})
   }
+
   postManual(ids: string){
     if (ids == null || ids == '') {
       this.valid_label_id = true;
@@ -143,10 +148,10 @@ export class EtichetteComponent implements OnInit, OnDestroy {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
       let params = new HttpParams()
       .set('label_id[]', ids)
-      this.httpClient.post(Global.URL_ROOT + '/label', params ,{ headers }).subscribe();
-      setTimeout(() => {
+      this.httpClient.post(Global.URL_ROOT + '/label', params ,{ headers }).subscribe(data => {
         this.modalService.dismissAll();
-      }, 100);
+        this.showAlertAdd();
+      });
     }
   }
 
@@ -177,9 +182,36 @@ export class EtichetteComponent implements OnInit, OnDestroy {
 
     // Richiesta preview
     this.httpClient.get(Global.URL_ROOT + '/matching/preview/active/' + id, { headers }).subscribe(data =>{
-      this.prev = data.preview;
+      this.prevA = data;
+      this.prev = this.prevA.preview;
+      this.showPrev = true;
     });
   }
+
+
+
+
+  // Alert Conferma ---------------------------------------------------
+  public showAlertAdd() {
+  this._successAdd.subscribe(message => this.successMessageAdd = message);
+  this._successAdd.pipe(
+    debounceTime(5000)
+  ).subscribe(() => this.successMessageAdd = '');
+
+  this._successAdd.next('Tutte le etichette sono state registrate correttamente. Tra qualche minuto saranno ONLINE.');
+}
+
+
+
+// View Details Label
+viewLabel(labelId) {
+  localStorage.removeItem('label_id');
+  localStorage.setItem('label_id', labelId);
+  this.router.navigateByUrl('/view-label');
+}
+
+
+
 
 
 }

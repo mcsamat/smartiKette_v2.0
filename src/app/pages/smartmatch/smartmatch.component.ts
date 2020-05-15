@@ -30,13 +30,16 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
 
   // Alert e Modal
   private _success = new Subject<string>();
+  private _successAdd = new Subject<string>();
   staticAlertClosed = false;
   alias: String;
   providers: [NgbModalConfig, NgbModal]
   successMessage = '';
+  successMessageAdd = '';
 
   // Preview
   prev;
+  showPrev: boolean = false;
 
 
 
@@ -48,32 +51,31 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
     ngOnInit() {
       // Controllo l'accesso
       if (localStorage.getItem('apikey') != null || localStorage.getItem('apikey') != '') {
-        // Header generale
+        // this.getItemTemplate;
         let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-
-        // Add (carica Tipo Articolo)
         this.httpClient.get(Global.URL_ROOT + '/item/type', { headers })
         .toPromise().then((data:any) => {
           this.varItem = data;
-          console.log(data)
         });
-
         // DataTables
         this.dtOptions = {
           pagingType: 'full_numbers',
           pageLength: 10,
           processing: true
         };
-
         this.getMatches();        
       } else {
         this.router.navigate(['../login']);
       }
-      
     }
 
     ngOnDestroy(): void {
       this.dtTrigger.unsubscribe();
+    }
+
+    // Add SmartMartch - Tipo Articolo e Template
+    getItemTemplate () {
+      
     }
 
     // Matches
@@ -82,7 +84,6 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
       this.httpClient.get(Global.URL_ROOT + '/matching?recordsPerPage=999999999999', { headers })
       .toPromise().then((data:any) => {
         this.matchs$ = data.matching;
-        this.dtTrigger.next();
       });
     }
 
@@ -117,26 +118,18 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
       this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'})
     }
 
-    // API DELETE Item
+    // API DELETE SM
     deleteItem(): void {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
       headers.set('Content-Type', 'application/x-www-form-urlencoded');
-      this.httpClient.delete(Global.URL_ROOT + '/matching/' + del_item_id, { headers }).subscribe();
-      // Chiuso il modal mostro l'alert, e renderizzo nuovamente la tabella
-      this.modalService.dismissAll();
-      this.showAlert();
-      // this.rerender();
-      this.getMatches();
+      this.httpClient.delete(Global.URL_ROOT + '/matching/' + del_item_id, { headers }).subscribe(data => {
+        this.modalService.dismissAll();
+        this.showAlert();
+        this.getMatches();
+      });
     }
 
-    // Alert di Conferma ------- Da Aggiungere
-    public showAlert() {
-      this._success.subscribe(message => this.successMessage = message);
-      this._success.pipe(
-        debounceTime(5000)
-      ).subscribe(() => this.successMessage = '');
-      this._success.next('Articolo ' + this.alias + ' rimosso con successo!');
-    }
+    
 
   // Rerender Tabella
   rerender(): void {
@@ -168,6 +161,7 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
     // Aggiungo SmartMatch
     this.httpClient.post(Global.URL_ROOT + '/matching', params, { headers }).subscribe(data =>{
       this.getMatches();
+      this.showAlertAdd();
     });
   }
 
@@ -180,9 +174,34 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
 
     // Richiesta preview
     this.httpClient.get(Global.URL_ROOT + '/matching/preview/' + id, { headers }).subscribe(data =>{
-      this.prev = data.error.text;
-      console.log(this.prev);
+      this.prev = data;
+      this.showPrev = true;
     });
   }
+
+
+
+  // Alerts ----------------------------------------
+
+  // Alert di Conferma DELETE
+  public showAlert() {
+    this._success.subscribe(message => this.successMessage = message);
+    this._success.pipe(
+      debounceTime(5000)
+    ).subscribe(() => this.successMessage = '');
+    this._success.next('Match ' + this.alias + ' rimosso con successo!');
+  }
+
+  // Alert Conferma POST
+  public showAlertAdd() {
+    this._successAdd.subscribe(message => this.successMessageAdd = message);
+    this._successAdd.pipe(
+      debounceTime(5000)
+    ).subscribe(() => this.successMessageAdd = '');
+  
+    this._successAdd.next('SmartMatch creato correttamente!');
+  }
+
+
 
 }

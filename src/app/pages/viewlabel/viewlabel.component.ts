@@ -4,44 +4,42 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Global } from '../../variables/global';
 
 @Component({
-  selector: 'app-visualizzarticolo',
-  templateUrl: './visualizzarticolo.component.html',
-  styleUrls: ['./visualizzarticolo.component.css']
+  selector: 'app-viewlabel',
+  templateUrl: './viewlabel.component.html',
+  styleUrls: ['./viewlabel.component.css']
 })
-export class VisualizzarticoloComponent implements OnInit {
+export class ViewlabelComponent implements OnInit {
 
   constructor(private httpClient: HttpClient, private router: Router) { }
-
   // Var
-  item_id;
-  parametri$: any[] = [];
-  valori$: any[] = [];
+  label_id;
 
   ngOnInit(): void {
     // Controllo l'accesso
     if (localStorage.getItem('item_id') != null || localStorage.getItem('item_id') != '') {
-      this.item_id = localStorage.getItem('item_id');
+      this.label_id = localStorage.getItem('label_id');
       this.getDetails();         
     } else {
-      this.router.navigate(['../articoli']);
+      // this.router.navigate(['../etichette']);
     }
   }
 
-  // Richiesta API dettagli articolo
+
+  // API GET 
   getDetails() {
     // Header generale
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-    this.httpClient.get(Global.URL_ROOT + '/item/concrete/' + this.item_id, { headers })
+    this.httpClient.get(Global.URL_ROOT + '/labelinfo/labelid/' + this.label_id, { headers })
     .toPromise().then((data:any) => {
-      this.parametri$ = Object.keys(data.current_fields);
-      this.valori$ = data.current_fields;
+      console.log('Richiesta effettuata correttamente');
+      // this.parametri$ = Object.keys(data.current_fields);
+      // this.valori$ = data.current_fields;
     });
   }
-    
-  // Pulsante Annulla
+
+  // Annulla
   goBack(){
     this.router.navigateByUrl('/articoli');
   }
 
 }
-

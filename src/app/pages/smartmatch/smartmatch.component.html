@@ -123,19 +123,41 @@
         </div>
     </div>
     <br>
+    <!-- Alerts -->
+    <div class="row">
+		<div class="col-md-12">
+			<!-- Alert Conferma Eliminazione -->
+			<ngb-alert *ngIf="successMessage" type="danger" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
+			<!-- Alert Conferma Aggiunta -->
+			<ngb-alert *ngIf="successMessageAdd" type="success" (close)="successMessageAdd = ''">{{ successMessageAdd }}</ngb-alert>
+		</div>
+    </div>
+    <br>
     <!-- Tabella Match -->
     <div class="row">
         <div class="col">
             <div class="card shadow">
                 <!-- Header -->
                 <div class="card-header bg-transparent">
-                    <h2 class="mb-0">Matches Online</h2>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h2 class="mb-0">Matches Online</h2>
+                        </div>
+                        <div class="col-md-8 text-center">
+                            <div *ngIf="showPrev">
+                                <i class='fa fa-2x fa-picture-o'></i> <img style='max-width: 100%;max-height: 80%;' src='data:image/png;base64,{{ prev }}'/>
+                            </div>
+                        </div>
+                        
+                        
+                    
+                    </div>
                 </div>
                 <!-- Contenuto -->
                 <div class="card-body">
                     <!-- Tabella Smartmatches -->
                     <div class="table-responsive">
-                        <table class="display table table-striped align-items-center table-flush" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                        <table class="display table align-items-center table-flush" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col"></th>
@@ -167,12 +189,7 @@
                                     </td>
                                 </tr>
                             </tbody>
-                        </table>
-
-
-                        <br>
-                        {{ prev }}
-                        <i class='fa fa-2x fa-picture-o'></i> <img style='max-width: 100%;max-height: 80%;' src='data:image/png;base64,{{ prev }}'/>
+                        </table>                        
                     </div>
                 </div>
             </div>

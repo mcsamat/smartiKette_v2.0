@@ -6,6 +6,7 @@ import { ArticoliComponent } from '../../pages/articoli/articoli.component';
 import { EtichetteComponent } from '../../pages/etichette/etichette.component';
 import { LocationComponent } from '../../pages/location/location.component';
 import { VisualizzarticoloComponent } from '../../pages/visualizzarticolo/visualizzarticolo.component';
+import { ViewlabelComponent } from '../../pages/viewlabel/viewlabel.component'
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -14,4 +15,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'smartmatch',     component: SmartmatchComponent },
     { path: 'articoli',       component: ArticoliComponent },
     { path: 'view-item',      component: VisualizzarticoloComponent  },
+    { path: 'view-label',     component: ViewlabelComponent }
 ];

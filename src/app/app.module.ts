@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 
 import { DataTablesModule } from 'angular-datatables';
+import { ViewlabelComponent } from './pages/viewlabel/viewlabel.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { DataTablesModule } from 'angular-datatables';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    ViewlabelComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
