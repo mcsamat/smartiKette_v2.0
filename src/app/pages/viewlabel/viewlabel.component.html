@@ -9,20 +9,83 @@
                 <div class="card-header bg-transparent">
                     <h2 class="mb-0">Dettagli Etichetta</h2>
                 </div>
-				<!-- Contenuto -->
+				<!-- Contenuto: Label Info -->
                 <div class="card-body table-responsive">
                    <table class="display table align-items-center table-flush">
                        <thead>
-                           <th>Field 1</th>
-                           <td>Field 2</td>
-                           <td>Field 3</td>
-                           <td>Field 4</td>
+                           <tr>
+                                <th>Label ID</th>
+                                <td>Power Status</td>
+                                <td>Connection Status</td>
+                                <td>Updated At</td>
+                                <td>Type</td>
+                                <td>Access Point ID</td>
+                           </tr>
                        </thead>
+                       <tbody>
+                           <tr>
+                                <td>{{ info$.LabelId }}</td>
+                                <td>{{ info$.PowerStatus }}</td>
+                                <td>{{ info$.ConnectionStatus }}</td>
+                                <td>{{ info$.UpdatedAt }}</td>
+                                <td>{{ info$.Type }}</td>
+                                <td>{{ info$.AccessPointId }}</td>
+                           </tr>
+                       </tbody>
                    </table>
                 </div>
+                <!-- Header -->
                 <div class="card-header bg-transparent">
-                    <h3 class="mb-0">Matches Associati</h3>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h2 class="mb-0">Matches Associati</h2>
+                        </div>
+
+                        <!-- Preview Etichetta Attiva -->
+                        <div class="col-md-8 text-center">
+                            <div *ngIf="showPrev">
+                                <i class='fa fa-2x fa-picture-o'></i> <img style='max-width: 100%;max-height: 80%;' src='data:image/png;base64,{{ prev }}'/>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                        </div>
+                    </div>
                 </div>
+                <!-- Contenuto: Matchs -->
+                <div class="card-body table-responsive">
+                    <table class="display table align-items-center table-flush">
+                        <thead>
+                            <tr>
+                                 <th>Template Name</th>
+                                 <th>Label ID</th>
+                                 <th>Items</th>
+                                 <th>Is Active</th>
+                                 <th>Bypass Promo</th>
+                                 <th>Match e Immagini</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let match of matchs$">
+                                 <td>{{ match.template_name }}</td>
+                                 <td>{{ match.label_id }}</td>
+                                 <td>{{ match.items }}</td>
+                                 <td>{{ match.is_active }}</td>
+                                 <td>{{ match.bypass_promo }}</td>
+                                 <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Tools">
+                                        <button type="button" class="btn btn-secondary" (click)="openPreview(match.id)">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-danger" (click)="open()">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                 </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                 </div>
                 <div class="card-body">
                     <!-- Bottone Annulla -->
                     <button type="button" class="btn btn-secondary btn-lg btn-block" (click)="goBack()">Torna Indietro</button>
@@ -31,3 +94,8 @@
         </div>
     </div>
 </div>
+
+
+<!-- api/matching/label/"label_id" -->
+
+<!-- api/labelinfo/label/"label_id" -->

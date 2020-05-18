@@ -13,33 +13,67 @@ export class ViewlabelComponent implements OnInit {
   constructor(private httpClient: HttpClient, private router: Router) { }
   // Var
   label_id;
+  // Var API GET
+  info$ = [];
+  matchs$ = [];
+
+   // Preview
+   prevA;
+   prev: string = '';
+   showPrev: boolean = false;
 
   ngOnInit(): void {
     // Controllo l'accesso
     if (localStorage.getItem('item_id') != null || localStorage.getItem('item_id') != '') {
       this.label_id = localStorage.getItem('label_id');
-      this.getDetails();         
+      this.getDetails();
+      this.getMatch();         
     } else {
       // this.router.navigate(['../etichette']);
     }
   }
 
 
-  // API GET 
+  // API GET label_info
   getDetails() {
-    // Header generale
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
     this.httpClient.get(Global.URL_ROOT + '/labelinfo/labelid/' + this.label_id, { headers })
     .toPromise().then((data:any) => {
-      console.log('Richiesta effettuata correttamente');
-      // this.parametri$ = Object.keys(data.current_fields);
-      // this.valori$ = data.current_fields;
+      let temp_data = data.label_info;
+      this.info$ = temp_data[0];
+    });
+  }
+
+  // API GET  matching
+  getMatch() {
+    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+    this.httpClient.get(Global.URL_ROOT + '/matching/label/' + this.label_id, { headers })
+    .toPromise().then((data:any) => {
+      console.log('GetMatch')
+      let temp_data = data.matching;
+      this.matchs$ = temp_data;
+      // console.log(this.matchs$)
     });
   }
 
   // Annulla
   goBack(){
     this.router.navigateByUrl('/articoli');
+  }
+
+
+   // Preview ------------------------- La chiamata funziona, ma stesso errore della preview SmartMatch
+   openPreview(id) {
+    // Header generale
+    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+    headers.set('Content-Type', 'application/x-www-form-urlencoded');
+
+    // Richiesta preview
+    this.httpClient.get(Global.URL_ROOT + '/matching/preview/' + id, { headers }).subscribe(data =>{
+      this.prevA = data;
+      this.prev = this.prevA.preview;
+      this.showPrev = true;
+    });
   }
 
 }
