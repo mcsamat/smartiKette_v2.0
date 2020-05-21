@@ -14,8 +14,6 @@ var LoginComponent = /** @class */ (function () {
     function LoginComponent(httpClient, cred) {
         this.httpClient = httpClient;
         this.cred = cred;
-        // Root URL per API
-        this.ROOT_URL = 'http://pietro-test.dlinkddns.com:10082/api';
     }
     LoginComponent.prototype.ngOnInit = function () {
     };

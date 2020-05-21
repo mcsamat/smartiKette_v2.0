@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Global } from '../../variables/global';
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'app-visualizzarticolo',
@@ -31,7 +31,7 @@ export class VisualizzarticoloComponent implements OnInit {
   getDetails() {
     // Header generale
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-    this.httpClient.get(Global.URL_ROOT + '/item/concrete/' + this.item_id, { headers })
+    this.httpClient.get(environment.URL_ROOT + '/item/concrete/' + this.item_id, { headers })
     .toPromise().then((data:any) => {
       this.parametri$ = Object.keys(data.current_fields);
       this.valori$ = data.current_fields;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Global } from '../../variables/global';
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'app-viewlabel',
@@ -37,7 +37,7 @@ export class ViewlabelComponent implements OnInit {
   // API GET label_info
   getDetails() {
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-    this.httpClient.get(Global.URL_ROOT + '/labelinfo/labelid/' + this.label_id, { headers })
+    this.httpClient.get(environment.URL_ROOT + '/labelinfo/labelid/' + this.label_id, { headers })
     .toPromise().then((data:any) => {
       let temp_data = data.label_info;
       this.info$ = temp_data[0];
@@ -47,7 +47,7 @@ export class ViewlabelComponent implements OnInit {
   // API GET  matching
   getMatch() {
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-    this.httpClient.get(Global.URL_ROOT + '/matching/label/' + this.label_id, { headers })
+    this.httpClient.get(environment.URL_ROOT + '/matching/label/' + this.label_id, { headers })
     .toPromise().then((data:any) => {
       console.log('GetMatch')
       let temp_data = data.matching;
@@ -69,7 +69,7 @@ export class ViewlabelComponent implements OnInit {
     headers.set('Content-Type', 'application/x-www-form-urlencoded');
 
     // Richiesta preview
-    this.httpClient.get(Global.URL_ROOT + '/matching/preview/' + id, { headers }).subscribe(data =>{
+    this.httpClient.get(environment.URL_ROOT + '/matching/preview/' + id, { headers }).subscribe(data =>{
       this.prevA = data;
       this.prev = this.prevA.preview;
       this.showPrev = true;

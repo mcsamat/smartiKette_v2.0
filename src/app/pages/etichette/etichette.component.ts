@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { DataTableDirective } from 'angular-datatables';
-import { Global } from '../../variables/global';
+import { environment } from './../../../environments/environment';
 import { debounceTime } from 'rxjs/operators';
 
 
@@ -77,7 +77,7 @@ export class EtichetteComponent implements OnInit, OnDestroy {
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
 
     // Richiesta GET
-    this.httpClient.get(Global.URL_ROOT + '/labelinfo?recordsPerPage=999999999999', { headers })
+    this.httpClient.get(environment.URL_ROOT + '/labelinfo?recordsPerPage=999999999999', { headers })
     .toPromise().then((data:any) => {
       this.labels$ = data.label_info;
       this.dtTrigger.next();
@@ -148,7 +148,7 @@ export class EtichetteComponent implements OnInit, OnDestroy {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
       let params = new HttpParams()
       .set('label_id[]', ids)
-      this.httpClient.post(Global.URL_ROOT + '/label', params ,{ headers }).subscribe(data => {
+      this.httpClient.post(environment.URL_ROOT + '/label', params ,{ headers }).subscribe(data => {
         this.modalService.dismissAll();
         this.showAlertAdd();
       });
@@ -165,7 +165,7 @@ export class EtichetteComponent implements OnInit, OnDestroy {
     console.log(file);
     //let params = new HttpParams()
     //.set('label_id[]', file)
-    //this.httpClient.post(Global.URL_ROOT + '/label/file', params ,{ headers }).subscribe();
+    //this.httpClient.post(environment.URL_ROOT + '/label/file', params ,{ headers }).subscribe();
 
   }
 
@@ -181,7 +181,7 @@ export class EtichetteComponent implements OnInit, OnDestroy {
     headers.set('Content-Type', 'application/x-www-form-urlencoded');
 
     // Richiesta preview
-    this.httpClient.get(Global.URL_ROOT + '/matching/preview/active/' + id, { headers }).subscribe(data =>{
+    this.httpClient.get(environment.URL_ROOT + '/matching/preview/active/' + id, { headers }).subscribe(data =>{
       this.prevA = data;
       this.prev = this.prevA.preview;
       this.showPrev = true;

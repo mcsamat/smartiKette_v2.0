@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
 import { debounceTime } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { Global } from '../../variables/global';
+import { environment } from './../../../environments/environment';
 
 var del_loc_id: String;
 
@@ -49,7 +49,7 @@ export class LocationComponent implements OnInit {
     // Header generale
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
     // Elenco Corsie
-    this.httpClient.get(Global.URL_ROOT + '/location', { headers })
+    this.httpClient.get(environment.URL_ROOT + '/location', { headers })
     .toPromise().then((data:any) => {
       this.locations$ = data.locations;
     });
@@ -69,7 +69,7 @@ export class LocationComponent implements OnInit {
     .set('isActive', 'true');
     
     // Aggiungo Location
-    this.httpClient.post(Global.URL_ROOT + '/location', params, { headers }).subscribe(data =>{
+    this.httpClient.post(environment.URL_ROOT + '/location', params, { headers }).subscribe(data =>{
       this.aliasAdd = nomeLocation;
       this.showAlertSuccess();
       this.getLocations();
@@ -90,7 +90,7 @@ export class LocationComponent implements OnInit {
   deleteLocation(): void {
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
     headers.set('Content-Type', 'application/x-www-form-urlencoded');
-    this.httpClient.delete(Global.URL_ROOT + '/location/' + del_loc_id, { headers }).subscribe(data => {
+    this.httpClient.delete(environment.URL_ROOT + '/location/' + del_loc_id, { headers }).subscribe(data => {
       this.modalService.dismissAll();
       this.showAlert();
       this.getLocations();

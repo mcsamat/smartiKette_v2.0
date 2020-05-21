@@ -5,7 +5,7 @@ import { NgbModal, ModalDismissReasons, NgbModalConfig } from '@ng-bootstrap/ng-
 import { DataTableDirective } from 'angular-datatables';
 import { debounceTime } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { Global } from '../../variables/global';
+import { environment } from './../../../environments/environment';
 
 var del_item_id: String;
 
@@ -72,7 +72,7 @@ export class ArticoliComponent implements OnInit, OnDestroy {
   // API Articoli
   getItems() {
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-    this.httpClient.get(Global.URL_ROOT + '/item/concrete?recordsPerPage=999999999999', { headers })
+    this.httpClient.get(environment.URL_ROOT + '/item/concrete?recordsPerPage=999999999999', { headers })
     .toPromise().then((data:any) => {
       this.items$ = data.items;
       this.dtTrigger.next();
@@ -95,7 +95,7 @@ export class ArticoliComponent implements OnInit, OnDestroy {
     // Header generale
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
     // Item Type API
-    this.httpClient.get(Global.URL_ROOT + '/item/type', { headers })
+    this.httpClient.get(environment.URL_ROOT + '/item/type', { headers })
     .toPromise().then((itemtAPI:any) => {
       // console.log(itemtAPI);
       this.titems_t = itemtAPI.total_itemtype;
@@ -122,7 +122,7 @@ export class ArticoliComponent implements OnInit, OnDestroy {
     deleteItem(): void {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
       headers.set('Content-Type', 'application/x-www-form-urlencoded');
-      this.httpClient.delete(Global.URL_ROOT + '/item/concrete/' + del_item_id, { headers }).subscribe();
+      this.httpClient.delete(environment.URL_ROOT + '/item/concrete/' + del_item_id, { headers }).subscribe();
       // Chiuso il modal mostro l'alert, e renderizzo nuovamente la tabella
       this.modalService.dismissAll();
       this.showAlert();

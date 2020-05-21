@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  URL_ROOT: 'http://pietro-test.dlinkddns.com:10082/api'
 };
 
 /*

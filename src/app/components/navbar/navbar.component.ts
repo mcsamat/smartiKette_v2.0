@@ -3,6 +3,7 @@ import { ROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'app-navbar',
@@ -16,10 +17,8 @@ export class NavbarComponent implements OnInit {
   constructor(location: Location,  private element: ElementRef, private router: Router, private httpClient: HttpClient) {
     this.location = location;
   }
-  // Root URL per API
-  readonly ROOT_URL = 'http://pietro-test.dlinkddns.com:10082/api';
+
   // Variabili System
-  // sk_v: any;
   username: string;
   confname: string;
 
@@ -34,7 +33,7 @@ export class NavbarComponent implements OnInit {
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
 
     // Name API
-    this.httpClient.get(this.ROOT_URL + '/system/configuration', { headers })
+    this.httpClient.get(environment.URL_ROOT + '/system/configuration', { headers })
     .toPromise().then((infoconf:any) => {
       // Passo i valori presi da API
       this.confname = infoconf.configurations.installation_name;

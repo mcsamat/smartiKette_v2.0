@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
-import { Global } from '../../variables/global';
+import { environment } from './../../../environments/environment';
 import { NgbModal, ModalDismissReasons, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { debounceTime } from 'rxjs/operators';
 import { DataTableDirective } from 'angular-datatables';
@@ -53,7 +53,7 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
       if (localStorage.getItem('apikey') != null || localStorage.getItem('apikey') != '') {
         // this.getItemTemplate;
         let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-        this.httpClient.get(Global.URL_ROOT + '/item/type', { headers })
+        this.httpClient.get(environment.URL_ROOT + '/item/type', { headers })
         .toPromise().then((data:any) => {
           this.varItem = data;
         });
@@ -81,7 +81,7 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
     // Matches
     getMatches() {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-      this.httpClient.get(Global.URL_ROOT + '/matching?recordsPerPage=999999999999', { headers })
+      this.httpClient.get(environment.URL_ROOT + '/matching?recordsPerPage=999999999999', { headers })
       .toPromise().then((data:any) => {
         this.matchs$ = data.matching;
       });
@@ -90,7 +90,7 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
     // Templates
     getItemTypeTemplate(tid: number){
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-      this.httpClient.get(Global.URL_ROOT + '/template/itemtype/' + tid, { headers })
+      this.httpClient.get(environment.URL_ROOT + '/template/itemtype/' + tid, { headers })
       .toPromise().then((data:any) => {
         this.templates = data.templates;
       });
@@ -99,7 +99,7 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
     // Articoli
     getItems() {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-      this.httpClient.get(Global.URL_ROOT + '/item/type', { headers })
+      this.httpClient.get(environment.URL_ROOT + '/item/type', { headers })
       .toPromise().then((data:any) => {
         this.varItem = data;
       });
@@ -122,7 +122,7 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
     deleteItem(): void {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
       headers.set('Content-Type', 'application/x-www-form-urlencoded');
-      this.httpClient.delete(Global.URL_ROOT + '/matching/' + del_item_id, { headers }).subscribe(data => {
+      this.httpClient.delete(environment.URL_ROOT + '/matching/' + del_item_id, { headers }).subscribe(data => {
         this.modalService.dismissAll();
         this.showAlert();
         this.getMatches();
@@ -159,7 +159,7 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
     console.log('Label ID: ' + is_active);
     
     // Aggiungo SmartMatch
-    this.httpClient.post(Global.URL_ROOT + '/matching', params, { headers }).subscribe(data =>{
+    this.httpClient.post(environment.URL_ROOT + '/matching', params, { headers }).subscribe(data =>{
       this.getMatches();
       this.showAlertAdd();
     });
@@ -173,7 +173,7 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
     headers.set('Content-Type', 'application/x-www-form-urlencoded');
 
     // Richiesta preview
-    this.httpClient.get(Global.URL_ROOT + '/matching/preview/' + id, { headers }).subscribe(data =>{
+    this.httpClient.get(environment.URL_ROOT + '/matching/preview/' + id, { headers }).subscribe(data =>{
       this.prev = data;
       this.showPrev = true;
     });

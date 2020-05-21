@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { System } from '../../variables/system';
-import { Global } from '../../variables/global';
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -59,7 +59,7 @@ export class DashboardComponent implements OnInit {
     // Informazioni Installazione
     getInstallation() {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-      this.httpClient.get(Global.URL_ROOT + '/system/configuration', { headers })
+      this.httpClient.get(environment.URL_ROOT + '/system/configuration', { headers })
       .toPromise().then((data:any) => {
         this.varInstallation = data.configurations;
         // console.log(this.varInstallation.installation_name);
@@ -68,7 +68,7 @@ export class DashboardComponent implements OnInit {
     // Templates
     getItemTypeTemplate(tid: number){
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-      this.httpClient.get(Global.URL_ROOT + '/template/itemtype/' + tid, { headers })
+      this.httpClient.get(environment.URL_ROOT + '/template/itemtype/' + tid, { headers })
       .toPromise().then((data:any) => {
         this.templates = data.templates;
       });
@@ -77,7 +77,7 @@ export class DashboardComponent implements OnInit {
     // Display & Etichette
     getDisplay() {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-      this.httpClient.get(Global.URL_ROOT + '/labelinfo/statistics', { headers })
+      this.httpClient.get(environment.URL_ROOT + '/labelinfo/statistics', { headers })
       .toPromise().then((data:any) => {
         this.varLabelStat = data;
       });
@@ -85,7 +85,7 @@ export class DashboardComponent implements OnInit {
     // Total Matches
     getTotalMatch() {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-      this.httpClient.get(Global.URL_ROOT + '/matching', { headers })
+      this.httpClient.get(environment.URL_ROOT + '/matching', { headers })
       .toPromise().then((data:any) => {
         this.varTotMatch = data.total_matching;
       });
@@ -93,7 +93,7 @@ export class DashboardComponent implements OnInit {
     // Access Point
     getAps() {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-      this.httpClient.get(Global.URL_ROOT + '/accesspoint', { headers })
+      this.httpClient.get(environment.URL_ROOT + '/accesspoint', { headers })
       .toPromise().then((data:any) => {
         this.varAps = data;
       });
@@ -102,7 +102,7 @@ export class DashboardComponent implements OnInit {
     // Articoli
     getItems() {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-      this.httpClient.get(Global.URL_ROOT + '/item/type', { headers })
+      this.httpClient.get(environment.URL_ROOT + '/item/type', { headers })
       .toPromise().then((data:any) => {
         this.varItem = data;
       });
@@ -110,14 +110,14 @@ export class DashboardComponent implements OnInit {
     // Totale Articoli
     getTotItem() {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-      this.httpClient.get(Global.URL_ROOT + '/item/concrete', { headers })
+      this.httpClient.get(environment.URL_ROOT + '/item/concrete', { headers })
       .toPromise().then((data:any) => {
         this.varTotItem = data;
       });
     }
     // Importazioni
     getImport(){
-      this.httpClient.get(Global.URL_ROOT + '/import/queue')
+      this.httpClient.get(environment.URL_ROOT + '/import/queue')
       .toPromise().then((data:any) => {
         this.varImport = data;
       });
@@ -127,7 +127,7 @@ export class DashboardComponent implements OnInit {
     // Mobile Device
     getMobile() {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-      this.httpClient.get(Global.URL_ROOT + '/mobiledevice', { headers })
+      this.httpClient.get(environment.URL_ROOT + '/mobiledevice', { headers })
       .toPromise().then((mobileAPI:any) => {
         this.varMobile = mobileAPI;
       });
@@ -137,7 +137,7 @@ export class DashboardComponent implements OnInit {
     // Info Sistema
     getInfo() {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-      this.httpClient.get(Global.URL_ROOT + '/system', { headers })
+      this.httpClient.get(environment.URL_ROOT + '/system', { headers })
       .toPromise().then((data:any) => {
         this.system_info = data;
       });

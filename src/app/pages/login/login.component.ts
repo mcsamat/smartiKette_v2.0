@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Credentials } from 'src/app/variables/credentials';
 import { Router } from '@angular/router';
-import { Global } from '../../variables/global';
+import { environment } from './../../../environments/environment';
 
 
 @Component({
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     // Header
     let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
     // Richiesta ApiKey
-    this.httpClient.post(Global.URL_ROOT + '/apikey', 'username=' + this.userModel.username + '&password=' + this.userModel.password, { headers })
+    this.httpClient.post(environment.URL_ROOT + '/apikey', 'username=' + this.userModel.username + '&password=' + this.userModel.password, { headers })
     .toPromise().then((data:any) => {
       // Assegno il valore di apikey alla variabile key - e al localStorage
       this.key = data.apikey;
