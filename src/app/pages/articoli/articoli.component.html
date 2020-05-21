@@ -44,7 +44,7 @@
 				<!-- Card Body -->
 				<div class="card-body">
 					<!-- Tabella Articoli -->
-					<div class="table-responsive">
+					<div class="table-responsive" id="stampare">
 						<table class="display table table-striped align-items-center table-flush" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
                             <thead class="thead-light">
                                 <tr>
@@ -56,7 +56,7 @@
 									<th scope="col"></th>
                                 </tr>
                              </thead>
-                            <tbody>
+                            <tbody id="stampare">
                                 <tr *ngFor="let item of items$">
 									<th>
 										<a [routerLink]="" (click)="viewItem(item.id)">{{ item.reserved_alias }}</a>

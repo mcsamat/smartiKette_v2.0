@@ -26,13 +26,24 @@
 		<h6 class="navbar-heading text-muted">Strumenti</h6>
 		<!-- Voci del menu -->
 		<ul class="navbar-nav mb-md-3">
+			<!-- Fullscreen -->
+			<div *ngIf="fullscreen; else elseBlock">
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="" (click)="closeFullscreen()">
+						<i class="fas fa-compress"></i>Schermo Ridotto
+					</a>
+				</li>
+			</div>
+			<ng-template #elseBlock>
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="" (click)="openFullscreen()">
+						<i class="fas fa-arrows-alt"></i>Schermo Intero
+					</a>
+				</li>
+			</ng-template>
+			<!-- Stampa -->
 			<li class="nav-item">
-				<a class="nav-link" href="#">
-					<i class="fas fa-arrows-alt"></i>Schermo Intero
-				</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">
+				<a class="nav-link" [routerLink]="" (click)="print()">
 					<i class="fas fa-print"></i>Stampa
 				</a>
 			</li>

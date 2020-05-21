@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  URL_ROOT: 'http://pietro-test.dlinkddns.com:10082/api'
+  URL_ROOT: 'http://pietro-test.dlinkddns.com:10082/api',
+  isfullscreen: false
 };
 
 /*
