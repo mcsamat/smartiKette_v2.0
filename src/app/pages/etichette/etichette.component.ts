@@ -6,6 +6,8 @@ import { NgbModal, ModalDismissReasons, NgbModalConfig } from '@ng-bootstrap/ng-
 import { DataTableDirective } from 'angular-datatables';
 import { environment } from './../../../environments/environment';
 import { debounceTime } from 'rxjs/operators';
+import { CompileShallowModuleMetadata } from '@angular/compiler';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 var del_label_id: String;
@@ -19,6 +21,8 @@ var del_label_id: String;
 })
 
 export class EtichetteComponent implements OnInit, OnDestroy {
+  // Label VAR
+  batteria: number;
   // DT var
   @ViewChild(DataTableDirective, {static: false})
   dtElement: DataTableDirective;
@@ -26,6 +30,8 @@ export class EtichetteComponent implements OnInit, OnDestroy {
   labels$: any[] = [];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
+
+  elNumber: string;
 
   // Alert e Modal
   private _success = new Subject<string>();
@@ -53,15 +59,16 @@ export class EtichetteComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // Controllo l'accesso
     if (localStorage.getItem('apikey') != null || localStorage.getItem('apikey') != '') {
+      // GET Label
+      this.getLabel(); 
       // DataTables Options
       this.dtOptions = {
         pagingType: 'full_numbers',
         pageLength: 10,
-        processing: true
-        // dom: 'lfti',
+        processing: true,
+        dom: this.elNumber
       };
-      // GET Label
-      this.getLabel();        
+             
     } else {
       this.router.navigate(['../login']);
     }
@@ -71,17 +78,32 @@ export class EtichetteComponent implements OnInit, OnDestroy {
     this.dtTrigger.unsubscribe();
   }
 
+  // DataTables Plugin - Costruzione Tabella
+  createTable() {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      processing: true,
+      dom: this.elNumber
+    };
+  }
+
   // API GET Label
   getLabel() {
-    // Header generale
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-
-    // Richiesta GET
     this.httpClient.get(environment.URL_ROOT + '/labelinfo?recordsPerPage=999999999999', { headers })
     .toPromise().then((data:any) => {
       this.labels$ = data.label_info;
+      console.log(this.labels$);
       this.dtTrigger.next();
     });
+
+    // Paginazione
+    if (this.labels$.length <= 10) {
+     this.elNumber = 'lfti';
+    } else {
+      this.elNumber = 'plfti';
+    }
   }
 
   // ----------------------------------------------------------------------------------------------------------------------------
@@ -208,6 +230,46 @@ viewLabel(labelId) {
   localStorage.removeItem('label_id');
   localStorage.setItem('label_id', labelId);
   this.router.navigateByUrl('/view-label');
+}
+
+
+// API GET /api/matching/active/LGN20012 - trova l'id del match da scollegare
+getIdActive(id) {
+  let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+  
+  this.httpClient.get(environment.URL_ROOT + '/matching/active/' + id, { headers }).subscribe(data =>{
+    this.prevA = data;
+    this.prev = this.prevA.preview;
+    this.showPrev = true;
+  });
+
+}
+
+// API Scollega Label PUT /api/matching/{matchingId}/deactivate
+putDeactivateMatch(id) {
+  let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+  let matchId: string;
+  // Trovo ID del match
+  this.httpClient.get(environment.URL_ROOT + '/matching/active/' + id, { headers }).subscribe(data =>{
+    let temp = data;
+    matchId = temp.id;
+    console.log('ID: ' + matchId);
+    console.log(localStorage.getItem('apikey'));
+
+
+    headers.set('Content-Type', 'application/x-www-form-urlencoded');
+
+    // Elimino il match
+    let tempId = matchId;
+    this.httpClient.put(environment.URL_ROOT + '/matching/' + tempId + '/deactivate', { headers }).subscribe(data => {
+      console.log(data);
+    }, error => {
+      console.log(error);
+    }
+    );
+  });
+
+  
 }
 
 

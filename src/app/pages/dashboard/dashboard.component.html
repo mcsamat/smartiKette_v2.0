@@ -11,7 +11,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h5 class="card-title text-uppercase text-muted mb-0">Informazioni</h5>
-                                    <span class="h2 font-weight-bold mb-0">{{ varInstallation.installation_name }}</span>
+                                    <span class="h2 font-weight-bold mb-0">{{ varInstName }}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-default text-white rounded-circle shadow">
@@ -94,7 +94,7 @@
 				</div>
 				<!-- Contenuto Info -->
                 <div class="card-body">
-                    <p class="card-text">Nome: <strong>{{ varInstallation.installation_name }}</strong></p>
+                    <p class="card-text">Nome: <strong>{{ varInstName }}</strong></p>
                     <p class="card-text">Tipologia: <strong>{{ varInstallation.installation_type }}</strong></p>
                     <ng-template [ngIf]="varInstallation.installation_type == 'multistore'">
                         <p class="card-text">Ruolo: <i class="fab fa-linode" aria-hidden="true"></i><strong> Nodo</strong></p>

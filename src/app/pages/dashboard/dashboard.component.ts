@@ -12,6 +12,7 @@ import { environment } from './../../../environments/environment';
 export class DashboardComponent implements OnInit {
   // Var Installazione
   varInstallation;
+  varInstName;
   // Var Display&Etichette
   varLabelStat;
   varTotMatch;
@@ -61,8 +62,9 @@ export class DashboardComponent implements OnInit {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
       this.httpClient.get(environment.URL_ROOT + '/system/configuration', { headers })
       .toPromise().then((data:any) => {
-        this.varInstallation = data.configurations;
-        // console.log(this.varInstallation.installation_name);
+        let temp = data.configurations;
+        this.varInstallation = temp;
+        this.varInstName = temp.installation_name;
       });
     }
     // Templates

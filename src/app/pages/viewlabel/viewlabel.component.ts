@@ -58,7 +58,7 @@ export class ViewlabelComponent implements OnInit {
 
   // Annulla
   goBack(){
-    this.router.navigateByUrl('/articoli');
+    this.router.navigateByUrl('/etichette');
   }
 
 
