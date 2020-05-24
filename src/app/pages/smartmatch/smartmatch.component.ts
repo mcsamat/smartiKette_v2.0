@@ -173,7 +173,7 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
     headers.set('Content-Type', 'application/x-www-form-urlencoded');
 
     // Richiesta preview
-    this.httpClient.get(environment.URL_ROOT + '/matching/preview/' + id, { headers }).subscribe(data =>{
+    this.httpClient.get(environment.URL_ROOT + '/matching/preview/' + id, { headers, responseType: 'text' }).subscribe(data =>{
       this.prev = data;
       this.showPrev = true;
     });

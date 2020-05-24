@@ -14,13 +14,21 @@ export class ViewlabelComponent implements OnInit {
   // Var
   label_id;
   // Var API GET
-  info$ = [];
+  info$: any[] = [];
   matchs$ = [];
 
    // Preview
    prevA;
    prev: string = '';
    showPrev: boolean = false;
+
+   // Variabili Tabella Dettagli
+   labelId;
+   powerStatus;
+   connStatus;
+   updateAt;
+   typeLabel;
+   apId;
 
   ngOnInit(): void {
     // Controllo l'accesso
@@ -41,6 +49,12 @@ export class ViewlabelComponent implements OnInit {
     .toPromise().then((data:any) => {
       let temp_data = data.label_info;
       this.info$ = temp_data[0];
+      this.labelId = temp_data[0].LabelId;
+      this.powerStatus = temp_data[0].PowerStatus;
+      this.connStatus = temp_data[0].ConnectionStatus;
+      this.updateAt = temp_data[0].UpdatedAt;
+      this.typeLabel = temp_data[0].Type;
+      this.apId = temp_data[0].AccessPointId;
     });
   }
 
@@ -61,18 +75,35 @@ export class ViewlabelComponent implements OnInit {
   }
 
 
-   // Preview ------------------------- La chiamata funziona, ma stesso errore della preview SmartMatch
+   // Preview 
    openPreview(id) {
     // Header generale
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
     headers.set('Content-Type', 'application/x-www-form-urlencoded');
 
     // Richiesta preview
-    this.httpClient.get(environment.URL_ROOT + '/matching/preview/' + id, { headers }).subscribe(data =>{
-      this.prevA = data;
-      this.prev = this.prevA.preview;
+    this.httpClient.get(environment.URL_ROOT + '/matching/preview/' + id, { headers, responseType: 'text'  }).subscribe(data =>{
+      this.prev = data;
       this.showPrev = true;
+      console.log(this.prev);
     });
+  }
+
+  // API Attiva Match
+  activateLabel(id) {
+    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+    // headers.set('Content-Type', 'application/x-www-form-urlencoded');
+    this.httpClient.options(environment.URL_ROOT + '/matching/' + id, { headers, responseType: 'text' }).subscribe(data =>{
+      console.log(data);
+      this.httpClient.put(environment.URL_ROOT + '/matching/' + id, { headers }).subscribe();
+    });
+    //(error => {
+     // this.httpClient.put(environment.URL_ROOT + '/matching/' + id, { headers }).subscribe();
+    //  console.log('Test');
+    //});
+    
+    // console.log(headers.getAll('apikey'));
+    // this.getMatch();
   }
 
 }

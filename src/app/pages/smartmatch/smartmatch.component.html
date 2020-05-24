@@ -105,11 +105,7 @@
                         </div>
                         <!-- Quarta riga Riga -->
                         <div class="row">
-							<div class="col-md-6">
-                                <br><br><br>
-								<button type="button" class="btn btn-primary" (click)="addSm(itemID.value, template.value, labelID.value, checkActive.value, checkPromo.value)">Aggiungi</button>
-                            </div>
-                            <div class="col-md-6 text-left">
+							<div class="col-md-auto">
                                 <div class="form-group">
                                     <label>Altre opzioni:</label>
                                     <div class="custom-control custom-checkbox mb-3">
@@ -121,6 +117,11 @@
                                         <label class="custom-control-label" for="checkPromo">Promo</label>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col text-right">
+                                <br><br><br>
+                                <button type="button" class="btn btn-primary" (click)="addSm(itemID.value, template.value, labelID.value, checkActive.value, checkPromo.value)">Aggiungi</button>
+                                
                             </div>
                         </div>
                     </form>
@@ -146,10 +147,10 @@
                 <!-- Header -->
                 <div class="card-header bg-transparent">
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col">
                             <h2 class="mb-0">Matches Online</h2>
                         </div>
-                        <div class="col-md-8 text-center">
+                        <div class="col text-right">
                             <div *ngIf="showPrev">
                                 <i class='fa fa-2x fa-picture-o'></i> <img style='max-width: 100%;max-height: 80%;' src='data:image/png;base64,{{ prev }}'/>
                             </div>

@@ -10,7 +10,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">Informazioni</h5>
+                                    <h5 i18n class="card-title text-uppercase text-muted mb-0">Informazioni</h5>
                                     <span class="h2 font-weight-bold mb-0">{{ varInstName }}</span>
                                 </div>
                                 <div class="col-auto">
@@ -32,7 +32,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">Etichette online</h5>
+                                    <h5 i18n class="card-title text-uppercase text-muted mb-0">Etichette online</h5>
                                     <span class="h2 font-weight-bold mb-0">{{ varLabelStat.connection.online }}</span>
                                 </div>
                                 <div class="col-auto">
@@ -43,7 +43,7 @@
                             </div>
                             <p class="mt-3 mb-0 text-muted text-sm">
                                 <span class="text-danger mr-2">{{ varLabelStat.connection.offline }}</span>
-                                <span class="text-nowrap">Etichette offline</span>
+                                <span i18n class="text-nowrap">Etichette offline</span>
                             </p>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">Batterie scariche</h5>
+                                    <h5 i18n class="card-title text-uppercase text-muted mb-0">Batterie scariche</h5>
                                     <span class="h2 font-weight-bold mb-0">{{ varLabelStat.battery.bad }}</span>
                                 </div>
                                 <div class="col-auto">
@@ -65,7 +65,7 @@
                             </div>
                             <p class="mt-3 mb-0 text-muted text-sm">
                                 <span class="text-success mr-2">{{ varLabelStat.battery.good }}</span>
-                                <span class="text-nowrap">In buono stato</span>
+                                <span i18n class="text-nowrap">In buono stato</span>
                             </p>
                         </div>
                     </div>
@@ -87,19 +87,19 @@
                 <div class="card-header bg-transparent">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h6 class="text-uppercase text-muted ls-1 mb-1">Installazione</h6>
-                            <h2 class="mb-0"><i class="fas fa-info-circle"></i> Informazioni Installazione</h2>
+                            <h6 i18n class="text-uppercase text-muted ls-1 mb-1">Installazione</h6>
+                            <h2 i18n class="mb-0"><i class="fas fa-info-circle"></i> Informazioni Installazione</h2>
                         </div>
                     </div>
 				</div>
 				<!-- Contenuto Info -->
                 <div class="card-body">
-                    <p class="card-text">Nome: <strong>{{ varInstName }}</strong></p>
-                    <p class="card-text">Tipologia: <strong>{{ varInstallation.installation_type }}</strong></p>
+                    <p i18n class="card-text">Nome: <strong>{{ varInstName }}</strong></p>
+                    <p i18n class="card-text">Tipologia: <strong>{{ varInstallation.installation_type }}</strong></p>
                     <ng-template [ngIf]="varInstallation.installation_type == 'multistore'">
-                        <p class="card-text">Ruolo: <i class="fab fa-linode" aria-hidden="true"></i><strong> Nodo</strong></p>
+                        <p i18n class="card-text">Ruolo: <i class="fab fa-linode" aria-hidden="true"></i><strong> Nodo</strong></p>
                     </ng-template>
-                    <p class="card-text">Import patch: <strong>{{ varInstallation.import_base_path }}</strong></p>
+                    <p i18n class="card-text">Import patch: <strong>{{ varInstallation.import_base_path }}</strong></p>
                 </div>
             </div>
 			<br>
@@ -110,8 +110,8 @@
                 <div class="card-header bg-transparent">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h6 class="text-uppercase text-muted ls-1 mb-1">Lista Custom Templates</h6>
-                            <h2 class="mb-0"><i class="fas fa-crop"></i> Templates</h2>
+                            <h6 i18n class="text-uppercase text-muted ls-1 mb-1">Lista Custom Templates</h6>
+                            <h2 i18n class="mb-0"><i class="fas fa-crop"></i> Templates</h2>
                         </div>
                     </div>
 				</div>
@@ -127,13 +127,13 @@
 					<br/>  -->
                     <!-- Scegli Tipologia Template -->
                     <div class="form-group">
-                        <label for="itemType">Tiplogia</label>
+                        <label i18n for="itemType">Tiplogia</label>
                         <select [(ngModel)]="selectedOption" class="form-control" name="itemType" id="itemType" (click)="getItemTypeTemplate($event.target.value)">
-                            <option *ngFor="let item of varItem.itemtype" [value]="item.id" selected>{{ item.name }}</option>
+                            <option *ngFor="let item of varItem; let i = index" [value]="item.id" [selected]="index == 0">{{ item.name }}</option>
                         </select>
                     </div>
                     <!-- Lista templates -->
-                    <label>Lista Template</label>
+                    <label i18n>Lista Template</label>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item" *ngFor="let template of templates">
                             <small>{{ template.title }}</small>
@@ -153,9 +153,9 @@
                 <div class="card-header bg-transparent">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h6 class="text-uppercase text-muted ls-1 mb-1">Display</h6>
-                            <h2 class="mb-0"><i class="fas fa-desktop"></i> Display</h2>
-                            <small>Stato display a disposizione</small>
+                            <h6 i18n class="text-uppercase text-muted ls-1 mb-1">Display</h6>
+                            <h2 i18n class="mb-0"><i class="fas fa-desktop"></i> Display</h2>
+                            <small i18n>Stato display a disposizione</small>
                         </div>
                     </div>
                 </div>
@@ -163,11 +163,11 @@
                 <div class="card-header bg-transparent">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h2 class="mb-0"><i class="fas fa-tags"></i> Etichette</h2>
+                            <h2 i18n class="mb-0"><i class="fas fa-tags"></i> Etichette</h2>
                             <!-- Stato etichette -->
-                            <p class="card-text">Online <span class="badge badge-success">{{ varLabelStat.connection.online }}</span> - Offline <span class="badge badge-danger">{{ varLabelStat.connection.offline }}</span></p>
-                            <p class="card-text">Battery Good <span class="badge badge-success">{{ varLabelStat.battery.good }}</span> - Battery Bad <span class="badge badge-danger">{{ varLabelStat.battery.bad }}</span></p>
-                            <p class="card-text">Totale Etichette Match Attivi <span class="badge badge-success">{{ varTotMatch }}</span></p>
+                            <p i18n class="card-text">Online <span class="badge badge-success">{{ varLabelStat.connection.online }}</span> - Offline <span class="badge badge-danger">{{ varLabelStat.connection.offline }}</span></p>
+                            <p i18n class="card-text">Battery Good <span class="badge badge-success">{{ varLabelStat.battery.good }}</span> - Battery Bad <span class="badge badge-danger">{{ varLabelStat.battery.bad }}</span></p>
+                            <p i18n class="card-text">Totale Etichette Match Attivi <span class="badge badge-success">{{ varTotMatch }}</span></p>
                         </div>
                     </div>
                 </div>
@@ -180,8 +180,8 @@
                 <div class="card-header bg-transparent">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h6 class="text-uppercase text-muted ls-1 mb-1">APs</h6>
-                            <h2 class="mb-0"><i class="fas fa-wifi"></i> Access Points <span class="badge badge-pill badge-default">{{ varAps.total_access_point }}</span></h2>
+                            <h6 i18n class="text-uppercase text-muted ls-1 mb-1">APs</h6>
+                            <h2 i18n class="mb-0"><i class="fas fa-wifi"></i> Access Points <span class="badge badge-pill badge-default">{{ varAps.total_access_point }}</span></h2>
                         </div>
                     </div>
 				</div>
@@ -191,11 +191,11 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Stato</th>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">Versione</th>
-                                    <th scope="col">IP</th>
+                                    <th i18n scope="col">ID</th>
+                                    <th i18n scope="col">Stato</th>
+                                    <th i18n scope="col">Nome</th>
+                                    <th i18n scope="col">Versione</th>
+                                    <th i18n scope="col">IP</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -221,23 +221,23 @@
                 <div class="card-header bg-transparent">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h6 class="text-uppercase text-muted ls-1 mb-1">Oggetti</h6>
-                            <h2 class="mb-0"><i class="fas fa-list"></i> Articoli <span class="badge badge-pill badge-default">{{ varTotItem.total_items }}</span></h2>
+                            <h6 i18n class="text-uppercase text-muted ls-1 mb-1">Oggetti</h6>
+                            <h2 i18n class="mb-0"><i class="fas fa-list"></i> Articoli <span class="badge badge-pill badge-default">{{ varTotItem.total_items }}</span></h2>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <!-- Contenuto -->
-                    <h3>Tipologie di articoli <span class="badge badge-pill badge-default">{{ varItem.total_itemtype }}</span></h3>
+                    <h3 i18n>Tipologie di articoli <span class="badge badge-pill badge-default">{{ varItem.total_itemtype }}</span></h3>
                     <!-- Tabella -->
                     <div class="table-responsive">
                         <table class="table align-items-center table-flush">
                             <!-- Intestazione tabella -->
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Tipo</th>
-                                    <th scope="col">Tiplogia</th>
-                                    <th scope="col">Propagabile</th>
+                                    <th i18n scope="col">Tipo</th>
+                                    <th i18n scope="col">Tiplogia</th>
+                                    <th i18n scope="col">Propagabile</th>
                                 </tr>
                             </thead>
                             <!-- Contenuto tabella -->
@@ -246,8 +246,8 @@
                                     <th>{{ item.id }}</th>
                                     <td>{{ item.name }}</td>
                                     <td>
-                                        <div *ngIf="item.propagable == true; else elseBlock"><span class="badge badge-success">SI</span></div>
-                                        <ng-template #elseBlock><span class="badge badge-danger">NO</span></ng-template>
+                                        <div *ngIf="item.propagable == true; else elseBlock"><span i18n class="badge badge-success">SI</span></div>
+                                        <ng-template #elseBlock><span i18n class="badge badge-danger">NO</span></ng-template>
                                     </td>
                                 </tr>
                             </tbody>
@@ -262,8 +262,8 @@
                 <div class="card-header bg-transparent">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h6 class="text-uppercase text-muted ls-1 mb-1">Dati</h6>
-                            <h2 class="mb-0"><i class="fas fa-file-import"></i> Importazioni</h2>
+                            <h6 i18n class="text-uppercase text-muted ls-1 mb-1">Dati</h6>
+                            <h2 i18n class="mb-0"><i class="fas fa-file-import"></i> Importazioni</h2>
                         </div>
                     </div>
                 </div>
@@ -273,8 +273,8 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">Ultima Importazione</th>
-                                    <th scope="col">Numero Articoli</th>
+                                    <th i18n scope="col">Ultima Importazione</th>
+                                    <th i18n scope="col">Numero Articoli</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -296,18 +296,18 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header bg-transparent">
-                    <h3 class="mb-0"><i class="fas fa-mobile-alt"></i> Device mobili</h3>
+                    <h3 i18n class="mb-0"><i class="fas fa-mobile-alt"></i> Device mobili</h3>
                 </div>
                 <div class="table-responsive">
                     <!-- Tabella Device mobili -->
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">IMEI</th>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Firebase ID</th>
-                                <th scope="col">Ultimo login</th>
+                                <th i18n scope="col">ID</th>
+                                <th i18n scope="col">IMEI</th>
+                                <th i18n scope="col">Nome</th>
+                                <th i18n scope="col">Firebase ID</th>
+                                <th i18n scope="col">Ultimo login</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -334,16 +334,16 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header bg-transparent">
-                    <h3 class="mb-0"><i class="fas fa-rocket"></i> Stato Sistema e Versioni Software</h3>
+                    <h3 i18n class="mb-0"><i class="fas fa-rocket"></i> Stato Sistema e Versioni Software</h3>
                 </div>
                 <!-- Informazioni sul sistema -->
                 <div class="card-body">
                     <div class="row">
                         <div class="col-xl-3">
-                            <h4><i class="far fa-hdd"></i> Sistema </h4>
+                            <h4 i18n><i class="far fa-hdd"></i> Sistema </h4>
                             <div class="progress-wrapper progress-info">
                                 <div class="progress-label">
-                                    <span>Free Disk Space*</span>
+                                    <span i18n>Free Disk Space*</span>
                                 </div>
                                 <div class="progress-percentage">
                                     <span>{{ system_info.system_disk_free_space / system_info.system_disk_total_space * 100.0 | number }}%</span>

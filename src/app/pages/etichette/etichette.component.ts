@@ -260,8 +260,6 @@ putDeactivateMatch(id) {
     }
     );
   });
-
-  
 }
 
 

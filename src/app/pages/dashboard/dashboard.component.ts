@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   // Var APs
   varAps;
   // Var Articoli
-  varItem;
+  varItem: any[] = [];
   varTotItem;
   // Var Importazioni
   varImport;
@@ -68,8 +68,8 @@ export class DashboardComponent implements OnInit {
       });
     }
     // Templates
-    getItemTypeTemplate(tid: number){
-      if (tid == null) {
+    getItemTypeTemplate(tid: string){
+      if (tid == 'test') {
         
       } else {
         let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
@@ -111,8 +111,8 @@ export class DashboardComponent implements OnInit {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
       this.httpClient.get(environment.URL_ROOT + '/item/type', { headers })
       .toPromise().then((data:any) => {
-        this.varItem = data;
-        console.log(this.varItem)
+        this.varItem = data.itemtype;
+        console.log(this.varItem);
       });
     }
     // Totale Articoli
