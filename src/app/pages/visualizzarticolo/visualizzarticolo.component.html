@@ -9,16 +9,23 @@
                 <div class="card-header bg-transparent">
                     <h2 class="mb-0">Dettagli Articolo {{ valori$.ArticoloDes }}</h2>
                 </div>
-				<!-- Contenuto -->
-                <div class="card-body">
-                    <div *ngFor="let par of parametri$" class="form-group">
-                        <label for="{{ valori$[par] }}">
-                            {{ par }}
-                        </label>
-                        <br>
-                        <input class="form-control form-control-alternative" id="{{ valori$[par] }}" type="text" value="{{ valori$[par] }}">
+                <!-- Contenuto -->
+                <form (ngSubmit)="updateItem()">
+                    <div class="card-body">
+                        <div *ngFor="let par of parametri$" class="form-group">
+                            <label for="{{ valori$[par] }}">
+                                {{ par }}
+                            </label>
+                            <br>
+                            <input class="form-control form-control-alternative" id="{{ valori$[par] }}" type="text" value="{{ valori$[par] }}">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Salva</button>
                     </div>
-                </div>
+                </form>
+                <!--
+                    paramtri$[index] - -> valori$[index]
+                    NomeCampo - -> valore attuale (ovvero modificato)
+                -->
 
                 <!-- Header -->
                 <div class="card-header bg-transparent">
@@ -57,7 +64,7 @@
                                         <div *ngIf="match.is_active == true; else elseBlockActive"><span class="badge badge-success">SI</span></div>
                                         <ng-template #elseBlockActive>
                                             <span class="badge badge-danger">NO</span>&nbsp;
-                                            <button class="btn btn-success btn-sm" (click)="activateLabel(match.id)">
+                                            <button class="btn btn-success btn-sm" (click)="activateLabel(match.id)" [disabled]="true">
                                                 Attiva
                                             </button>
                                         </ng-template>
@@ -81,7 +88,6 @@
                         </table>
                         <br><br>
                 <!-- Bottoni -->
-                <button type="button" class="btn btn-primary btn-lg btn-block" [disabled]="true">Salva</button>
                 <button type="button" class="btn btn-secondary btn-lg btn-block" (click)="goBack()">Annulla</button>
                 </div>
             </div>

@@ -55,6 +55,8 @@ export class ViewlabelComponent implements OnInit {
       this.updateAt = temp_data[0].UpdatedAt;
       this.typeLabel = temp_data[0].Type;
       this.apId = temp_data[0].AccessPointId;
+    }, error =>{
+      console.log(error);
     });
   }
 
@@ -66,6 +68,8 @@ export class ViewlabelComponent implements OnInit {
       let temp_data = data.matching;
       this.matchs$ = temp_data;
       // console.log(this.matchs$)
+    }, error =>{
+      console.log(error);
     });
   }
 
@@ -86,6 +90,8 @@ export class ViewlabelComponent implements OnInit {
       this.prev = data;
       this.showPrev = true;
       console.log(this.prev);
+    }, error =>{
+      console.log(error);
     });
   }
 
@@ -96,6 +102,8 @@ export class ViewlabelComponent implements OnInit {
     this.httpClient.options(environment.URL_ROOT + '/matching/' + id, { headers, responseType: 'text' }).subscribe(data =>{
       console.log(data);
       this.httpClient.put(environment.URL_ROOT + '/matching/' + id, { headers }).subscribe();
+    }, error =>{
+      console.log(error);
     });
     //(error => {
      // this.httpClient.put(environment.URL_ROOT + '/matching/' + id, { headers }).subscribe();

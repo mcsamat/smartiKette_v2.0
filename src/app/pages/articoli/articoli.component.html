@@ -27,10 +27,13 @@
 					<!-- Alert Conferma Eliminazione -->
 					<ngb-alert *ngIf="successMessage" type="danger" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
 					<h2 class="mb-0">Lista Articoli</h2>
-					<!-- Crea Nuovo Articolo -->
+					<!-- Elimina o Crea Nuovo Articolo -->
 					<div class="text-right">
                         <div ngbDropdown class="d-inline-block">
-                            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle [disabled]="false">
+							<button class="btn btn-danger" id="delItemBtn" (click)="deleteMultiple()" [disabled]="true">
+								Elimina
+							</button>
+                            <button class="btn btn-outline-primary" id="deleteItemBtn">
 								<i class="fas fa-caret-down"></i> Crea Nuovo
 							</button>
                             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
@@ -45,7 +48,7 @@
 				<div class="card-body">
 					<!-- Tabella Articoli -->
 					<div class="table-responsive" id="stampare">
-						<table class="display table table-striped align-items-center table-flush" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="multi">
+						<table class="display table table-striped align-items-center table-flush" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
                             <thead class="thead-light">
                                 <tr>
 									<th scope="col"></th>

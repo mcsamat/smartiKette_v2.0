@@ -52,6 +52,8 @@ export class LocationComponent implements OnInit {
     this.httpClient.get(environment.URL_ROOT + '/location', { headers })
     .toPromise().then((data:any) => {
       this.locations$ = data.locations;
+    }, error =>{
+      console.log(error);
     });
   }
 
@@ -73,6 +75,8 @@ export class LocationComponent implements OnInit {
       this.aliasAdd = nomeLocation;
       this.showAlertSuccess();
       this.getLocations();
+    }, error =>{
+      console.log(error);
     });
   }
 
@@ -94,6 +98,8 @@ export class LocationComponent implements OnInit {
       this.modalService.dismissAll();
       this.showAlert();
       this.getLocations();
+    }, error =>{
+      console.log(error);
     });
   }
 

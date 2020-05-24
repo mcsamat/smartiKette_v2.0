@@ -37,6 +37,8 @@ export class NavbarComponent implements OnInit {
     .toPromise().then((infoconf:any) => {
       // Passo i valori presi da API
       this.confname = infoconf.configurations.installation_name;
+    }, error =>{
+      console.log(error);
     });
 
   }

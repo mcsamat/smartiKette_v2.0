@@ -56,6 +56,8 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
         this.httpClient.get(environment.URL_ROOT + '/item/type', { headers })
         .toPromise().then((data:any) => {
           this.varItem = data;
+        }, error =>{
+          console.log(error);
         });
         // DataTables
         this.dtOptions = {
@@ -84,6 +86,8 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
       this.httpClient.get(environment.URL_ROOT + '/matching?recordsPerPage=999999999999', { headers })
       .toPromise().then((data:any) => {
         this.matchs$ = data.matching;
+      }, error =>{
+        console.log(error);
       });
     }
 
@@ -93,6 +97,8 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
       this.httpClient.get(environment.URL_ROOT + '/template/itemtype/' + tid, { headers })
       .toPromise().then((data:any) => {
         this.templates = data.templates;
+      }, error =>{
+        console.log(error);
       });
     }
 
@@ -102,6 +108,8 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
       this.httpClient.get(environment.URL_ROOT + '/item/type', { headers })
       .toPromise().then((data:any) => {
         this.varItem = data;
+      }, error =>{
+        console.log(error);
       });
     }
 
@@ -126,6 +134,8 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
         this.modalService.dismissAll();
         this.showAlert();
         this.getMatches();
+      }, error =>{
+        console.log(error);
       });
     }
 
@@ -162,6 +172,8 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
     this.httpClient.post(environment.URL_ROOT + '/matching', params, { headers }).subscribe(data =>{
       this.getMatches();
       this.showAlertAdd();
+    }, error =>{
+      console.log(error);
     });
   }
 
@@ -176,6 +188,8 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
     this.httpClient.get(environment.URL_ROOT + '/matching/preview/' + id, { headers, responseType: 'text' }).subscribe(data =>{
       this.prev = data;
       this.showPrev = true;
+    }, error =>{
+      console.log(error);
     });
   }
 

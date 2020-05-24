@@ -65,6 +65,8 @@ export class DashboardComponent implements OnInit {
         let temp = data.configurations;
         this.varInstallation = temp;
         this.varInstName = temp.installation_name;
+      }, error =>{
+        console.log(error);
       });
     }
     // Templates
@@ -76,6 +78,8 @@ export class DashboardComponent implements OnInit {
         this.httpClient.get(environment.URL_ROOT + '/template/itemtype/' + tid, { headers })
         .toPromise().then((data:any) => {
           this.templates = data.templates;
+        }, error =>{
+          console.log(error);
         });
       }
       
@@ -87,6 +91,8 @@ export class DashboardComponent implements OnInit {
       this.httpClient.get(environment.URL_ROOT + '/labelinfo/statistics', { headers })
       .toPromise().then((data:any) => {
         this.varLabelStat = data;
+      }, error =>{
+        console.log(error);
       });
     }
     // Total Matches
@@ -95,6 +101,8 @@ export class DashboardComponent implements OnInit {
       this.httpClient.get(environment.URL_ROOT + '/matching', { headers })
       .toPromise().then((data:any) => {
         this.varTotMatch = data.total_matching;
+      }, error =>{
+        console.log(error);
       });
     }
     // Access Point
@@ -103,6 +111,8 @@ export class DashboardComponent implements OnInit {
       this.httpClient.get(environment.URL_ROOT + '/accesspoint', { headers })
       .toPromise().then((data:any) => {
         this.varAps = data;
+      }, error =>{
+        console.log(error);
       });
     }
     // +++++++++++++++++++++
@@ -113,6 +123,8 @@ export class DashboardComponent implements OnInit {
       .toPromise().then((data:any) => {
         this.varItem = data.itemtype;
         console.log(this.varItem);
+      }, error =>{
+        console.log(error);
       });
     }
     // Totale Articoli
@@ -121,6 +133,8 @@ export class DashboardComponent implements OnInit {
       this.httpClient.get(environment.URL_ROOT + '/item/concrete', { headers })
       .toPromise().then((data:any) => {
         this.varTotItem = data;
+      }, error =>{
+        console.log(error);
       });
     }
     // Importazioni
@@ -128,6 +142,8 @@ export class DashboardComponent implements OnInit {
       this.httpClient.get(environment.URL_ROOT + '/import/queue')
       .toPromise().then((data:any) => {
         this.varImport = data;
+      }, error =>{
+        console.log(error);
       });
     }
 
@@ -138,6 +154,8 @@ export class DashboardComponent implements OnInit {
       this.httpClient.get(environment.URL_ROOT + '/mobiledevice', { headers })
       .toPromise().then((mobileAPI:any) => {
         this.varMobile = mobileAPI;
+      }, error =>{
+        console.log(error);
       });
     }
 
@@ -148,6 +166,8 @@ export class DashboardComponent implements OnInit {
       this.httpClient.get(environment.URL_ROOT + '/system', { headers })
       .toPromise().then((data:any) => {
         this.system_info = data;
+      }, error =>{
+        console.log(error);
       });
     }
   

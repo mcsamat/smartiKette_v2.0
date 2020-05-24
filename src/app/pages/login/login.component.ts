@@ -48,6 +48,8 @@ export class LoginComponent implements OnInit, OnDestroy {
       } else {
         this.router.navigate(['../dashboard']);
       }
+    }, error =>{
+      console.log(error);
     });
 
     // Funzione ricordami

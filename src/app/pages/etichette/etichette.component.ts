@@ -165,6 +165,8 @@ export class EtichetteComponent implements OnInit, OnDestroy {
       this.httpClient.post(environment.URL_ROOT + '/label', params ,{ headers }).subscribe(data => {
         this.modalService.dismissAll();
         this.showAlertAdd();
+      }, error =>{
+        console.log(error);
       });
     }
   }
@@ -199,6 +201,8 @@ export class EtichetteComponent implements OnInit, OnDestroy {
       this.prevA = data;
       this.prev = this.prevA.preview;
       this.showPrev = true;
+    }, error =>{
+      console.log(error);
     });
   }
 
@@ -233,6 +237,8 @@ getIdActive(id) {
     this.prevA = data;
     this.prev = this.prevA.preview;
     this.showPrev = true;
+  }, error =>{
+    console.log(error);
   });
 
 }
@@ -259,6 +265,8 @@ putDeactivateMatch(id) {
       console.log(error);
     }
     );
+  }, error =>{
+    console.log(error);
   });
 }
 

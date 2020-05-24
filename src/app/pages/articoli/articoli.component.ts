@@ -23,7 +23,7 @@ export class ArticoliComponent implements OnInit, OnDestroy {
   @ViewChild(DataTableDirective, {static: false})
   dtElement: DataTableDirective;
   items$: any[] = [];
-  dtOptions: DataTables.Settings = {};
+  dtOptions: any = {};
   dtTrigger: Subject<any> = new Subject();
 
   // Var Crea Nuovo
@@ -53,6 +53,9 @@ export class ArticoliComponent implements OnInit, OnDestroy {
         pageLength: 10,
         processing: true,
         order: [],
+        select: {
+          style: 'multi'
+        }
         // dom: 'lfti',
       };
       // Tabella Articoli
@@ -76,6 +79,8 @@ export class ArticoliComponent implements OnInit, OnDestroy {
     .toPromise().then((data:any) => {
       this.items$ = data.items;
       this.dtTrigger.next();
+    }, error =>{
+      console.log(error);
     });
   }
 
@@ -100,6 +105,8 @@ export class ArticoliComponent implements OnInit, OnDestroy {
       // console.log(itemtAPI);
       this.titems_t = itemtAPI.total_itemtype;
       this.items_t = itemtAPI.itemtype;
+    }, error =>{
+      console.log(error);
     });
   }
 
@@ -122,12 +129,25 @@ export class ArticoliComponent implements OnInit, OnDestroy {
     deleteItem(): void {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
       headers.set('Content-Type', 'application/x-www-form-urlencoded');
-      this.httpClient.delete(environment.URL_ROOT + '/item/concrete/' + del_item_id, { headers }).subscribe();
+      this.httpClient.delete(environment.URL_ROOT + '/item/concrete/' + del_item_id, { headers }).subscribe(error =>{
+        console.log(error);
+      }, error =>{
+        console.log(error);
+      });
       // Chiuso il modal mostro l'alert, e renderizzo nuovamente la tabella
       this.modalService.dismissAll();
       this.showAlert();
       this.rerender();
     }
+
+    // Multiple DELETE
+    deleteMultiple() {
+
+    }
+
+
+
+
 
     // Alert di Conferma
     public showAlert() {

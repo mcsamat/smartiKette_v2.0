@@ -12,6 +12,9 @@ export class VisualizzarticoloComponent implements OnInit {
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 
+  //form
+  editItem;
+
   // Var
   item_id;
   parametri$: any[] = [];
@@ -23,6 +26,9 @@ export class VisualizzarticoloComponent implements OnInit {
   prevA;
   prev: string = '';
   showPrev: boolean = false;
+
+  // Update
+  currentFields$;
 
   ngOnInit(): void {
     // Controllo l'accesso
@@ -41,8 +47,12 @@ export class VisualizzarticoloComponent implements OnInit {
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
     this.httpClient.get(environment.URL_ROOT + '/item/concrete/' + this.item_id, { headers })
     .toPromise().then((data:any) => {
+      this.currentFields$ = data.current_fields;
       this.parametri$ = Object.keys(data.current_fields);
       this.valori$ = data.current_fields;
+      // console.log(this.parametri$);
+    }, error =>{
+      console.log(error);
     });
   }
 
@@ -54,6 +64,8 @@ export class VisualizzarticoloComponent implements OnInit {
       let temp_data = data.matching;
       this.matchs$ = temp_data;
       // console.log(this.matchs$)
+    }, error =>{
+      console.log(error);
     });
   }
   // Preview 
@@ -67,7 +79,42 @@ export class VisualizzarticoloComponent implements OnInit {
       this.prev = data;
       this.showPrev = true;
       // console.log(this.prev);
+    }, error =>{
+      console.log(error);
     });
+  }
+
+  // Update Item
+  updateItem() {
+    // Header generale
+    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+    headers.set('Content-Type', 'application/x-www-form-urlencoded');
+
+    let params = new HttpParams();
+
+    let temp: [{}];
+
+    //Object.keys(data).forEach(function (item) {  
+    //  params = params.set(item, data[item]);
+    //});
+
+    for (let index = 0; index < this.parametri$.length; index++) {
+      // temp[this.parametri$[index]] = 'test';
+      //let field = this.parametri$[index];
+      // console.log(temp);
+      //params.set('fields[]', 'test');
+      //console.log(params.get('fields[]'));
+    }
+
+    // console.log(value.valori$[Articolo]);
+    console.log(this.currentFields$.Articolo);
+
+    
+    
+    
+    //this.httpClient.post(environment.URL_ROOT + '/item/concrete/update/' + this.item_id, {headers}).subscribe(data =>{
+    //  console.log('Success');
+    //})
   }
     
   // Pulsante Annulla
