@@ -69,11 +69,16 @@ export class DashboardComponent implements OnInit {
     }
     // Templates
     getItemTypeTemplate(tid: number){
-      let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-      this.httpClient.get(environment.URL_ROOT + '/template/itemtype/' + tid, { headers })
-      .toPromise().then((data:any) => {
-        this.templates = data.templates;
-      });
+      if (tid == null) {
+        
+      } else {
+        let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+        this.httpClient.get(environment.URL_ROOT + '/template/itemtype/' + tid, { headers })
+        .toPromise().then((data:any) => {
+          this.templates = data.templates;
+        });
+      }
+      
     }
     // +++++++++++++++++++++
     // Display & Etichette
@@ -107,6 +112,7 @@ export class DashboardComponent implements OnInit {
       this.httpClient.get(environment.URL_ROOT + '/item/type', { headers })
       .toPromise().then((data:any) => {
         this.varItem = data;
+        console.log(this.varItem)
       });
     }
     // Totale Articoli

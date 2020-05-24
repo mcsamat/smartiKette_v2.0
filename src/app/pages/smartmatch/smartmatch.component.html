@@ -9,7 +9,7 @@
       	</button>
     </div>
     <div class="modal-body">
-        <p>Sicuro di voler eliminare il Match #<strong>{{ alias }}</strong>?</p>
+        <p>Sicuro di voler eliminare lo SmartMatch selezionato?</p>
     </div>
     <div class="modal-footer">
 		<button class="btn btn-danger" (click)="deleteItem()" type="button">Elimina</button>
@@ -31,6 +31,7 @@
                     <form>
                         <!-- Prima Riga -->
                         <div class="row">
+                            <!-- Tipo Articolo -->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="itemType">Tipo Articolo</label>
@@ -38,27 +39,8 @@
 										<option *ngFor="let item of varItem.itemtype" [value]="item.id">{{ item.name }}</option>
 									</select>
                                 </div>
-							</div>
-							<div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="template">Template</label>
-                                    <select [(ngModel)]="selectedOption2" class="form-control" #template name="template" id="template">
-										<option *ngFor="let template of templates" [value]="template.title">{{ template.title }}</option>
-									</select>
-                                </div>
                             </div>
-                        </div>
-                        <!-- Prima Riga e Mezza -->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="itemID">ID Articoli</label>
-                                    <input type="text" class="form-control" #itemID id="itemID" placeholder="item_id">
-                                </div>
-							</div>
-                        </div>
-                        <!-- Seconda Riga -->
-                        <div class="row">
+                            <!-- Tipo Barcode -->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tipo Barcode</label>
@@ -70,21 +52,45 @@
 									</select>
                                 </div>
                             </div>
+                        </div>
+                        <!-- Prima Riga e Mezza
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="itemID">ID Articoli</label>
+                                    <input type="text" class="form-control" #itemID id="itemID" placeholder="item_id">
+                                </div>
+							</div>
+                        </div>  -->
+                        <!-- Seconda Riga -->
+                        <div class="row">
+                            <!-- Item Barcode -->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Item Barcode</label>
                                     <input type="text" class="form-control" #item_barcode id="item_barcode" placeholder="item_barcode">
                                 </div>
                             </div>
-                        </div>
-                        <!-- Terza Riga -->
-                        <div class="row">
-							<div class="col-md-6">
+                            <!-- Label ID -->
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>ID Etichetta</label>
                                     <input type="text" class="form-control" #labelID id="labelID" placeholder="id_etichetta">
                                 </div>
                             </div>
+                        </div>
+                        <!-- Terza Riga -->
+                        <div class="row">
+                            <!-- Template -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="template">Template</label>
+                                    <select [(ngModel)]="selectedOption2" class="form-control" #template name="template" id="template">
+										<option *ngFor="let template of templates" [value]="template.title">{{ template.title }}</option>
+									</select>
+                                </div>
+                            </div>
+                            <!-- Decorators -->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Decorators</label>
@@ -160,7 +166,6 @@
                         <table class="display table align-items-center table-flush" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col"></th>
                                     <th scope="col">Template Name</th>
                                     <th scope="col">Label ID</th>
                                     <th scope="col">Items</th>
@@ -171,12 +176,16 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let match of matchs$">
-                                    <th *ngIf="match.is_active == true">{{ match.id }}</th>
                                     <td *ngIf="match.is_active == true">{{ match.template_name }}</td>
                                     <td *ngIf="match.is_active == true">{{ match.label_id }}</td>
                                     <td *ngIf="match.is_active == true">{{ match.items }}</td>
-                                    <td *ngIf="match.is_active == true">{{ match.is_active }}</td>
-                                    <td *ngIf="match.is_active == true">{{ match.bypass_promo }}</td>
+                                    <td *ngIf="match.is_active == true">
+                                        <span class="badge badge-success">SI</span>
+                                    </td>
+                                    <td *ngIf="match.is_active == true">
+                                        <div *ngIf="match.bypass_promo == true; else elseBlock"><span class="badge badge-success">SI</span></div>
+                                        <ng-template #elseBlock><span class="badge badge-danger">NO</span></ng-template>
+                                    </td>
                                     <td *ngIf="match.is_active == true">
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Tools">
                                             <button type="button" class="btn btn-secondary" (click)="openPreview(match.id)">

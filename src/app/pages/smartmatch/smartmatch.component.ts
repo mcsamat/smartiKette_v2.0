@@ -167,7 +167,7 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
 
 
   // Preview -------------------------
-  openPreview(id) {
+  openPreview(id: string) {
     // Header generale
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
     headers.set('Content-Type', 'application/x-www-form-urlencoded');

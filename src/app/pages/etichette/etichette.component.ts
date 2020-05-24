@@ -78,15 +78,7 @@ export class EtichetteComponent implements OnInit, OnDestroy {
     this.dtTrigger.unsubscribe();
   }
 
-  // DataTables Plugin - Costruzione Tabella
-  createTable() {
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 10,
-      processing: true,
-      dom: this.elNumber
-    };
-  }
+  
 
   // API GET Label
   getLabel() {
@@ -252,7 +244,7 @@ putDeactivateMatch(id) {
   // Trovo ID del match
   this.httpClient.get(environment.URL_ROOT + '/matching/active/' + id, { headers }).subscribe(data =>{
     let temp = data;
-    matchId = temp.id;
+    // matchId = temp.id;
     console.log('ID: ' + matchId);
     console.log(localStorage.getItem('apikey'));
 

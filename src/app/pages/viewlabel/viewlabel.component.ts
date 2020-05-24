@@ -29,7 +29,7 @@ export class ViewlabelComponent implements OnInit {
       this.getDetails();
       this.getMatch();         
     } else {
-      // this.router.navigate(['../etichette']);
+      this.router.navigate(['../etichette']);
     }
   }
 
@@ -49,7 +49,6 @@ export class ViewlabelComponent implements OnInit {
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
     this.httpClient.get(environment.URL_ROOT + '/matching/label/' + this.label_id, { headers })
     .toPromise().then((data:any) => {
-      console.log('GetMatch')
       let temp_data = data.matching;
       this.matchs$ = temp_data;
       // console.log(this.matchs$)
