@@ -75,7 +75,9 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>ID Etichetta</label>
-                                    <input type="text" class="form-control" #labelID id="labelID" placeholder="id_etichetta">
+                                        <div [className]="labelValid == true ? 'form-group has-success' : 'form-group'">
+                                            <input type="text" [className]="labelValid == true ? 'form-control is-valid' : 'form-control is-invalid'" #labelID id="labelID" placeholder="id_etichetta" (change)="ngOnChanges(labelID.value)">
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +96,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Decorators</label>
-                                    <select [(ngModel)]="selectedOption4" class="form-control" name="decorator" id="decorator" disable="true">
+                                    <select [(ngModel)]="selectedOption4" class="form-control" name="decorator" id="decorator">
                                         <option [value]="0">  </option>
                                         <option [value]="90">Ruota di 90 gradi</option>
                                         <option [value]="180">Ruota di 180 gradi</option>

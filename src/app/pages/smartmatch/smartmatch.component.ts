@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, OnChanges, Input, SimpleChange } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { environment } from './../../../environments/environment';
@@ -16,6 +16,9 @@ var del_item_id: String;
   styleUrls: ['./smartmatch.component.scss']
 })
 export class SmartmatchComponent implements OnInit, OnDestroy {
+  // Verifica form -- Etichette
+  @Input() labelID: string;
+
   // var Item
   varItem;
   // Var Templates via ItemType.ID
@@ -40,6 +43,9 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
   // Preview
   prev;
   showPrev: boolean = false;
+
+  // Colore Caselle Input
+  labelValid: boolean = false;
 
 
 
@@ -218,4 +224,38 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
 
 
 
+  // CHECK ETICHETTE
+  ngOnChanges(id: string) {
+    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+    this.httpClient.get(environment.URL_ROOT + '/labelinfo?recordsPerPage=999999999999', { headers })
+    .toPromise().then((data:any) => {
+      for (let index = 0; index < data.label_info.length; index++) {
+        let temp = data.label_info[index].LabelId;
+        // console.log(temp.LabelId);
+        if (temp == id) {
+          console.log('OK');
+          this.labelValid = true;
+          console.log(this.labelValid)
+        } 
+      }
+    }, error =>{
+      console.log(error);
+    });
+
+    // console.log(id);
+    
+
 }
+
+checkLabel(id: string) {
+  console.log('Hei');
+}
+
+
+  
+
+
+
+}
+
+
