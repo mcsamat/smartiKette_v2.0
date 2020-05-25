@@ -35,7 +35,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="itemType">Tipo Articolo</label>
-                                    <select [(ngModel)]="selectedOption" class="form-control" name="itemType" id="itemType" (click)="getItemTypeTemplate($event.target.value)">
+                                    <select [(ngModel)]="selectedOption" #itemType class="form-control" name="itemType" id="itemType" (click)="getItemTypeTemplate($event.target.value)">
 										<option *ngFor="let item of varItem.itemtype" [value]="item.id">{{ item.name }}</option>
 									</select>
                                 </div>
@@ -68,7 +68,9 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Item Barcode</label>
-                                    <input type="text" class="form-control" #item_barcode id="item_barcode" placeholder="item_barcode">
+                                    <div [className]="labelValid == true ? 'form-group has-success' : 'form-group'">
+                                        <input type="text" [className]="itemValid == true ? 'form-control is-valid' : 'form-control is-invalid'" #item_barcode id="item_barcode" placeholder="item_barcode" (change)="ngOnChangesItem(item_barcode.value, itemType.value)">
+                                    </div>
                                 </div>
                             </div>
                             <!-- Label ID -->

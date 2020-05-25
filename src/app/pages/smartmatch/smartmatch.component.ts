@@ -46,6 +46,7 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
 
   // Colore Caselle Input
   labelValid: boolean = false;
+  itemValid: boolean = false;
 
 
 
@@ -243,10 +244,19 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
     }, error =>{
       console.log(error);
     });
-}
+  }
 
-  checkLabel(id: string) {
-    console.log('Hei');
+  ngOnChangesItem(id: string, template: string) {
+    let itemId;
+    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+    this.httpClient.get(environment.URL_ROOT + '/item/search/fastmatch/' + template + '/' + id, { headers })
+    .toPromise().then((data:any) => {
+      itemId = data.id;
+      console.log(itemId);
+      this.itemValid = true;
+    }, error =>{
+      this.itemValid = false;
+    });
   }
 
 
