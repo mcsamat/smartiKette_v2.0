@@ -1,0 +1,30 @@
+<div class="header bg-gradient-info pb-8 pt-5 pt-md-5"></div>
+
+<!-- Contenuto della pagina -->
+<div class="container-fluid mt--7" id="stampare">
+    <div class="row">
+       <div class="col">
+            <div class="card shadow">
+                <!-- Header -->
+                <div class="card-header bg-transparent">
+                    <h2 class="mb-0">Crea un nuovo articolo</h2>
+                </div>
+                <!-- Contenuto -->
+                <form (ngSubmit)="updateItem()">
+                    <div class="card-body">
+                        <div *ngFor="let par of parametri$" class="form-group">
+                            <label for="{{ valori$[par] }}">
+                                {{ par }}
+                            </label>
+                            <br>
+                            <input class="form-control form-control-alternative" id="{{ valori$[par] }}" type="text" value="">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block" [diasbled]="true">Crea</button>
+                    </div>
+                </form>
+                <button type="button" class="btn btn-secondary btn-lg btn-block" (click)="goBack()">Annulla</button>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -15,6 +15,7 @@ import { ComponentsModule } from './components/components.module';
 
 import { DataTablesModule } from 'angular-datatables';
 import { ViewlabelComponent } from './pages/viewlabel/viewlabel.component';
+import { CrearticoloComponent } from './pages/crearticolo/crearticolo.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ViewlabelComponent } from './pages/viewlabel/viewlabel.component';
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    ViewlabelComponent
+    ViewlabelComponent,
+    CrearticoloComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
