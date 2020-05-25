@@ -92,7 +92,7 @@ export class VisualizzarticoloComponent implements OnInit {
 
     let formData = new HttpParams();
     for (let index = 0; index < this.parametri$.length; index++) {
-      let temp = this.parametri$[index].toString();
+      // let temp = this.parametri$[index].toString();
       var inputValue = (<HTMLInputElement>document.getElementById(this.parametri$[index])).value;
 
       formData = formData.append('fields[' + this.parametri$[index] + ']', inputValue);

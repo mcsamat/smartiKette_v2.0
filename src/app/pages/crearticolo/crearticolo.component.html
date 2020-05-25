@@ -10,16 +10,16 @@
                     <h2 class="mb-0">Crea un nuovo articolo</h2>
                 </div>
                 <!-- Contenuto -->
-                <form (ngSubmit)="updateItem()">
+                <form (ngSubmit)="addItem()">
                     <div class="card-body">
-                        <div *ngFor="let par of parametri$" class="form-group">
-                            <label for="{{ valori$[par] }}">
-                                {{ par }}
+                        <div *ngFor="let label of label$" class="form-group">
+                            <label for="{{ label$[label] }}">
+                                {{ label.name }}
                             </label>
                             <br>
-                            <input class="form-control form-control-alternative" id="{{ valori$[par] }}" type="text" value="">
+                            <input class="form-control form-control-alternative" id="{{ label.name }}" type="text" value="">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="true">Crea</button>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Crea</button>
                         <br>
                         <button type="button" class="btn btn-secondary btn-lg btn-block" (click)="goBack()">Annulla</button>
                     </div>
