@@ -266,7 +266,7 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
     this.httpClient.get(environment.URL_ROOT + '/item/search/fastmatch/' + template + '/' + id, { headers })
     .toPromise().then((data:any) => {
       itemId = data.id;
-      console.log(itemId);
+      // console.log(itemId);
       this.testItem = itemId;
       this.itemValid = true;
       this.httpClient.get(environment.URL_ROOT + '/item/concrete/' + this.testItem, { headers })
