@@ -16,12 +16,17 @@ var del_item_id: String;
   styleUrls: ['./smartmatch.component.scss']
 })
 export class SmartmatchComponent implements OnInit, OnDestroy {
+  // VAR TEST - Aggiungere un singolo item
+  testItem;
+  testItemName;
+
   // Verifica form -- Etichette
   @Input() labelID: string;
 
   // var Item
   varItem;
   selectedOption;
+  selectedDecoration;
   // Var Templates via ItemType.ID
   templates;
   
@@ -49,6 +54,9 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
   labelValid: boolean = false;
   itemValid: boolean = false;
 
+  // Checkbox
+  checkActiveC = 1;
+  checkPromoC = 1;
 
 
   constructor(private httpClient: HttpClient, private modalService: NgbModal, config: NgbModalConfig, private router: Router) { 
@@ -61,6 +69,7 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
       if (localStorage.getItem('apikey') != null || localStorage.getItem('apikey') != '') {
         // this.getItemTemplate;
         this.getItems();
+        this.selectedDecoration = '0';
         // DataTables
         this.dtOptions = {
           pagingType: 'full_numbers',
@@ -156,31 +165,38 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
 
   // Aggiungi SmartMatch ----------------------------------------------------------------------------
   // addSm(items, template_name, label_id, decorators, is_active, bypass_promo) {
-    addSm(items: string, template_name, label_id: string, is_active, bypass_promo) {
-    // Header generale
-    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-    headers.set('Content-Type', 'application/x-www-form-urlencoded');
-    // Parametri
-    let params = new HttpParams()
-    .set('items[]', items)
-    .set('template_name', template_name)
-    .set('label_id', label_id)
-    //.set('decorators[]', decorators)
-    .set('is_active', is_active)
-    .set('bypass_promo', bypass_promo);
+    addSm(template_name, label_id: string, decorators) {
+      // Header generale
+      let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+      headers.set('Content-Type', 'application/x-www-form-urlencoded');
+      // Parametri
+      let params = new HttpParams()
+      .set('items[0]', this.testItem) // TEMP
+      .set('template_name', template_name)
+      .set('label_id', label_id)
+      .set('is_active', this.checkActiveC.toString())
+      .set('bypass_promo', this.checkPromoC.toString());
 
-    console.log('itemID: ' + items);
-    console.log('Template Name: ' + template_name);
-    console.log('Label ID: ' + is_active);
-    
-    // Aggiungo SmartMatch
-    this.httpClient.post(environment.URL_ROOT + '/matching', params, { headers }).subscribe(data =>{
-      this.getMatches();
-      this.showAlertAdd();
-    }, error =>{
-      console.log(error);
-    });
-  }
+      if (decorators != 0) {
+        params = params.set('decorators[]', decorators);
+      }       
+
+      //console.log('itemID: ' + items);
+      //console.log('Template Name: ' + template_name);
+      //console.log('Attivo: ' + this.checkActiveC);
+      //console.log('Label: ' + label_id);
+      //console.log('Bypass: ' + this.checkPromoC);
+      //console.log('Decorators: ' + decorators);
+      
+      // Aggiungo SmartMatch
+      this.httpClient.post(environment.URL_ROOT + '/matching', params, { headers }).subscribe(data =>{
+        this.getMatches();
+        this.showAlertAdd();
+        console.log(data);
+      }, error =>{
+        console.log(error);
+      });
+    }
 
 
   // Preview -------------------------
@@ -231,11 +247,11 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
       for (let index = 0; index < data.label_info.length; index++) {
         let temp = data.label_info[index].LabelId;        
         if (temp == id) {
-          console.log('OK');
+          // console.log('OK');
           this.labelValid = true;
           break;
         } else {
-          console.log('NO');
+          // console.log('NO');
           this.labelValid = false;
         }
       }
@@ -251,7 +267,13 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
     .toPromise().then((data:any) => {
       itemId = data.id;
       console.log(itemId);
+      this.testItem = itemId;
       this.itemValid = true;
+      this.httpClient.get(environment.URL_ROOT + '/item/concrete/' + this.testItem, { headers })
+      .toPromise().then((data:any) => { 
+        this.testItemName = data.reserved_alias;
+      });
+
     }, error =>{
       this.itemValid = false;
     });

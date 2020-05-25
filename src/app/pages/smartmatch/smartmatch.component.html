@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Prima Riga e Mezza
+                        <!-- Prima Riga e Mezza -->
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -61,7 +61,7 @@
                                     <input type="text" class="form-control" #itemID id="itemID" placeholder="item_id">
                                 </div>
 							</div>
-                        </div>  -->
+                        </div>  
                         <!-- Seconda Riga -->
                         <div class="row">
                             <!-- Item Barcode -->
@@ -70,6 +70,10 @@
                                     <label>Item Barcode</label>
                                     <div [className]="itemValid == true ? 'form-group has-success' : 'form-group'">
                                         <input type="text" [className]="itemValid == true ? 'form-control is-valid' : 'form-control is-invalid'" #item_barcode id="item_barcode" placeholder="item_barcode" (change)="ngOnChangesItem(item_barcode.value, itemType.value)">
+                                        <div *ngIf="itemValid">
+                                            <option class="form-control">ID: {{ testItem }}</option>
+                                            <option class="form-control">Nome: {{ testItemName }}</option>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -98,11 +102,11 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Decorators</label>
-                                    <select [(ngModel)]="selectedOption4" class="form-control" name="decorator" id="decorator">
-                                        <option [value]="0">  </option>
-                                        <option [value]="90">Ruota di 90 gradi</option>
-                                        <option [value]="180">Ruota di 180 gradi</option>
-                                        <option [value]="270">Ruota di 270 gradi</option>
+                                    <select [(ngModel)]="selectedDecoration" class="form-control" #decorator name="decorator" id="decorator">
+                                        <option [value]="0"> - </option>
+                                        <option [value]="1">Ruota di 90 gradi</option>
+                                        <option [value]="2">Ruota di 180 gradi</option>
+                                        <option [value]="3">Ruota di 270 gradi</option>
 									</select>
                                 </div>
                             </div>
@@ -113,18 +117,18 @@
                                 <div class="form-group">
                                     <label>Altre opzioni:</label>
                                     <div class="custom-control custom-checkbox mb-3">
-                                        <input class="custom-control-input" #checkActive id="checkActive" type="checkbox" checked="">
+                                        <input class="custom-control-input" #checkActive id="checkActive" type="checkbox" name="checkActive" [(ngModel)]="checkActiveC" data-md-icheck>
                                         <label class="custom-control-label" for="checkActive">Is Active</label>
                                     </div>
                                     <div class="custom-control custom-checkbox mb-3">
-                                        <input class="custom-control-input" #checkPromo id="checkPromo" type="checkbox" checked="">
+                                        <input class="custom-control-input" #checkPromo id="checkPromo" type="checkbox" name="checkPromo" [(ngModel)]="checkPromoC" data-md-icheck>
                                         <label class="custom-control-label" for="checkPromo">Promo</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col text-right">
                                 <br><br><br>
-                                <button type="button" class="btn btn-primary" (click)="addSm(itemID.value, template.value, labelID.value, checkActive.value, checkPromo.value)">Aggiungi</button>
+                                <button type="button" class="btn btn-primary" (click)="addSm(template.value, labelID.value, decorator.value)">Aggiungi</button>
                                 
                             </div>
                         </div>
