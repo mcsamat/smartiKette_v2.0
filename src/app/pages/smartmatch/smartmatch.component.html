@@ -68,7 +68,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Item Barcode</label>
-                                    <div [className]="labelValid == true ? 'form-group has-success' : 'form-group'">
+                                    <div [className]="itemValid == true ? 'form-group has-success' : 'form-group'">
                                         <input type="text" [className]="itemValid == true ? 'form-control is-valid' : 'form-control is-invalid'" #item_barcode id="item_barcode" placeholder="item_barcode" (change)="ngOnChangesItem(item_barcode.value, itemType.value)">
                                     </div>
                                 </div>

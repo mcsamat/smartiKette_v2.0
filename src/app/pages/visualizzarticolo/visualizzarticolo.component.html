@@ -10,7 +10,7 @@
                     <h2 class="mb-0">Dettagli Articolo {{ valori$.ArticoloDes }}</h2>
                 </div>
                 <!-- Contenuto -->
-                <form (ngSubmit)="updateItem()">
+                <form (ngSubmit)="updateItem()" [formGroup]="itemDetails">
                     <div class="card-body">
                         <div *ngFor="let par of parametri$" class="form-group">
                             <label for="{{ valori$[par] }}">
@@ -37,7 +37,7 @@
                         <!-- Preview Etichetta Attiva -->
                         <div class="col text-right">
                             <div *ngIf="showPrev">
-                                <i class='fa fa-2x fa-picture-o'></i> <img style='max-width: 100%;max-height: 80%;' src='data:image/png;base64,{{ prev }}'/>
+                                <i class='fa fa-2x fa-picture-o'></i> <img style='max-width: 100%; max-height: 80%;' src='data:image/png;base64,{{ prev }}'/>
                             </div>
                         </div>
                     </div>

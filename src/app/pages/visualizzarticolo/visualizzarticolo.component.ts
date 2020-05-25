@@ -87,27 +87,51 @@ export class VisualizzarticoloComponent implements OnInit {
   // Update Item
   updateItem() {
     // Header generale
-    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-    headers.set('Content-Type', 'application/x-www-form-urlencoded');
+    //let headers = new HttpHeaders();
+    //headers = headers.set('apikey', localStorage.getItem('apikey'))//.set('Content-Type', 'multipart/form-data');
+    // : {'apikey': localStorage.getItem('apikey'), 'accept': 'application/json', 'Content-type': 'application/x-www-form-urlencoded'}
+
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('apikey', 'PgoSTaCF');
+    // headers = headers.set('Content-Type', 'multipart/form-data');
+    console.log(localStorage.getItem('apikey'));
 
     let params = new HttpParams();
 
     let temp: [{}];
 
+    let formData = new HttpParams();
+    formData = formData.append('fields[room_email]', 'test');
+    formData = formData.append('fields[direction]', 'test');
+    formData = formData.append('fields[identifier]', 'test');
+    formData = formData.append('fields[room_id]', 'test');
+    
+
+
+    console.log(formData);
+
+    this.httpClient.post(environment.URL_ROOT + '/item/concrete/update/' + this.item_id, {headers, params: formData, responseType: 'application/json', dataType: 'text'})
+    .subscribe((data:any) =>{
+      console.log('Success: ' + data);
+    })
+
+    console.log(headers.get('apikey'));
+
     //Object.keys(data).forEach(function (item) {  
     //  params = params.set(item, data[item]);
     //});
 
-    for (let index = 0; index < this.parametri$.length; index++) {
+    //for (let index = 0; index < this.parametri$.length; index++) {
       // temp[this.parametri$[index]] = 'test';
       //let field = this.parametri$[index];
       // console.log(temp);
       //params.set('fields[]', 'test');
       //console.log(params.get('fields[]'));
-    }
+    //}
 
     // console.log(value.valori$[Articolo]);
-    console.log(this.currentFields$.Articolo);
+    // console.log(this.currentFields$.Articolo);
 
     
     
