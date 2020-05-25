@@ -72,19 +72,15 @@ export class DashboardComponent implements OnInit {
     }
     // Templates
     getItemTypeTemplate(tid: string){
-      if (tid == 'test') {
-        
-      } else {
         let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
         this.httpClient.get(environment.URL_ROOT + '/template/itemtype/' + tid, { headers })
         .toPromise().then((data:any) => {
           this.templates = data.templates;
         }, error =>{
           console.log(error);
-        });
-      }
-      
+        });      
     }
+
     // +++++++++++++++++++++
     // Display & Etichette
     getDisplay() {
@@ -123,7 +119,7 @@ export class DashboardComponent implements OnInit {
       this.httpClient.get(environment.URL_ROOT + '/item/type', { headers })
       .toPromise().then((data:any) => {
         this.varItem = data.itemtype;
-        console.log(this.varItem[0].id);
+        // console.log(this.varItem[0].id);
         this.selectedOption = this.varItem[0].id;
         this.getItemTypeTemplate(this.selectedOption);
       }, error =>{

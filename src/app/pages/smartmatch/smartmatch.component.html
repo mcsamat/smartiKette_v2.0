@@ -36,7 +36,7 @@
                                 <div class="form-group">
                                     <label for="itemType">Tipo Articolo</label>
                                     <select [(ngModel)]="selectedOption" #itemType class="form-control" name="itemType" id="itemType" (click)="getItemTypeTemplate($event.target.value)">
-										<option *ngFor="let item of varItem.itemtype" [value]="item.id">{{ item.name }}</option>
+										<option *ngFor="let item of varItem" [value]="item.id">{{ item.name }}</option>
 									</select>
                                 </div>
                             </div>

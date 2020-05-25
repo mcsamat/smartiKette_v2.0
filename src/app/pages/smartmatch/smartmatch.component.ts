@@ -21,6 +21,7 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
 
   // var Item
   varItem;
+  selectedOption;
   // Var Templates via ItemType.ID
   templates;
   
@@ -59,13 +60,7 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
       // Controllo l'accesso
       if (localStorage.getItem('apikey') != null || localStorage.getItem('apikey') != '') {
         // this.getItemTemplate;
-        let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-        this.httpClient.get(environment.URL_ROOT + '/item/type', { headers })
-        .toPromise().then((data:any) => {
-          this.varItem = data;
-        }, error =>{
-          console.log(error);
-        });
+        this.getItems();
         // DataTables
         this.dtOptions = {
           pagingType: 'full_numbers',
@@ -114,7 +109,10 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
       this.httpClient.get(environment.URL_ROOT + '/item/type', { headers })
       .toPromise().then((data:any) => {
-        this.varItem = data;
+        this.varItem = data.itemtype;
+        // console.log(this.varItem[0].id);
+        this.selectedOption = this.varItem[0].id;
+        this.getItemTypeTemplate(this.selectedOption);
       }, error =>{
         console.log(error);
       });
