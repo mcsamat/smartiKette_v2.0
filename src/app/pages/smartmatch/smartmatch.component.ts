@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, OnChanges, Input, SimpleChange } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, OnChanges, Input, SimpleChange, ɵConsole } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { environment } from './../../../environments/environment';
@@ -230,26 +230,24 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
     this.httpClient.get(environment.URL_ROOT + '/labelinfo?recordsPerPage=999999999999', { headers })
     .toPromise().then((data:any) => {
       for (let index = 0; index < data.label_info.length; index++) {
-        let temp = data.label_info[index].LabelId;
-        // console.log(temp.LabelId);
+        let temp = data.label_info[index].LabelId;        
         if (temp == id) {
           console.log('OK');
           this.labelValid = true;
-          console.log(this.labelValid)
-        } 
+          break;
+        } else {
+          console.log('NO');
+          this.labelValid = false;
+        }
       }
     }, error =>{
       console.log(error);
     });
-
-    // console.log(id);
-    
-
 }
 
-checkLabel(id: string) {
-  console.log('Hei');
-}
+  checkLabel(id: string) {
+    console.log('Hei');
+  }
 
 
   
