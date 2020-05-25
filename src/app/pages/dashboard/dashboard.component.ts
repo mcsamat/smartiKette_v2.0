@@ -30,6 +30,7 @@ export class DashboardComponent implements OnInit {
   system_info = new System('', '', '', '', '',  '',  '',  '',  '',  '',  '');
   // Var Templates via ItemType.ID
   templates;
+  selectedOption;
 
   
   constructor(private httpClient: HttpClient, private router: Router) { }
@@ -122,7 +123,9 @@ export class DashboardComponent implements OnInit {
       this.httpClient.get(environment.URL_ROOT + '/item/type', { headers })
       .toPromise().then((data:any) => {
         this.varItem = data.itemtype;
-        console.log(this.varItem);
+        console.log(this.varItem[0].id);
+        this.selectedOption = this.varItem[0].id;
+        this.getItemTypeTemplate(this.selectedOption);
       }, error =>{
         console.log(error);
       });

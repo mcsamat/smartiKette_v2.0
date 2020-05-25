@@ -129,7 +129,7 @@
                     <div class="form-group">
                         <label i18n for="itemType">Tiplogia</label>
                         <select [(ngModel)]="selectedOption" class="form-control" name="itemType" id="itemType" (click)="getItemTypeTemplate($event.target.value)">
-                            <option *ngFor="let item of varItem; let i = index" [value]="item.id" [selected]="index == 0">{{ item.name }}</option>
+                            <option *ngFor="let item of varItem; let i = index" [value]="item.id">{{ item.name }}</option>
                         </select>
                     </div>
                     <!-- Lista templates -->
@@ -242,7 +242,7 @@
                             </thead>
                             <!-- Contenuto tabella -->
                             <tbody>
-                                <tr *ngFor="let item of varItem.itemtype">
+                                <tr *ngFor="let item of varItem">
                                     <th>{{ item.id }}</th>
                                     <td>{{ item.name }}</td>
                                     <td>
