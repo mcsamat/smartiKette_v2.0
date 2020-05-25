@@ -93,6 +93,13 @@ export class ArticoliComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('/view-item');
   }
 
+  // New Item
+  addItem(id) {
+    localStorage.removeItem('new_item_id');
+    localStorage.setItem('new_item_id', id);
+    this.router.navigateByUrl('/crea-item');
+  }
+
 
   // --------------------------------------------------------------------------------------------------------------------------------------------
   // Funzione Crea Nuovo Articolo
@@ -105,14 +112,13 @@ export class ArticoliComponent implements OnInit, OnDestroy {
       // console.log(itemtAPI);
       this.titems_t = itemtAPI.total_itemtype;
       this.items_t = itemtAPI.itemtype;
+      console.log(this.items_t);
     }, error =>{
       console.log(error);
     });
   }
 
-  addItem() {
-    // WiP
-  }
+  
 
 
     // --------------------------------------------------------------------------------------------------------------------------------------------

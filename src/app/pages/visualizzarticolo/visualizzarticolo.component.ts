@@ -50,7 +50,7 @@ export class VisualizzarticoloComponent implements OnInit {
       this.currentFields$ = data.current_fields;
       this.parametri$ = Object.keys(data.current_fields);
       this.valori$ = data.current_fields;
-      // console.log(this.parametri$);
+      // console.log(this.valori$);
     }, error =>{
       console.log(error);
     });
@@ -86,59 +86,26 @@ export class VisualizzarticoloComponent implements OnInit {
 
   // Update Item
   updateItem() {
-    // Header generale
-    //let headers = new HttpHeaders();
-    //headers = headers.set('apikey', localStorage.getItem('apikey'))//.set('Content-Type', 'multipart/form-data');
-    // : {'apikey': localStorage.getItem('apikey'), 'accept': 'application/json', 'Content-type': 'application/x-www-form-urlencoded'}
-
     const headers = new HttpHeaders()
-      .set('Content-Type', 'application/json')
-      .set('apikey', 'PgoSTaCF');
-    // headers = headers.set('Content-Type', 'multipart/form-data');
-    console.log(localStorage.getItem('apikey'));
-
-    let params = new HttpParams();
-
-    let temp: [{}];
+      .set('apikey', 'PgoSTaCF')
+      .set('Content-Type', 'application/json');
 
     let formData = new HttpParams();
-    formData = formData.append('fields[room_email]', 'test');
-    formData = formData.append('fields[direction]', 'test');
-    formData = formData.append('fields[identifier]', 'test');
-    formData = formData.append('fields[room_id]', 'test');
-    
+    for (let index = 0; index < this.parametri$.length; index++) {
+      let temp = this.parametri$[index].toString();
+      var inputValue = (<HTMLInputElement>document.getElementById(this.parametri$[index])).value;
 
+      formData = formData.append('fields[' + this.parametri$[index] + ']', inputValue);
+    }
 
-    console.log(formData);
-
-    this.httpClient.post(environment.URL_ROOT + '/item/concrete/update/' + this.item_id, {headers, params: formData, responseType: 'application/json', dataType: 'text'})
+    // Richiesta - Errore 403*
+    this.httpClient.post(environment.URL_ROOT + '/item/concrete/update/' + this.item_id, {headers, params: formData})
     .subscribe((data:any) =>{
-      console.log('Success: ' + data);
-    })
+      this.getDetails();
+    }, error =>{
+      console.log(error);
+    });
 
-    console.log(headers.get('apikey'));
-
-    //Object.keys(data).forEach(function (item) {  
-    //  params = params.set(item, data[item]);
-    //});
-
-    //for (let index = 0; index < this.parametri$.length; index++) {
-      // temp[this.parametri$[index]] = 'test';
-      //let field = this.parametri$[index];
-      // console.log(temp);
-      //params.set('fields[]', 'test');
-      //console.log(params.get('fields[]'));
-    //}
-
-    // console.log(value.valori$[Articolo]);
-    // console.log(this.currentFields$.Articolo);
-
-    
-    
-    
-    //this.httpClient.post(environment.URL_ROOT + '/item/concrete/update/' + this.item_id, {headers}).subscribe(data =>{
-    //  console.log('Success');
-    //})
   }
     
   // Pulsante Annulla

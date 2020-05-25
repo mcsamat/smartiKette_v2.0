@@ -33,11 +33,11 @@
 							<button class="btn btn-danger" id="delItemBtn" (click)="deleteMultiple()" [disabled]="true">
 								Elimina
 							</button>
-                            <button class="btn btn-outline-primary" id="deleteItemBtn">
+                            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
 								<i class="fas fa-caret-down"></i> Crea Nuovo
 							</button>
                             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                <button ngbDropdownItem *ngFor="let item of items_t" [value]="item.id">{{ item.name }}</button>
+								<button ngbDropdownItem *ngFor="let item of items_t" [value]="item.id" (click)="addItem(item.id)">{{ item.name }}</button>
                             </div>
                         </div>
                     </div>

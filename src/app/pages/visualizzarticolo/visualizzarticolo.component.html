@@ -10,14 +10,14 @@
                     <h2 class="mb-0">Dettagli Articolo {{ valori$.ArticoloDes }}</h2>
                 </div>
                 <!-- Contenuto -->
-                <form (ngSubmit)="updateItem()" [formGroup]="itemDetails">
+                <form (ngSubmit)="updateItem()">
                     <div class="card-body">
                         <div *ngFor="let par of parametri$" class="form-group">
                             <label for="{{ valori$[par] }}">
                                 {{ par }}
                             </label>
                             <br>
-                            <input class="form-control form-control-alternative" id="{{ valori$[par] }}" type="text" value="{{ valori$[par] }}">
+                            <input class="form-control form-control-alternative" #{{par}} id="{{ par }}" type="text" value="{{ valori$[par] }}">
                         </div>
                         <button type="submit" class="btn btn-primary btn-lg btn-block">Salva</button>
                     </div>
