@@ -87,7 +87,7 @@ export class VisualizzarticoloComponent implements OnInit {
   // Update Item
   updateItem() {
     const headers = new HttpHeaders()
-      .set('apikey', 'PgoSTaCF')
+      .set('apikey', localStorage.getItem('apikey'))
       .set('Content-Type', 'application/json');
 
     let formData = new HttpParams();

@@ -3,20 +3,24 @@
 		<!-- Nome Pagina e Installazione -->
 		<a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" routerLinkActive="active" [routerLink]="['/dashboard']">{{getTitle()}} - {{ confname }}</a>
 		<!-- Utente -->
-		<ul class="navbar-nav align-items-center d-none d-md-flex">
+		&nbsp;
+		<ul class="navbar-nav align-items-center d-block ml-auto">
 			<li class="nav-item" ngbDropdown placement="bottom-right">
-				<a href="javascript:void(0);" class="nav-link pr-0" role="button" ngbDropdownToggle>
+				<a href="javascript:void(0);" class="nav-link ml-auto" role="button" ngbDropdownToggle>
 					<div class="media align-items-center">
 						<span class="avatar avatar-sm rounded-circle">
 							<i class="ni ni-single-02"></i>
 						</span>
-						<div class="media-body ml-2 d-none d-lg-block">
+						<div class="media-body ml-2 d-none d-lg-block d-md-block">
 							<p class="mb-0 text-sm font-weight-bold">{{ username }}</p>
+						</div>
+						<div class="d-lg-none">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						</div>
 					</div>
 				</a>
 				<!-- Dropmenu -->
-				<div class="dropdown-menu-arrow dropdown-menu-right text-right" ngbDropdownMenu>
+				<div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
 					<div class=" dropdown-header noti-title">
 						<h6 class="text-overflow m-0">Benvenuto!</h6>
 					</div>
@@ -28,5 +32,8 @@
 				</div>
 			</li>
 		</ul>
+		<div class="d-lg-none">
+			&nbsp;
+		</div>
 	</div>
 </nav>

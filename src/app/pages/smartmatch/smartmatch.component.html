@@ -59,13 +59,17 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Item Barcode</label>
-                                    <div [className]="itemValid == true ? 'form-group has-success' : 'form-group'">
+                                    <div [className]="itemValid == true ? 'form-group input-group' : 'form-group input-group'">
                                         <input type="text" [className]="itemValid == true ? 'form-control is-valid' : 'form-control is-invalid'" #item_barcode id="item_barcode" placeholder="item_barcode" (change)="ngOnChangesItem(item_barcode.value, itemType.value)">
-                                        <div *ngIf="itemValid">
-                                            <option class="form-control">ID: {{ testItem }}</option>
-                                            <option class="form-control">Nome: {{ testItemName }}</option>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-default" type="button" (click)="moreItem()">+</button>
                                         </div>
                                     </div>
+                                    <div *ngIf="itemValid">
+                                        <option class="form-control">ID: {{ testItem }}</option>
+                                        <option class="form-control">Nome: {{ testItemName }}</option>
+                                    </div>
+                                    
                                 </div>
                             </div>
                             <!-- Label ID -->
@@ -85,7 +89,7 @@
                                 <div class="form-group">
                                     <label for="template">Template</label>
                                     <select [(ngModel)]="selectedOption2" class="form-control" #template name="template" id="template">
-										<option *ngFor="let template of templates" [value]="template.title">{{ template.title }}</option>
+										<option *ngFor="let template of templates" [value]="template.title"></option>
 									</select>
                                 </div>
                             </div>
@@ -123,7 +127,25 @@
                                 
                             </div>
                         </div>
-                    </form>
+                    
+
+                    <br>
+
+                    <!-- More Items -->
+                    <div *ngFor="let in of counter(nrItems); let i = index">
+                        <label>Item Barcode</label>
+                        <div [className]="itemValid == true ? 'form-group input-group' : 'form-group input-group'">
+                            <input type="text" [className]="itemValid == true ? 'form-control is-valid' : 'form-control is-invalid'" #item_barcode_{{ i }} id="item_barcode_{{ i }}" placeholder="item_barcode" (change)="ngOnChangesMoreItem(item_barcode.value, itemType.value, i)">
+                        </div>
+
+                        <div *ngIf="itemValid">
+                            <option class="form-control">ID: {{ testItem }}</option>
+                            <option class="form-control">Nome: {{ testItemName }}</option>
+                        </div>
+                        <br>
+                    </div>
+
+                </form>
                 </div>
             </div>
         </div>

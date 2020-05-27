@@ -46,7 +46,7 @@ export class ArticoliComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // Controllo l'accesso
-    if (localStorage.getItem('apikey') != null || localStorage.getItem('apikey') != '') {
+    if (localStorage.getItem('apikey') != null) {
       // DataTables Options
       this.dtOptions = {
         pagingType: 'full_numbers',
@@ -61,9 +61,12 @@ export class ArticoliComponent implements OnInit, OnDestroy {
       // Tabella Articoli
       this.getItems();
       // Crea Nuovo Articolo
-      this.getItemType();        
+      this.getItemType();   
+      
+      console.log(localStorage.getItem('apikey') != null || localStorage.getItem('apikey') != '');
     } else {
       this.router.navigate(['../login']);
+      console.log('Error: ' + localStorage.getItem('apikey'));
     }
     
   }

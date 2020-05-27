@@ -58,7 +58,7 @@ export class EtichetteComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // Controllo l'accesso
-    if (localStorage.getItem('apikey') != null || localStorage.getItem('apikey') != '') {
+    if (localStorage.getItem('apikey') != null) {
       // GET Label
       this.getLabel(); 
       // DataTables Options

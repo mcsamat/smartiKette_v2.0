@@ -14,7 +14,7 @@
 		<!-- Voci del menu -->
 		<ul class="navbar-nav">
 			<li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
-				<a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
+				<a routerLinkActive="active" #rla="routerLinkActive" [routerLink]="[menuItem.path]" class="nav-link" (click)="isCollapsed = !isCollapsed">
 					<i class="ni {{menuItem.icon}}"></i>
 					{{menuItem.title}}
 				</a>

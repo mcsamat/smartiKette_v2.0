@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
@@ -89,4 +89,50 @@ export class SidebarComponent implements OnInit {
       WindowPrt.print();
       WindowPrt.close();
     }
+
+    //@HostListener('document:mouseup', ['$event']) 
+    //closeNav() {
+    //  console.log(event);
+    //  this.isCollapsed = true;
+    //}
+
+    //@HostListener("document:fullscreenchange", []) 
+    //fullScreen() {
+    //  console.log("F11 EVENTO pt.2")
+    //}
+    
+    //@HostListener('document:keydown', ['$event'])
+    //keyEvent(event: KeyboardEvent) {
+      //document.onfullscreenchange = () => console.log('fullscreenchange event fired!');
+    //  console.log(event);
+
+    //  console.log("F11 EVENTO")
+
+    //  var maxHeight = window.screen.height,
+    //    maxWidth = window.screen.width,
+    //    curHeight = window.innerHeight,
+    //    curWidth = window.innerWidth;
+
+
+  
+    //  if (event.keyCode === 122) {
+    //    console.log("F11 Premuto")
+    //    if (this.fullscreen == false) {
+    //      console.log('From Reduct to Full: ' + this.fullscreen);
+    //      environment.isfullscreen = true;
+    //      this.fullscreen = environment.isfullscreen;
+    //      console.log('From Reduct to Full: ' + this.fullscreen);
+    //    } else if (maxWidth == curWidth && maxHeight == curHeight) {
+    //      console.log('maybe it worsk')
+    //        environment.isfullscreen = false;
+    //        this.fullscreen = environment.isfullscreen;
+    //    }
+        
+
+    //  }
+
+    //}
+
+    
+
 }

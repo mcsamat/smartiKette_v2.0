@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, OnChanges, Input, SimpleChange, ɵConsole } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, OnChanges, Input, SimpleChange, ɵConsole, HostListener } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { environment } from './../../../environments/environment';
@@ -6,6 +6,7 @@ import { NgbModal, ModalDismissReasons, NgbModalConfig } from '@ng-bootstrap/ng-
 import { debounceTime } from 'rxjs/operators';
 import { DataTableDirective } from 'angular-datatables';
 import { Router } from '@angular/router';
+import { SidebarComponent } from '../../components/sidebar/sidebar.component';
 
 var del_item_id: String;
 
@@ -19,6 +20,9 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
   // VAR TEST - Aggiungere un singolo item
   testItem;
   testItemName;
+
+  // VAR more items
+  nrItems: number = 0;
 
   // Verifica form -- Etichette
   @Input() labelID: string;
@@ -66,7 +70,7 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
       // Controllo l'accesso
-      if (localStorage.getItem('apikey') != null || localStorage.getItem('apikey') != '') {
+      if (localStorage.getItem('apikey') != null) {
         // this.getItemTemplate;
         this.getItems();
         this.selectedDecoration = '0';
@@ -278,6 +282,43 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
       this.itemValid = false;
     });
   }
+
+
+  // Add More Items
+  moreItem() {
+    this.nrItems = this.nrItems + 1;
+  }
+
+  counter(i: number) {
+    return new Array(i);
+  }
+
+  validArray(i: number) {
+
+  }
+
+  ngOnChangesMoreItem(id: string, template: string, index) {
+    let itemId;
+    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+    this.httpClient.get(environment.URL_ROOT + '/item/search/fastmatch/' + template + '/' + id, { headers })
+    .toPromise().then((data:any) => {
+      itemId = data.id;
+      // console.log(itemId);
+      // this.testItem = itemId;
+      // this.itemValid = true;
+      this.httpClient.get(environment.URL_ROOT + '/item/concrete/' + this.testItem, { headers })
+      .toPromise().then((data:any) => { 
+        // this.testItemName = data.reserved_alias;
+      });
+
+    }, error =>{
+      this.itemValid = false;
+    });
+  }
+
+
+
+
 
 
   

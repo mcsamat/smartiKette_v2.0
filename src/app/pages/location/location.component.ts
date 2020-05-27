@@ -36,7 +36,7 @@ export class LocationComponent implements OnInit {
 
   ngOnInit() {
     // Controllo l'accesso
-    if (localStorage.getItem('apikey') != null || localStorage.getItem('apikey') != '') {
+    if (localStorage.getItem('apikey') != null) {
       this.getLocations();        
     } else {
       this.router.navigate(['../login']);
