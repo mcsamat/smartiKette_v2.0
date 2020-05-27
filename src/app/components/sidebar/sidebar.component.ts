@@ -1,33 +1,53 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ViewChildren, ElementRef, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
-declare interface RouteInfo {
+  declare interface RouteInfo {
     path: string;
     title: string;
     icon: string;
     class: string;
-}
+  }
+
 export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard',   title: 'Dashboard',   icon: 'ni-tv-2 text-primary',   class: '' },
+    { path: '/dashboard',   title: 'Dashboard',   icon:'ni-tv-2 text-primary',    class: '' },
     { path: '/smartmatch',  title: 'SmartMatch',  icon:'ni-vector text-blue',     class: '' },
     { path: '/articoli',    title: 'Articoli',    icon:'ni-cart text-blue',       class: '' },
     { path: '/etichette',   title: 'Etichette',   icon:'ni-tag text-blue',        class: '' },
     { path: '/location',    title: 'Location',    icon:'ni-pin-3 text-blue',      class: '' },
 ];
 
-@Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
-})
+  @Component({
+    selector: 'app-sidebar',
+    templateUrl: './sidebar.component.html',
+    styleUrls: ['./sidebar.component.scss']
+  })
+
+  @HostListener('document:mouseup', ['$event'])
+
 export class SidebarComponent implements OnInit {
 
   public menuItems: any[];
   public isCollapsed = true;
   fullscreen: boolean;
+  index = false;
 
-  constructor(private router: Router) { }
+  @ViewChild('navbarT') navv: ElementRef
+
+  constructor(private router: Router, private renderer: Renderer2) { 
+
+    this.renderer.listen('window', 'click',(e:Event)=>{
+      if(e.target !== this.navv.nativeElement && this.isCollapsed === false && this.index){
+        this.isCollapsed = true;
+        this.index = false;
+      } else {
+        this.index = true;
+      }
+    });
+
+    
+}
+
 
   ngOnInit() {
     this.fullscreen = environment.isfullscreen;
@@ -90,11 +110,8 @@ export class SidebarComponent implements OnInit {
       WindowPrt.close();
     }
 
-    //@HostListener('document:mouseup', ['$event']) 
-    //closeNav() {
-    //  console.log(event);
-    //  this.isCollapsed = true;
-    //}
+    
+    
 
     //@HostListener("document:fullscreenchange", []) 
     //fullScreen() {

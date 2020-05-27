@@ -9,7 +9,6 @@ import { environment } from './../../../environments/environment';
 
 var del_item_id: String;
 
-
 // Componente principale
 @Component({
 	selector: 'app-articoli',
@@ -28,12 +27,11 @@ export class ArticoliComponent implements OnInit, OnDestroy {
 	dtOptions: any = {};
 	dtTrigger: Subject < any > = new Subject();
 
-	// Var Crea Nuovo
 	// Variabili ItemType
 	items_t;
 	titems_t: number;
 
-	// Alert e Modal
+	// Alert e Modal - Delete
 	private _success = new Subject < string > ();
 	staticAlertClosed = false;
 	alias: String;
@@ -52,6 +50,7 @@ export class ArticoliComponent implements OnInit, OnDestroy {
 		config.keyboard = false;
 	}
 
+  // Init
 	ngOnInit(): void {
 		// Controllo l'accesso
 		if (localStorage.getItem('apikey') != null) {
@@ -76,9 +75,9 @@ export class ArticoliComponent implements OnInit, OnDestroy {
 			this.router.navigate(['../login']);
 			console.log('Error: ' + localStorage.getItem('apikey'));
 		}
-
 	}
 
+  // Destory
 	ngOnDestroy(): void {
 		this.dtTrigger.unsubscribe();
 	}
@@ -211,7 +210,7 @@ export class ArticoliComponent implements OnInit, OnDestroy {
 		this.getIndex();
 	}
 
-	// COnteggio Articoli Selezionati
+	// Conteggio Articoli Selezionati
 	getIndex() {
 		this.index = 0;
 		this.checkboxes.forEach((element) => {
@@ -221,7 +220,7 @@ export class ArticoliComponent implements OnInit, OnDestroy {
 		});
 	}
 
-
+  // DELETE - Alert e Modal
 	// Alert di Conferma
 	public showAlert() {
 		this._success.subscribe(message => this.successMessage = message);

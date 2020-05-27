@@ -135,7 +135,7 @@
                     <div *ngFor="let in of counter(nrItems); let i = index">
                         <label>Item Barcode</label>
                         <div [className]="itemValid == true ? 'form-group input-group' : 'form-group input-group'">
-                            <input type="text" [className]="itemValid == true ? 'form-control is-valid' : 'form-control is-invalid'" #item_barcode_{{ i }} id="item_barcode_{{ i }}" placeholder="item_barcode" (change)="ngOnChangesMoreItem(item_barcode.value, itemType.value, i)">
+                            <input type="text" [className]="itemValid == true ? 'form-control is-valid' : 'form-control is-invalid'" #item_barcode_{{i}} id="item_barcode_{{ i }}" placeholder="item_barcode" (change)="ngOnChangesMoreItem(item_barcode.value, itemType.value, i)">
                         </div>
 
                         <div *ngIf="itemValid">
