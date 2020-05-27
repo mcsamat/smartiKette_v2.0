@@ -30,8 +30,11 @@
 					<!-- Elimina o Crea Nuovo Articolo -->
 					<div class="text-right">
                         <div ngbDropdown class="d-inline-block">
-							<button class="btn btn-danger" id="delItemBtn" (click)="deleteMultiple()" [disabled]="true">
-								Elimina
+							<button class="btn btn-outline-info" id="delItemBtn" (click)="checkAll()">
+								Seleziona Tutto <span *ngIf="index != 0">({{ index }})</span>
+							</button>
+							<button *ngIf="index != 0" class="btn btn-outline-danger" id="delItemBtn" (click)="deleteMultiple()">
+								<i class="fa fa-trash"></i> Elimina Selezionati
 							</button>
                             <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
 								<i class="fas fa-caret-down"></i> Crea Nuovo
@@ -48,40 +51,39 @@
 				<div class="card-body">
 					<!-- Tabella Articoli -->
 					<div class="table-responsive" id="stampare">
-						<table class="display table table-striped align-items-center table-flush" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
-                            <thead class="thead-light">
-                                <tr>
-									<th scope="col"></th>
-                                    <th scope="col">Alias</th>
-									<th scope="col">ID Customer</th>
-									<!-- <th scope="col">ID Database</th> -->
-									<th scope="col">Data Revisione</th>
-									<th scope="col">Tipo</th>
-                                </tr>
-                             </thead>
-                            <tbody id="stampare">
-                                <tr *ngFor="let item of items$">
-									<td>
-										<!-- Checkbox -->&nbsp;	
-										<input type="checkbox" class="form-check-input" id="{{ item.id }}">
-                                        <div class="btn-group btn-group-sm" role="group" aria-label="Tools">
-											<!-- Elimina Item con Modal -->
-											<button type="button" class="btn btn-danger" (click)="open(content, item.id, item.reserved_alias)">
-												<i class="fas fa-trash"></i>
-											</button>
-										</div>
-                                    </td>
-									<th>
-										<a [routerLink]="" (click)="viewItem(item.id)">{{ item.reserved_alias }}</a>
-									</th>
-									<td>{{ item.item_identifier }}</td>
-									<!-- <td>{{ item.id }}</td> -->
-									<td>{{ item.current_revision_date }}</td>
-									<td>{{ item.item_type }}</td>
-								</tr>
-                            </tbody>
-						</table>
-
+							<table class="display table table-striped align-items-center table-flush" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+								<thead class="thead-light">
+									<tr>
+										<th scope="col"></th>
+										<th scope="col">Alias</th>
+										<th scope="col">ID Customer</th>
+										<!-- <th scope="col">ID Database</th> -->
+										<th scope="col">Data Revisione</th>
+										<th scope="col">Tipo</th>
+									</tr>
+								</thead>
+								<tbody id="stampare">
+									<tr *ngFor="let item of items$">
+										<td>
+											<!-- Checkbox -->&nbsp;	
+											<input type="checkbox" #checkboxes class="form-check-input" id="{{ item.id }}" (change)="ngOnSelected()">
+											<div class="btn-group btn-group-sm" role="group" aria-label="Tools">
+												<!-- Elimina Item con Modal -->
+												<button type="button" class="btn btn-danger" (click)="open(content, item.id, item.reserved_alias)">
+													<i class="fas fa-trash"></i>
+												</button>
+											</div>
+										</td>
+										<th>
+											<a [routerLink]="" (click)="viewItem(item.id)">{{ item.reserved_alias }}</a>
+										</th>
+										<td>{{ item.item_identifier }}</td>
+										<!-- <td>{{ item.id }}</td> -->
+										<td>{{ item.current_revision_date }}</td>
+										<td>{{ item.item_type }}</td>
+									</tr>
+								</tbody>
+							</table>
 
 						<br>
 
