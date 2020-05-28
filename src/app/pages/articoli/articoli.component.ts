@@ -1,17 +1,14 @@
 import {
 	Component,
 	OnInit,
-	Input,
 	OnDestroy,
 	ViewChild,
 	ViewChildren,
 	QueryList,
 	ElementRef,
-	AfterViewInit
   } from '@angular/core';
   import {
 	HttpClient,
-	HttpParams,
 	HttpHeaders
   } from '@angular/common/http';
   import {
@@ -19,7 +16,6 @@ import {
   } from 'rxjs';
   import {
 	NgbModal,
-	ModalDismissReasons,
 	NgbModalConfig
   } from '@ng-bootstrap/ng-bootstrap';
   import {
@@ -100,7 +96,6 @@ import {
 		this.getItemType();
 	  } else {
 		this.router.navigate(['../login']);
-		console.log('Error: ' + localStorage.getItem('apikey'));
 	  }
 	}
   
@@ -150,7 +145,6 @@ import {
 		.toPromise().then((itemtAPI: any) => {
 		  this.titems_t = itemtAPI.total_itemtype;
 		  this.items_t = itemtAPI.itemtype;
-		  console.log(this.items_t);
 		}, error => {
 		  console.log(error);
 		});
@@ -165,6 +159,13 @@ import {
 	  this.alias = d_item_a;
 	  // Mostro il Modal per la conferma
 	  this.modalService.open(content, {
+		ariaLabelledBy: 'modal-basic-title'
+	  })
+	}
+  
+	openMultiple(multiple) {
+	  // Mostro il Modal per la conferma
+	  this.modalService.open(multiple, {
 		ariaLabelledBy: 'modal-basic-title'
 	  })
 	}

@@ -1,109 +1,102 @@
 <div class="header bg-gradient-info pb-8 pt-5 pt-md-5"></div>
-
 <!-- Contenuto della pagina -->
 <div class="container-fluid mt--7" id="stampare">
-    <div class="row">
-       <div class="col">
-            <div class="card shadow">
-                <!-- Header -->
-                <div class="card-header bg-transparent">
-                    <h2 class="mb-0">Dettagli Etichetta</h2>
-                </div>
-				<!-- Contenuto: Label Info -->
-                <div class="card-body table-responsive">
-                   <table class="display table align-items-center table-flush">
-                       <thead>
-                           <tr>
-                                <th>Label ID</th>
-                                <th>Power Status</th>
-                                <th>Connection Status</th>
-                                <th>Updated At</th>
-                                <th>Type</th>
-                                <th>Access Point ID</th>
-                           </tr>
-                       </thead>
-                       <tbody>
-                           <tr>
-                                <td>{{ labelId }}</td>
-                                <td>{{ powerStatus }}</td>
-                                <td>{{ connStatus }}</td>
-                                <td>{{ updateAt }}</td>
-                                <td>{{ typeLabel }}</td>
-                                <td>{{ apId }}</td>
-                           </tr>
-                       </tbody>
-                   </table>
-                </div>
-                <!-- Header -->
-                <div class="card-header bg-transparent">
-                    <div class="row">
-                        <div class="col">
-                            <h3 class="mb-0">Matches Associati</h3>
-                        </div>
-
-                        <!-- Preview Etichetta Attiva -->
-                        <div class="col text-right">
-                            <div *ngIf="showPrev">
-                                <i class='fa fa-2x fa-picture-o'></i> <img style='max-width: 100%;max-height: 80%;' src='data:image/png;base64,{{ prev }}'/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Contenuto: Matchs -->
-                <div class="card-body table-responsive">
-                    <table class="display table align-items-center table-flush">
-                        <thead>
-                            <tr>
-                                 <th>Template Name</th>
-                                 <th>Label ID</th>
-                                 <th>Items</th>
-                                 <th>Is Active</th>
-                                 <th>Bypass Promo</th>
-                                 <th>Match e Immagini</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let match of matchs$">
-                                 <td>{{ match.template_name }}</td>
-                                 <td>{{ match.label_id }}</td>
-                                 <td>{{ match.items }}</td>
-                                 <td>
-                                    <div *ngIf="match.is_active == true; else elseBlockActive"><span class="badge badge-success">SI</span></div>
-                                    <ng-template #elseBlockActive>
-                                        <span class="badge badge-danger">NO</span>&nbsp;
-                                        <button class="btn btn-success btn-sm" (click)="activateLabel(match.id)">
-                                            Attiva
-                                        </button>
-                                    </ng-template>
-                                </td>
-                                 <td>
-                                    <div *ngIf="match.bypass_promo == true; else elseBlock"><span class="badge badge-success">SI</span></div>
-                                    <ng-template #elseBlock><span class="badge badge-danger">NO</span></ng-template>
-                                </td>
-                                 <td>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Tools">
-                                        <button type="button" class="btn btn-secondary" (click)="openPreview(match.id)">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-danger" (click)="open()">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                 </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                 </div>
-                <div class="card-body">
-                    <!-- Bottone Annulla -->
-                    <button type="button" class="btn btn-secondary btn-lg btn-block" (click)="goBack()">Torna Indietro</button>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <!-- Header -->
+        <div class="card-header bg-transparent">
+          <h2 i18n class="mb-0">Dettagli Etichetta</h2>
         </div>
+        <!-- Contenuto: Label Info -->
+        <div class="card-body table-responsive">
+          <table class="display table align-items-center table-flush">
+            <thead>
+              <tr>
+                <th i18n>Label ID</th>
+                <th i18n>Power Status</th>
+                <th i18n>Connection Status</th>
+                <th i18n>Updated At</th>
+                <th i18n>Type</th>
+                <th i18n>Access Point ID</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ labelId }}</td>
+                <td>{{ powerStatus }}</td>
+                <td>{{ connStatus }}</td>
+                <td>{{ updateAt }}</td>
+                <td>{{ typeLabel }}</td>
+                <td>{{ apId }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Header -->
+        <div class="card-header bg-transparent">
+          <div class="row">
+            <div class="col">
+              <h3 i18n class="mb-0">Matches Associati</h3>
+            </div>
+            <!-- Preview Etichetta Attiva -->
+            <div class="col text-right">
+              <div *ngIf="showPrev">
+                <i class='fa fa-2x fa-picture-o'></i> <img style='max-width: 100%;max-height: 80%;' src='data:image/png;base64,{{ prev }}'/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Contenuto: Matchs -->
+        <div class="card-body table-responsive">
+          <table class="display table align-items-center table-flush">
+            <thead>
+              <tr>
+                <th i18n>Template Name</th>
+                <th i18n>Label ID</th>
+                <th i18n>Items</th>
+                <th i18n>Is Active</th>
+                <th i18n>Bypass Promo</th>
+                <th i18n>Match e Immagini</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let match of matchs$">
+                <td>{{ match.template_name }}</td>
+                <td>{{ match.label_id }}</td>
+                <td>{{ match.items }}</td>
+                <td>
+                  <div *ngIf="match.is_active == true; else elseBlockActive"><span i18n class="badge badge-success">SI</span></div>
+                  <ng-template #elseBlockActive>
+                    <span i18n class="badge badge-danger">NO</span>&nbsp;
+                    <button i18n class="btn btn-success btn-sm" (click)="activateLabel(match.id)">
+                    Attiva
+                    </button>
+                  </ng-template>
+                </td>
+                <td>
+                  <div *ngIf="match.bypass_promo == true; else elseBlock"><span i18n class="badge badge-success">SI</span></div>
+                  <ng-template #elseBlock><span i18n class="badge badge-danger">NO</span></ng-template>
+                </td>
+                <td>
+                  <div class="btn-group btn-group-sm" role="group" aria-label="Tools">
+                    <button type="button" class="btn btn-secondary" (click)="openPreview(match.id)">
+                    <i class="fas fa-eye"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger" (click)="open()">
+                    <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-body">
+          <!-- Bottone Annulla -->
+          <button i18n type="button" class="btn btn-secondary btn-lg btn-block" (click)="goBack()">Torna Indietro</button>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
-
-
-<!-- api/matching/label/"label_id" -->
-
-<!-- api/labelinfo/label/"label_id" -->

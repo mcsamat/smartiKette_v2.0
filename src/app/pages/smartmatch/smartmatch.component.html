@@ -1,219 +1,220 @@
 <div class="header bg-gradient-info pb-8 pt-5 pt-md-5"></div>
 <!-- Modal DELETE Match -->
 <ng-template #content let-modal>
-    <div class="modal-header"  data-backdrop="static">
-        <h4 i18n class="modal-title" id="modal-basic-title">Conferma eliminazione</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.close()">
-        <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <p i18n>Sicuro di voler eliminare lo SmartMatch selezionato?</p>
-    </div>
-    <div class="modal-footer">
-        <button i18n class="btn btn-danger" (click)="deleteItem()" type="button">Elimina</button>
-        <button i18n type="button" class="btn btn-outline-default" (click)="modal.close()">Anulla</button>
-    </div>
+  <div class="modal-header"  data-backdrop="static">
+    <h4 i18n class="modal-title" id="modal-basic-title">Conferma eliminazione</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+    <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p i18n>Sicuro di voler eliminare lo SmartMatch selezionato?</p>
+  </div>
+  <div class="modal-footer">
+    <button i18n class="btn btn-danger" (click)="deleteItem()" type="button">Elimina</button>
+    <button i18n type="button" class="btn btn-outline-default" (click)="modal.close()">Anulla</button>
+  </div>
 </ng-template>
 <!-- Contenuto della pagina -->
 <div class="container-fluid mt--7">
-    <!-- Aggiungi Match -->
-    <div class="row">
-        <div class="col">
-            <div class="card shadow">
-                <div class="card-header bg-transparent">
-                    <h2 i18n class="mb-0">Aggiungi Match</h2>
+  <!-- Aggiungi Match -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h2 i18n class="mb-0">Aggiungi Match</h2>
+        </div>
+        <div class="card-body">
+          <!-- Form -->
+          <form>
+            <!-- Prima Riga -->
+            <div class="row">
+              <!-- Tipo Articolo -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label i18n for="itemType">Tipo Articolo</label>
+                  <select [(ngModel)]="selectedOption" #itemType class="form-control" name="itemType" id="itemType" (click)="getItemTypeTemplate($event.target.value)">
+                  <option *ngFor="let item of varItem" [value]="item.id">{{ item.name }}</option>
+                  </select>
                 </div>
-                <div class="card-body">
-                    <!-- Form -->
-                    <form>
-                        <!-- Prima Riga -->
-                        <div class="row">
-                            <!-- Tipo Articolo -->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label i18n for="itemType">Tipo Articolo</label>
-                                    <select [(ngModel)]="selectedOption" #itemType class="form-control" name="itemType" id="itemType" (click)="getItemTypeTemplate($event.target.value)">
-                                    <option *ngFor="let item of varItem" [value]="item.id">{{ item.name }}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <!-- Tipo Barcode -->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label i18n>Tipo Barcode</label>
-                                    <select [(ngModel)]="selectedOption3" class="form-control" name="barcodeS" id="barcode" disable="false">
-                                    <option i18n #barcode>ITEM BARCODE</option>
-                                    <option i18n #ean13>EAN 13</option>
-                                    <option i18n #decimale>MINSAN decimale</option>
-                                    <option i18n #alfa>MINSAN alfa</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Seconda Riga -->
-                        <div class="row">
-                            <!-- Item Barcode -->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label i18n>Item Barcode</label>
-                                    <div [className]="itemValid == true ? 'form-group input-group' : 'form-group input-group'">
-                                        <input type="text" [className]="itemValid == true ? 'form-control is-valid' : 'form-control is-invalid'" #item_barcode id="item_barcode" placeholder="item_barcode" (change)="ngOnChangesItem(item_barcode.value, itemType.value)">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-default" type="button" (click)="moreItem()">+</button>
-                                        </div>
-                                    </div>
-                                    <div *ngIf="itemValid">
-                                        <option i18n class="form-control">ID: {{ testItem }}</option>
-                                        <option i18n class="form-control">Nome: {{ testItemName }}</option>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Label ID -->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label i18n>ID Etichetta</label>
-                                    <div [className]="labelValid == true ? 'form-group has-success' : 'form-group'">
-                                        <input type="text" [className]="labelValid == true ? 'form-control is-valid' : 'form-control is-invalid'" #labelID id="labelID" placeholder="id_etichetta" (change)="ngOnChanges(labelID.value)">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Terza Riga -->
-                        <div class="row">
-                            <!-- Template -->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label i18n for="template">Template</label>
-                                    <select class="form-control" #template name="template" id="template">
-                                        <option *ngFor="let template of templates" [value]="template.title">{{ template.title }}</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <!-- Decorators -->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Decorators</label>
-                                    <select [(ngModel)]="selectedDecoration" class="form-control" #decorator name="decorator" id="decorator">
-                                        <option [value]="0"> </option>
-                                        <option i18n [value]="1">Ruota di 90 gradi</option>
-                                        <option i18n [value]="2">Ruota di 180 gradi</option>
-                                        <option i18n [value]="3">Ruota di 270 gradi</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Quarta riga Riga -->
-                        <div class="row">
-                            <div class="col-md-auto">
-                                <div class="form-group">
-                                    <label i18n>Altre opzioni:</label>
-                                    <div class="custom-control custom-checkbox mb-3">
-                                        <input class="custom-control-input" #checkActive id="checkActive" type="checkbox" name="checkActive" [(ngModel)]="checkActiveC" data-md-icheck>
-                                        <label i18n class="custom-control-label" for="checkActive">Is Active</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox mb-3">
-                                        <input class="custom-control-input" #checkPromo id="checkPromo" type="checkbox" name="checkPromo" [(ngModel)]="checkPromoC" data-md-icheck>
-                                        <label i18n class="custom-control-label" for="checkPromo">Promo</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col text-right">
-                                <br><br><br>
-                                <button i18n type="button" class="btn btn-primary" (click)="addSm(template.value, labelID.value, decorator.value)">Aggiungi</button>
-                            </div>
-                        </div>
-                        <br>
-                        <!-- +More Items+ -->
-                        <div *ngFor="let in of counter(nrItems); let i = index">
-                            <label i18n>Item Barcode</label>
-                            <div [className]="itemArray[i] != null ? 'form-group input-group' : 'form-group input-group'">
-                                <input type="text" [className]="itemArray[i] != null ? 'form-control is-valid' : 'form-control is-invalid'" #item_barcode_{{i}} id="item_barcode_{{ i }}" placeholder="item_barcode" (change)="ngOnChangesMoreItem(itemType.value, i)">
-                            </div>
-                            <div *ngIf="itemArray[i] != null"> <!-- ngIf* -- > return != null -->
-                                <option i18n class="form-control">ID: {{ itemArray[i] }}</option>
-                                <!-- <option i18n class="form-control">Nome: {{ testItemName }}</option> -->
-                            </div>
-                            <br>
-                        </div>
-                    </form>
+              </div>
+              <!-- Tipo Barcode -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label i18n>Tipo Barcode</label>
+                  <select [(ngModel)]="selectedOption3" class="form-control" name="barcodeS" id="barcode" disable="false">
+                  <option i18n #barcode>ITEM BARCODE</option>
+                  <option i18n #ean13>EAN 13</option>
+                  <option i18n #decimale>MINSAN decimale</option>
+                  <option i18n #alfa>MINSAN alfa</option>
+                  </select>
                 </div>
+              </div>
             </div>
-        </div>
-    </div>
-    <br>
-    <!-- Alerts -->
-    <div class="row">
-        <div class="col-md-12">
-            <!-- Alert Conferma Eliminazione -->
-            <ngb-alert *ngIf="successMessage" type="danger" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
-            <!-- Alert Conferma Aggiunta -->
-            <ngb-alert *ngIf="successMessageAdd" type="success" (close)="successMessageAdd = ''">{{ successMessageAdd }}</ngb-alert>
-            <!-- Alert Aggiunta Fallita -->
-            <ngb-alert *ngIf="failedMessageAdd" type="danger" (close)="failedMessageAdd = ''">{{ failedMessageAdd }}</ngb-alert>
-        </div>
-    </div>
-    <br>
-    <!-- Tabella Match -->
-    <div class="row">
-        <div class="col">
-            <div class="card shadow">
-                <!-- Header -->
-                <div class="card-header bg-transparent">
-                    <div class="row">
-                        <div class="col">
-                            <h2 i18n class="mb-0">Matches Online</h2>
-                        </div>
-                        <div class="col text-right">
-                            <div *ngIf="showPrev">
-                                <i class='fa fa-2x fa-picture-o'></i> <img style='max-width: 100%;max-height: 80%;' src='data:image/png;base64,{{ prev }}'/>
-                            </div>
-                        </div>
+            <!-- Seconda Riga -->
+            <div class="row">
+              <!-- Item Barcode -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label i18n>Item Barcode</label>
+                  <div [className]="itemValid == true ? 'form-group input-group' : 'form-group input-group'">
+                    <input type="text" [className]="itemValid == true ? 'form-control is-valid' : 'form-control is-invalid'" #item_barcode id="item_barcode" placeholder="item_barcode" (change)="ngOnChangesItem(item_barcode.value, itemType.value)">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-default" type="button" (click)="moreItem()">+</button>
                     </div>
+                  </div>
+                  <div *ngIf="itemValid">
+                    <option i18n class="form-control">ID: {{ testItem }}</option>
+                    <option i18n class="form-control">Nome: {{ testItemName }}</option>
+                  </div>
                 </div>
-                <!-- Contenuto -->
-                <div class="card-body">
-                    <!-- Tabella Smartmatches -->
-                    <div class="table-responsive" id="stampare">
-                        <table class="display table align-items-center table-flush" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
-                        <thead class="thead-light">
-                            <tr>
-                                <th i18n scope="col">Template Name</th>
-                                <th i18n scope="col">Label ID</th>
-                                <th i18n scope="col">Items</th>
-                                <th i18n scope="col">Is Active</th>
-                                <th i18n scope="col">Bypass Promo</th>
-                                <th i18n scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let match of matchs$">
-                                <td *ngIf="match.is_active == true">{{ match.template_name }}</td>
-                                <td *ngIf="match.is_active == true">{{ match.label_id }}</td>
-                                <td *ngIf="match.is_active == true">{{ match.items }}</td>
-                                <td *ngIf="match.is_active == true">
-                                    <span i18n class="badge badge-success">SI</span>
-                                </td>
-                                <td *ngIf="match.is_active == true">
-                                    <div *ngIf="match.bypass_promo == true; else elseBlock"><span i18n class="badge badge-success">SI</span></div>
-                                    <ng-template #elseBlock><span i18n class="badge badge-danger">NO</span></ng-template>
-                                </td>
-                                <td *ngIf="match.is_active == true">
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Tools">
-                                        <button type="button" class="btn btn-secondary" (click)="openPreview(match.id)">
-                                        <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-danger" (click)="open(content, match.id, match.id)">
-                                        <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                        </table>                        
-                    </div>
+              </div>
+              <!-- Label ID -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label i18n>ID Etichetta</label>
+                  <div [className]="labelValid == true ? 'form-group has-success' : 'form-group'">
+                    <input type="text" [className]="labelValid == true ? 'form-control is-valid' : 'form-control is-invalid'" #labelID id="labelID" placeholder="id_etichetta" (change)="ngOnChanges(labelID.value)">
+                  </div>
                 </div>
+              </div>
             </div>
+            <!-- Terza Riga -->
+            <div class="row">
+              <!-- Template -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label i18n for="template">Template</label>
+                  <select class="form-control" #template name="template" id="template">
+                  <option *ngFor="let template of templates" [value]="template.title">{{ template.title }}</option>
+                  </select>
+                </div>
+              </div>
+              <!-- Decorators -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Decorators</label>
+                  <select [(ngModel)]="selectedDecoration" class="form-control" #decorator name="decorator" id="decorator">
+                  <option [value]="0"> </option>
+                  <option i18n [value]="1">Ruota di 90 gradi</option>
+                  <option i18n [value]="2">Ruota di 180 gradi</option>
+                  <option i18n [value]="3">Ruota di 270 gradi</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!-- Quarta riga Riga -->
+            <div class="row">
+              <div class="col-md-auto">
+                <div class="form-group">
+                  <label i18n>Altre opzioni:</label>
+                  <div class="custom-control custom-checkbox mb-3">
+                    <input class="custom-control-input" #checkActive id="checkActive" type="checkbox" name="checkActive" [(ngModel)]="checkActiveC" data-md-icheck>
+                    <label i18n class="custom-control-label" for="checkActive">Is Active</label>
+                  </div>
+                  <div class="custom-control custom-checkbox mb-3">
+                    <input class="custom-control-input" #checkPromo id="checkPromo" type="checkbox" name="checkPromo" [(ngModel)]="checkPromoC" data-md-icheck>
+                    <label i18n class="custom-control-label" for="checkPromo">Promo</label>
+                  </div>
+                </div>
+              </div>
+              <div class="col text-right">
+                <br><br><br>
+                <button i18n type="button" class="btn btn-primary" (click)="addSm(template.value, labelID.value, decorator.value)">Aggiungi</button>
+              </div>
+            </div>
+            <br>
+            <!-- +More Items+ -->
+            <div *ngFor="let in of counter(nrItems); let i = index">
+              <label i18n>Item Barcode</label>
+              <div [className]="itemArray[i] != null ? 'form-group input-group' : 'form-group input-group'">
+                <input type="text" [className]="itemArray[i] != null ? 'form-control is-valid' : 'form-control is-invalid'" #item_barcode_{{i}} id="item_barcode_{{ i }}" placeholder="item_barcode" (change)="ngOnChangesMoreItem(itemType.value, i)">
+              </div>
+              <div *ngIf="itemArray[i] != null">
+                <!-- ngIf* -- > return != null -->
+                <option i18n class="form-control">ID: {{ itemArray[i] }}</option>
+                <!-- <option i18n class="form-control">Nome: {{ testItemName }}</option> -->
+              </div>
+              <br>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
+  </div>
+  <br>
+  <!-- Alerts -->
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Alert Conferma Eliminazione -->
+      <ngb-alert *ngIf="successMessage" type="danger" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
+      <!-- Alert Conferma Aggiunta -->
+      <ngb-alert *ngIf="successMessageAdd" type="success" (close)="successMessageAdd = ''">{{ successMessageAdd }}</ngb-alert>
+      <!-- Alert Aggiunta Fallita -->
+      <ngb-alert *ngIf="failedMessageAdd" type="danger" (close)="failedMessageAdd = ''">{{ failedMessageAdd }}</ngb-alert>
+    </div>
+  </div>
+  <br>
+  <!-- Tabella Match -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <!-- Header -->
+        <div class="card-header bg-transparent">
+          <div class="row">
+            <div class="col">
+              <h2 i18n class="mb-0">Matches Online</h2>
+            </div>
+            <div class="col text-right">
+              <div *ngIf="showPrev">
+                <i class='fa fa-2x fa-picture-o'></i> <img style='max-width: 100%;max-height: 80%;' src='data:image/png;base64,{{ prev }}'/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Contenuto -->
+        <div class="card-body">
+          <!-- Tabella Smartmatches -->
+          <div class="table-responsive" id="stampare">
+            <table class="display table align-items-center table-flush" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+            <thead class="thead-light">
+              <tr>
+                <th i18n scope="col">Template Name</th>
+                <th i18n scope="col">Label ID</th>
+                <th i18n scope="col">Items</th>
+                <th i18n scope="col">Is Active</th>
+                <th i18n scope="col">Bypass Promo</th>
+                <th i18n scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let match of matchs$">
+                <td *ngIf="match.is_active == true">{{ match.template_name }}</td>
+                <td *ngIf="match.is_active == true">{{ match.label_id }}</td>
+                <td *ngIf="match.is_active == true">{{ match.items }}</td>
+                <td *ngIf="match.is_active == true">
+                  <span i18n class="badge badge-success">SI</span>
+                </td>
+                <td *ngIf="match.is_active == true">
+                  <div *ngIf="match.bypass_promo == true; else elseBlock"><span i18n class="badge badge-success">SI</span></div>
+                  <ng-template #elseBlock><span i18n class="badge badge-danger">NO</span></ng-template>
+                </td>
+                <td *ngIf="match.is_active == true">
+                  <div class="btn-group btn-group-sm" role="group" aria-label="Tools">
+                    <button type="button" class="btn btn-secondary" (click)="openPreview(match.id)">
+                    <i class="fas fa-eye"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger" (click)="open(content, match.id, match.id)">
+                    <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            </table>                        
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

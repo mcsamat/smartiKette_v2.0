@@ -1,109 +1,104 @@
 <div class="header bg-gradient-info pb-8 pt-5 pt-md-5"></div>
-
 <!-- Modal DELETE Item -->
 <ng-template #content let-modal>
-    <div class="modal-header"  data-backdrop="static">
-      	<h4 class="modal-title" id="modal-basic-title">Conferma eliminazione</h4>
-      	<button type="button" class="close" aria-label="Close" (click)="modal.close()">
-		<span aria-hidden="true">&times;</span>
-      	</button>
-    </div>
-    <div class="modal-body">
-        <p>Sicuro di voler eliminare l'articolo <strong>{{ alias }}</strong>?</p>
-    </div>
-    <div class="modal-footer">
-		<button class="btn btn-danger" (click)="deleteItem()" type="button">Elimina</button>
-      	<button type="button" class="btn btn-outline-default" (click)="modal.close()">Anulla</button>
-    </div>
+  <div class="modal-header"  data-backdrop="static">
+    <h4 i18n class="modal-title" id="modal-basic-title">Conferma eliminazione</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+    <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p i18n>Sicuro di voler eliminare l'articolo <strong>{{ alias }}</strong>?</p>
+  </div>
+  <div class="modal-footer">
+    <button i18n class="btn btn-danger" (click)="deleteItem()" type="button">Elimina</button>
+    <button i18n type="button" class="btn btn-outline-default" (click)="modal.close()">Anulla</button>
+  </div>
 </ng-template>
 <!-- Modal DELETE Multiple Items -->
 <ng-template #multiple let-modal>
-    <div class="modal-header"  data-backdrop="static">
-      	<h4 class="modal-title" id="modal-basic-title">Conferma eliminazione multipla</h4>
-      	<button type="button" class="close" aria-label="Close" (click)="modal.close()">
-		<span aria-hidden="true">&times;</span>
-      	</button>
-    </div>
-    <div class="modal-body">
-        <p>Sicuro di voler eliminare gli articoli selezionati ({{ index }})?</p>
-    </div>
-    <div class="modal-footer">
-		<button class="btn btn-danger" (click)="deleteMultiple()" type="button">Elimina</button>
-      	<button type="button" class="btn btn-outline-default" (click)="modal.close()">Anulla</button>
-    </div>
+  <div class="modal-header"  data-backdrop="static">
+    <h4 i18n class="modal-title" id="modal-basic-title">Conferma eliminazione multipla</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+    <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p i18n>Sicuro di voler eliminare i <strong>{{ index }}</strong> articoli selezionati?</p>
+  </div>
+  <div class="modal-footer">
+    <button i18n class="btn btn-danger" (click)="deleteMultiple()" type="button">Elimina</button>
+    <button i18n type="button" class="btn btn-outline-default" (click)="modal.close()">Anulla</button>
+  </div>
 </ng-template>
-
 <!-- Contenuto della pagina -->
 <div class="container-fluid mt--7">
-	<div class="row">
-		<div class="col">
-			<div class="card shadow">
-				<!-- Header -->
-				<div class="card-header bg-transparent">
-					<!-- Alert Conferma Eliminazione -->
-					<ngb-alert *ngIf="successMessage" type="danger" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
-					<h2 class="mb-0">Lista Articoli</h2>
-					<!-- Elimina o Crea Nuovo Articolo -->
-					<div class="text-right">
-                        <div ngbDropdown class="d-inline-block">
-							<button class="btn btn-outline-info" id="delItemBtn" (click)="checkAll()">
-								Seleziona Tutto <span *ngIf="index != 0">({{ index }})</span>
-							</button>
-							<button *ngIf="index != 0" class="btn btn-outline-danger" id="delItemBtn" (click)="deleteMultiple()">
-								<i class="fa fa-trash"></i> Elimina Selezionati
-							</button>
-                            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-								<i class="fas fa-caret-down"></i> Crea Nuovo
-							</button>
-                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-								<button ngbDropdownItem *ngFor="let item of items_t" [value]="item.id" (click)="addItem(item.id)">{{ item.name }}</button>
-                            </div>
-                        </div>
-                    </div>
-				</div>
-
-				
-				<!-- Card Body -->
-				<div class="card-body">
-					<!-- Tabella Articoli -->
-					<div class="table-responsive" id="stampare">
-							<table class="display table table-striped align-items-center table-flush" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
-								<thead class="thead-light">
-									<tr>
-										<th scope="col"></th>
-										<th scope="col">Alias</th>
-										<th scope="col">ID Customer</th>
-										<!-- <th scope="col">ID Database</th> -->
-										<th scope="col">Data Revisione</th>
-										<th scope="col">Tipo</th>
-									</tr>
-								</thead>
-								<tbody id="stampare">
-									<tr *ngFor="let item of items$">
-										<td>
-											<!-- Checkbox -->&nbsp;	
-											<input type="checkbox" #checkboxes class="form-check-input" id="{{ item.id }}" (change)="ngOnSelected()">
-											<div class="btn-group btn-group-sm" role="group" aria-label="Tools">
-												<!-- Elimina Item con Modal -->
-												<button type="button" class="btn btn-danger" (click)="open(content, item.id, item.reserved_alias)">
-													<i class="fas fa-trash"></i>
-												</button>
-											</div>
-										</td>
-										<th>
-											<a [routerLink]="" (click)="viewItem(item.id)">{{ item.reserved_alias }}</a>
-										</th>
-										<td>{{ item.item_identifier }}</td>
-										<!-- <td>{{ item.id }}</td> -->
-										<td>{{ item.current_revision_date }}</td>
-										<td>{{ item.item_type }}</td>
-									</tr>
-								</tbody>
-							</table>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <!-- Header -->
+        <div class="card-header bg-transparent">
+          <!-- Alert Conferma Eliminazione -->
+          <ngb-alert *ngIf="successMessage" type="danger" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
+          <h2 i18n class="mb-0">Lista Articoli</h2>
+          <!-- Elimina o Crea Nuovo Articolo -->
+          <div class="text-right">
+            <div ngbDropdown class="d-inline-block">
+              <button i18n class="btn btn-outline-info" id="delItemBtn" (click)="checkAll()">
+              Seleziona Tutto <span *ngIf="index != 0">({{ index }})</span>
+              </button>
+              <button i18n *ngIf="index != 0" class="btn btn-outline-danger" id="delItemBtn" (click)="open(multiple)">
+              <i class="fa fa-trash"></i> Elimina Selezionati
+              </button>
+              <button i18n class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+              <i class="fas fa-caret-down"></i> Crea Nuovo
+              </button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem *ngFor="let item of items_t" [value]="item.id" (click)="addItem(item.id)">{{ item.name }}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+          <!-- Tabella Articoli -->
+          <div class="table-responsive" id="stampare">
+            <table class="display table table-striped align-items-center table-flush" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+            <thead class="thead-light">
+              <tr>
+                <th i18n scope="col"></th>
+                <th i18n scope="col">Alias</th>
+                <th i18n scope="col">ID Customer</th>
+                <!-- <th scope="col">ID Database</th> -->
+                <th i18n scope="col">Data Revisione</th>
+                <th i18n scope="col">Tipo</th>
+              </tr>
+            </thead>
+            <tbody id="stampare">
+              <tr *ngFor="let item of items$">
+                <td>
+                  <!-- Checkbox -->&nbsp;	
+                  <input type="checkbox" #checkboxes class="form-check-input" id="{{ item.id }}" (change)="ngOnSelected()">
+                  <div class="btn-group btn-group-sm" role="group" aria-label="Tools">
+                    <!-- Elimina Item con Modal -->
+                    <button type="button" class="btn btn-danger" (click)="open(content, item.id, item.reserved_alias)">
+                    <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </td>
+                <th>
+                  <a [routerLink]="" (click)="viewItem(item.id)">{{ item.reserved_alias }}</a>
+                </th>
+                <td>{{ item.item_identifier }}</td>
+                <!-- <td>{{ item.id }}</td> -->
+                <td>{{ item.current_revision_date }}</td>
+                <td>{{ item.item_type }}</td>
+              </tr>
+            </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

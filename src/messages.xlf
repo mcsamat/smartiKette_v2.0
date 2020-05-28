@@ -235,11 +235,268 @@
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="1ae52292870ec85a5cf6398698ade759603828d4" datatype="html">
+        <source>Dettagli Etichetta</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/viewlabel/viewlabel.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cba725426a9dd450d6742c640c4513a0e17afd71" datatype="html">
+        <source>Label ID</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/viewlabel/viewlabel.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/viewlabel/viewlabel.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">183</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/visualizzarticolo/visualizzarticolo.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4717da1cead34e4e086a8181c3865ff112f67340" datatype="html">
+        <source>Power Status</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/viewlabel/viewlabel.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/etichette/etichette.component.html</context>
+          <context context-type="linenumber">117</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="93204c6a722d0a34fe32fd864052af464b5c3609" datatype="html">
+        <source>Connection Status</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/viewlabel/viewlabel.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/etichette/etichette.component.html</context>
+          <context context-type="linenumber">118</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="88e3c6c4c5fd7d30bfa2a9a8c2f9f2d56ee639a4" datatype="html">
+        <source>Updated At</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/viewlabel/viewlabel.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f61c6867295f3b53d23557021f2f4e0aa1d0b8fc" datatype="html">
+        <source>Type</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/viewlabel/viewlabel.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="de05cbcdb12f6d1c7b32f6075c8b91fce13c8d59" datatype="html">
+        <source>Access Point ID</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/viewlabel/viewlabel.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c2e8b62b61975e063a3cdfd89cabf7c63e87942e" datatype="html">
+        <source>Matches Associati</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/viewlabel/viewlabel.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/visualizzarticolo/visualizzarticolo.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="812021f9ff6140cd86628241bdfa129fe3f1f60c" datatype="html">
+        <source>Template Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/viewlabel/viewlabel.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">182</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/visualizzarticolo/visualizzarticolo.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6ffd71eda225c5d971b1fef21df03c06b41ba8a3" datatype="html">
+        <source>Items</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/viewlabel/viewlabel.component.html</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">184</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/visualizzarticolo/visualizzarticolo.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bc6256efb71c7e220974bf3fb701f840e0afd08b" datatype="html">
+        <source>Is Active</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/viewlabel/viewlabel.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">113</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">185</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/visualizzarticolo/visualizzarticolo.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2ad4aa51f9cd9bd724cc0cc9ba6d2c1cac9b2d4e" datatype="html">
+        <source>Bypass Promo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/viewlabel/viewlabel.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">186</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/visualizzarticolo/visualizzarticolo.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3dbc8051acd98a6dd667e770297a5318115f377f" datatype="html">
+        <source>Match e Immagini</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/viewlabel/viewlabel.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/visualizzarticolo/visualizzarticolo.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c9833e69b1e87ae7ec7a042ad7469121d4345f57" datatype="html">
+        <source>SI</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/viewlabel/viewlabel.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/viewlabel/viewlabel.component.html</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">246</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">196</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">199</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="125e145c96fb5463c13ad84ffaab4ba46b12b9d2" datatype="html">
+        <source>NO</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/viewlabel/viewlabel.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/viewlabel/viewlabel.component.html</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">247</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">200</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/visualizzarticolo/visualizzarticolo.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/visualizzarticolo/visualizzarticolo.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="46ba4e7a2938cc10be9c6cb165394850b5636af0" datatype="html">
+        <source>
+                    Attiva
+                    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/viewlabel/viewlabel.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/visualizzarticolo/visualizzarticolo.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="29e62a676e93aa7e4a60ca728d92af9e390be2f7" datatype="html">
+        <source>Torna Indietro</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/viewlabel/viewlabel.component.html</context>
+          <context context-type="linenumber">97</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="57b822fa5d33566753c8a351b3b48613893d98c0" datatype="html">
+        <source>Crea un nuovo articolo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/crearticolo/crearticolo.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="941e9a74a53627653d79f755bcef135f8a50b9d0" datatype="html">
+        <source>Crea</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/crearticolo/crearticolo.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="be6cb1f18ef60142303d3406b5491a12decb9e1b" datatype="html">
+        <source>Annulla</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/crearticolo/crearticolo.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/visualizzarticolo/visualizzarticolo.component.html</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="c3da5ca8f7602ca33f7f36d8e92a26ae94ef9a86" datatype="html">
         <source>Informazioni</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
           <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d7e45757ad0767c595086cc72b4d833537ef1070" datatype="html">
+        <source>Tipologia installazione</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="128a9a7b0259b2e13ecc2224381ae29896bfb0a9" datatype="html">
@@ -274,313 +531,923 @@
         <source>Installazione</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">93</context>
+          <context context-type="linenumber">92</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b48ed5f4eb697b79726848384b40d14cfb415920" datatype="html">
         <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Informazioni Installazione</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">94</context>
+          <context context-type="linenumber">93</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a3093c72978932808f838f358dc30195d3354953" datatype="html">
         <source>Nome: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ varInstName }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">100</context>
+          <context context-type="linenumber">99</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="fe9aca86e74ea1ca6618bd44bf79f98fef1450f8" datatype="html">
-        <source>Tipologia: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ varInstallation.installation_type }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+      <trans-unit id="a3e107257950e53de49303ba2e079b07eacfa004" datatype="html">
+        <source>Tipologia: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ varInstallationType }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">101</context>
+          <context context-type="linenumber">100</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bbf26418ab365c605b7905b8fa6aa79a4ce6baf4" datatype="html">
         <source>Ruolo: <x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/> Nodo<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">103</context>
+          <context context-type="linenumber">102</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4e761ae394f288e021f1490f1ee66b002131c388" datatype="html">
-        <source>Import patch: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ varInstallation.import_base_path }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+      <trans-unit id="6031efd86de6a198b91f5a7fe86a2258c5aed070" datatype="html">
+        <source>Import patch: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ importBasePath }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">105</context>
+          <context context-type="linenumber">104</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9dbad9584d84f8b6fc774c7316f27b1ae0118379" datatype="html">
         <source>Lista Custom Templates</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">116</context>
+          <context context-type="linenumber">114</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b212a5c1bc634223c740ea05c633ef67cdd6d227" datatype="html">
         <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Templates</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">117</context>
+          <context context-type="linenumber">115</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ad2c37d862d54d83652774839a01f569fa7dbb36" datatype="html">
         <source>Tiplogia</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">133</context>
+          <context context-type="linenumber">131</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">242</context>
+          <context context-type="linenumber">236</context>
         </context-group>
       </trans-unit>
       <trans-unit id="05446d023a2567d5bf7896720224f7f5e5f23ffa" datatype="html">
         <source>Lista Template</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">139</context>
+          <context context-type="linenumber">137</context>
         </context-group>
       </trans-unit>
       <trans-unit id="010d24ef3c43b2d8f45a4d6cba7d73e12ee1557e" datatype="html">
         <source>Display</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">159</context>
+          <context context-type="linenumber">155</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6cfa20eabdc373c4b380ed7cd959a72e8d1377d3" datatype="html">
         <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Display</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">160</context>
+          <context context-type="linenumber">156</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1dc23b419aa6b1e1a690fa575c2567810367d6f5" datatype="html">
         <source>Stato display a disposizione</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">161</context>
+          <context context-type="linenumber">157</context>
         </context-group>
       </trans-unit>
       <trans-unit id="023157ec3caadfb01a61a9eab72e5751ec50ade2" datatype="html">
         <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Etichette</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">169</context>
+          <context context-type="linenumber">165</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="34b93c36a7e421088008bacf7bd5e317a11015dd" datatype="html">
-        <source>Online <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/><x id="INTERPOLATION" equiv-text="{{ varLabelStat.connection.online }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> - Offline <x id="START_TAG_SPAN_1" ctype="x-span" equiv-text="&lt;span&gt;"/><x id="INTERPOLATION_1" equiv-text="{{ varLabelStat.connection.offline }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+      <trans-unit id="89feb50022a37af8d9b1d341441baf6d089e5e19" datatype="html">
+        <source>Online <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/><x id="INTERPOLATION" equiv-text="{{ labelOnline }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> - Offline <x id="START_TAG_SPAN_1" ctype="x-span" equiv-text="&lt;span&gt;"/><x id="INTERPOLATION_1" equiv-text="{{ labelOffline }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">171</context>
+          <context context-type="linenumber">167</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="53436a5cdaf15bf5ddf3254cd8b06fa96d368323" datatype="html">
-        <source>Battery Good <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/><x id="INTERPOLATION" equiv-text="{{ varLabelStat.battery.good }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> - Battery Bad <x id="START_TAG_SPAN_1" ctype="x-span" equiv-text="&lt;span&gt;"/><x id="INTERPOLATION_1" equiv-text="{{ varLabelStat.battery.bad }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+      <trans-unit id="00757a63384a280a1c356139cec96980b4985762" datatype="html">
+        <source>Battery Good <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/><x id="INTERPOLATION" equiv-text="{{ batteryGood }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> - Battery Bad <x id="START_TAG_SPAN_1" ctype="x-span" equiv-text="&lt;span&gt;"/><x id="INTERPOLATION_1" equiv-text="{{ batteryBad }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">172</context>
+          <context context-type="linenumber">168</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6ed179fe754d40c0d10947cf716984d69b474d28" datatype="html">
         <source>Totale Etichette Match Attivi <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/><x id="INTERPOLATION" equiv-text="{{ varTotMatch }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">173</context>
+          <context context-type="linenumber">169</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4ba895fc37c9896228d0b7b395ba0a7e68d974ad" datatype="html">
         <source>APs</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">186</context>
+          <context context-type="linenumber">181</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="32da5d2d10fece0aaf4fcbfda697a82f887ef019" datatype="html">
-        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Access Points <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/><x id="INTERPOLATION" equiv-text="{{ varAps.total_access_point }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+      <trans-unit id="0989cd7adf5de903fac2b35f50651099dc616ad0" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Access Points <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/><x id="INTERPOLATION" equiv-text="{{ totalAP }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">187</context>
+          <context context-type="linenumber">182</context>
         </context-group>
       </trans-unit>
       <trans-unit id="45cc8ca94b5a50842a9a8ef804a5ab089a38ae5c" datatype="html">
         <source>ID</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">197</context>
+          <context context-type="linenumber">192</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">309</context>
+          <context context-type="linenumber">301</context>
         </context-group>
       </trans-unit>
       <trans-unit id="0cf094012e7815cbd5d4d12e2639d66ceb427bbc" datatype="html">
         <source>Stato</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">198</context>
+          <context context-type="linenumber">193</context>
         </context-group>
       </trans-unit>
       <trans-unit id="06d0491684a3972bb9ec45b5f05b18ce11488080" datatype="html">
         <source>Nome</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">199</context>
+          <context context-type="linenumber">194</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">311</context>
+          <context context-type="linenumber">303</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/location/location.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/location/location.component.html</context>
+          <context context-type="linenumber">105</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/location/location.component.html</context>
+          <context context-type="linenumber">154</context>
         </context-group>
       </trans-unit>
       <trans-unit id="dcfb104760612a81bffaa53156309a5eac91da9b" datatype="html">
         <source>Versione</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">200</context>
+          <context context-type="linenumber">195</context>
         </context-group>
       </trans-unit>
       <trans-unit id="84738b1bbb866302445901b1bca1e9cb5bf8d006" datatype="html">
         <source>IP</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">201</context>
+          <context context-type="linenumber">196</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a9b9a2e5b52eaf8e5323e8b3cce560446dcd39b2" datatype="html">
         <source>Oggetti</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">227</context>
+          <context context-type="linenumber">221</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="b8281db666aee31743dd63d47fd4aa8d20d17bab" datatype="html">
-        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Articoli <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/><x id="INTERPOLATION" equiv-text="{{ varTotItem.total_items }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+      <trans-unit id="ad5c5afbd6c19a27f1e9de04a7461e38f2563c19" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Articoli <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/><x id="INTERPOLATION" equiv-text="{{ varTotItem }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">228</context>
+          <context context-type="linenumber">222</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b63fc5cbedd1b39881515ea55093a94f99b768d9" datatype="html">
         <source>Tipologie di articoli <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/><x id="INTERPOLATION" equiv-text="{{ totalItemType }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">234</context>
+          <context context-type="linenumber">228</context>
         </context-group>
       </trans-unit>
       <trans-unit id="e43756328653a293fc3ebdb76543c381de114946" datatype="html">
         <source>Tipo</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">241</context>
+          <context context-type="linenumber">235</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/etichette/etichette.component.html</context>
+          <context context-type="linenumber">116</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/articoli/articoli.component.html</context>
+          <context context-type="linenumber">74</context>
         </context-group>
       </trans-unit>
       <trans-unit id="633889144b67c8c4d457999334c356e8b378338d" datatype="html">
         <source>Propagabile</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">243</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="c9833e69b1e87ae7ec7a042ad7469121d4345f57" datatype="html">
-        <source>SI</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">252</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="125e145c96fb5463c13ad84ffaab4ba46b12b9d2" datatype="html">
-        <source>NO</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">253</context>
+          <context context-type="linenumber">237</context>
         </context-group>
       </trans-unit>
       <trans-unit id="888ff4d452e393a7ae10ba798b8583f32717b212" datatype="html">
         <source>Dati</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">268</context>
+          <context context-type="linenumber">261</context>
         </context-group>
       </trans-unit>
       <trans-unit id="eee6be54c00e853943389ef13ed3b32b9caf59c1" datatype="html">
         <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Importazioni</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">269</context>
+          <context context-type="linenumber">262</context>
         </context-group>
       </trans-unit>
       <trans-unit id="55f0830be868a597d3ee07afcfa76bc7c56b3101" datatype="html">
         <source>Ultima Importazione</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">279</context>
+          <context context-type="linenumber">272</context>
         </context-group>
       </trans-unit>
       <trans-unit id="633af10e4982139e267c9e1ce114106ce7e7f569" datatype="html">
         <source>Numero Articoli</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">280</context>
+          <context context-type="linenumber">273</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9f0a659bc081eb603b2450762f305e7646a45e52" datatype="html">
         <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Device mobili</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">302</context>
+          <context context-type="linenumber">294</context>
         </context-group>
       </trans-unit>
       <trans-unit id="18297ff74a28493034e0d96cc9a8c91ce4447d44" datatype="html">
         <source>IMEI</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">310</context>
+          <context context-type="linenumber">302</context>
         </context-group>
       </trans-unit>
       <trans-unit id="81728e62b193e3d08a1627cf177e8f33fb62e9cd" datatype="html">
         <source>Firebase ID</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">312</context>
+          <context context-type="linenumber">304</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4b4356701c0a4d6af518c6c960780837735dbe8e" datatype="html">
         <source>Ultimo login</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">313</context>
+          <context context-type="linenumber">305</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7b817ba883ad8dad32f6dc5bae8f690caa7deb2d" datatype="html">
         <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Stato Sistema e Versioni Software</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">340</context>
+          <context context-type="linenumber">331</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fc082c5ec7bb57ade31a185532553ceb2c65ab65" datatype="html">
         <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Sistema </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">346</context>
+          <context context-type="linenumber">337</context>
         </context-group>
       </trans-unit>
       <trans-unit id="0facde1cc4b98417fc52766e1cd5865c5c7acf6e" datatype="html">
         <source>Free Disk Space*</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">340</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c019e5b068c353164b83756de833a86de5764127" datatype="html">
+        <source>Boot Time: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ system_info.system_boot_time }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
           <context context-type="linenumber">349</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6f2efdb0ec133be184612165ea17c2e3023125ba" datatype="html">
+        <source>Disk Total Space: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ system_info.system_disk_total_space }}"/> GB<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">350</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b266bc473a2639e1ae0081586d91cba5c70bae12" datatype="html">
+        <source>Disk Free Space: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ system_info.system_disk_free_space }}"/> GB<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">351</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0de84dca50eed00af2c8f1ab3e85c5e01bc3b783" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> PHP <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/><x id="INTERPOLATION" equiv-text="{{ system_info.php_version }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">354</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="729ac352e7fff35dcfb441937eb3fceb27c7f3eb" datatype="html">
+        <source>PHP version: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ system_info.php_version }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">355</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6053c49841a559735986a604a54873bde9e358c5" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Apache <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/><x id="INTERPOLATION" equiv-text="{{ system_info.apache_version }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">358</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="977591fb95e9bd3ce34360e15155dbd018a1430b" datatype="html">
+        <source>Apache version: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ system_info.apache_version }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">359</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e4e268a2af916d639779cf93dd93eef341b2db98" datatype="html">
+        <source>Apache uptime: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ system_info.apache_uptime }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">360</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bc8aae44bff362ce4323e4c79c98630bf47dbac2" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> MongoDB <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/><x id="INTERPOLATION" equiv-text="{{ system_info.mongodb_version }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">363</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="489aaebd73f47000d38ad0b6556ca0fbba1920c6" datatype="html">
+        <source>MongoDB version: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ system_info.mongodb_version }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">364</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3b894dffd27f6b677831d216ba7d1cf670ec4779" datatype="html">
+        <source>MongoDB uptime: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ system_info.mongodb_uptime }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">365</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="90b9790efaf795d2f562119804560247a061d865" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> MariaDB <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/><x id="INTERPOLATION" equiv-text="{{ system_info.mariadb_version }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">368</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bab3a9c82ee946cca29cae3220bd65d9f61a346c" datatype="html">
+        <source>MariaDB version: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ system_info.mariadb_version }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">369</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e2566801eb4747a7f68323c48234cedb23704715" datatype="html">
+        <source>MariaDB uptime: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ system_info.mariadb_uptime }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">370</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9729cd8a3689644d744c6b1194b5f58a26d62b92" datatype="html">
         <source>Conferma eliminazione</source>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/etichette/etichette.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/location/location.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/articoli/articoli.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3d32a1a38b37ff784688a76ba9545cb938f6819b" datatype="html">
+        <source>Sicuro di voler eliminare l&apos;etichetta <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ label_name }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/etichette/etichette.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="06deab7b1e7ffd673d9260bc8c62cba71206f93a" datatype="html">
+        <source>Elimina</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/etichette/etichette.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/location/location.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/articoli/articoli.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/articoli/articoli.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="20821b36c1994596776652c74ca14fad1118a464" datatype="html">
+        <source>Anulla</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/etichette/etichette.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/etichette/etichette.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/etichette/etichette.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/location/location.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/articoli/articoli.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/articoli/articoli.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="725ce4236f3688aa6ec6de9cf06099acb2eb0764" datatype="html">
+        <source>Richiesta registrazione etichette manuale</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/etichette/etichette.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="626edd9b3daf542f463c6315fe7e6d6d52b1bef3" datatype="html">
+        <source>Inserisci gli ID delle etichette separate da spazi o virgole.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/etichette/etichette.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="630dc1db14cac7062044b21b62448a864c050b06" datatype="html">
+        <source>Inserisci almeno un ID!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/etichette/etichette.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="54744da45f8f87e9f6da338a4fecb228ddebe58c" datatype="html">
+        <source>Registra</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/etichette/etichette.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="11b41b534927d87b737e240db5625d2115c1dc1d" datatype="html">
+        <source>Richiesta registrazione etichette con file</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/etichette/etichette.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ac5623f760dddc3d85452ec10d1aff9fe944d60b" datatype="html">
+        <source>Scegli il file da caricare:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/etichette/etichette.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fe79fb894d363d8563c6533d169bd6fb42e8f5f0" datatype="html">
+        <source>Carica</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/etichette/etichette.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5d55ffdbe286fd1e7f31330813cda39b8e2bd5dc" datatype="html">
+        <source>Lista Etichette</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/etichette/etichette.component.html</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7cff7ab15a8cdb21c22b61344c04fd4f997f8220" datatype="html">
+        <source>Manualmente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/etichette/etichette.component.html</context>
+          <context context-type="linenumber">101</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b8b54137f6bc25d38199d09ea0cbe0eb76b63645" datatype="html">
+        <source>Da file</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/etichette/etichette.component.html</context>
+          <context context-type="linenumber">102</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="871456577dfb94b4eb8445c66416f922cd4d875c" datatype="html">
+        <source>ID Etichetta</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/etichette/etichette.component.html</context>
+          <context context-type="linenumber">115</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8d93d6d95022b6be04097c5263bd905ed33abea5" datatype="html">
+        <source>Data Revisione</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/etichette/etichette.component.html</context>
+          <context context-type="linenumber">119</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/articoli/articoli.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4a3a5f5812753c291508f0f0e6659c5e8d3de6e8" datatype="html">
+        <source>ID Access Point</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/etichette/etichette.component.html</context>
+          <context context-type="linenumber">120</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="568ff4384b7ca93af47ee80fa0b8841e097d8a0b" datatype="html">
+        <source>Sicuro di voler eliminare la Location <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ alias }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/location/location.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="712dc2210be5315760efd899784b863ee2e5575e" datatype="html">
+        <source>Corsie</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/location/location.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4675bc663b2a69fd93208cf78cf3f227690b5c0b" datatype="html">
+        <source>Elenco delle corsie</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/location/location.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8f33481f557b9ee2ed212b328c6ad14747c2215e" datatype="html">
+        <source>Posizione</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/location/location.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="21765f1bd1cd0eb20269d624cb492482cba9ee75" datatype="html">
+        <source>Elenco delle posizioni</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/location/location.component.html</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9cf385bb1dc30bbbed906d9df50f342668c80cd5" datatype="html">
+        <source>Ripiano</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/location/location.component.html</context>
+          <context context-type="linenumber">134</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="431a22278bda43599eebb89662a8e008f72ca565" datatype="html">
+        <source>Elenco dei ripiani</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/location/location.component.html</context>
+          <context context-type="linenumber">135</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3c0effaf3f2388d9738ae4ccd1d88deb2189bed8" datatype="html">
+        <source>Sicuro di voler eliminare lo SmartMatch selezionato?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0ec9210c598ad7b3ad116ee04def87399523ba97" datatype="html">
+        <source>Aggiungi Match</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f0c8382c40f4b3a450e184a605a2bfd48e3c6e5e" datatype="html">
+        <source>Tipo Articolo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f732c9e84e68a98522e76b56f5bbef7b8b9755ee" datatype="html">
+        <source>Tipo Barcode</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c75e43ffd074a368986efc6248a5a562a1088097" datatype="html">
+        <source>ITEM BARCODE</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="115912a2de8297b6da433481f2f7a0fc4ffe6958" datatype="html">
+        <source>EAN 13</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="66322fa0e1fc0278d08cd05168fdf5b31f7ace07" datatype="html">
+        <source>MINSAN decimale</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e3aebb7a8e47b6831024da94983edf438abcd303" datatype="html">
+        <source>MINSAN alfa</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1e12554886683414162ae15ea0338d3391ebfb42" datatype="html">
+        <source>Item Barcode</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">129</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8d28cdbcc9d43995b0d77cd12688b6406dca8f7d" datatype="html">
+        <source>ID: <x id="INTERPOLATION" equiv-text="{{ testItem }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="afdb32435048eacf688d097d23e0b15e80290fbf" datatype="html">
+        <source>Nome: <x id="INTERPOLATION" equiv-text="{{ testItemName }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="467bff8643ae9525e0477374f132a6b19bedbfd5" datatype="html">
+        <source>Template</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="201564b9db0bb9c28a498f0186f98ff11ae4d7e1" datatype="html">
+        <source>Ruota di 90 gradi</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e00977a44e31efeb5acee964c435b9d2f3405b5e" datatype="html">
+        <source>Ruota di 180 gradi</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">100</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="37a320867f54ca5f07d936b4395090e2a089cfd8" datatype="html">
+        <source>Ruota di 270 gradi</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">101</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cfd20fb506c401c97db26cc97d257934de35c5ae" datatype="html">
+        <source>Altre opzioni:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">110</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bd4af422fb59f88e903cf5f44db64e16696d23e0" datatype="html">
+        <source>Promo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">117</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9dee891b79d1a8bc4e6c72600c8905830d87b0fc" datatype="html">
+        <source>Aggiungi</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">123</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b2ced3c4ebd93b3171476a4c8e4c7146bf063f3f" datatype="html">
+        <source>ID: <x id="INTERPOLATION" equiv-text="{{ itemArray[i] }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">135</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="463760485e08644917081b1ea6263810bfbfcc44" datatype="html">
+        <source>Matches Online</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/smartmatch/smartmatch.component.html</context>
+          <context context-type="linenumber">166</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bca2f51680902d4f9fbd4c63e3611fa062e75fd5" datatype="html">
+        <source>Sicuro di voler eliminare l&apos;articolo <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ alias }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/articoli/articoli.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bfacb2d74be5969149485eee758392fff8045a7f" datatype="html">
+        <source>Conferma eliminazione multipla</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/articoli/articoli.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1ca29b3552aa2dee76b8b6e4e130cbccb5434d1b" datatype="html">
+        <source>Sicuro di voler eliminare i <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ index }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> articoli selezionati?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/articoli/articoli.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f350b752f07d531a45f82cc988ec6ed34f042135" datatype="html">
+        <source>Lista Articoli</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/articoli/articoli.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ace60a6f36c74032848bb80fcd82e61d70e1129a" datatype="html">
+        <source>
+              Seleziona Tutto <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>(<x id="INTERPOLATION" equiv-text="{{ index }}"/>)<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/articoli/articoli.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d99e863049fc45bb8bdec4f620c3f944c0143276" datatype="html">
+        <source>
+              <x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Elimina Selezionati
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/articoli/articoli.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a204ca3dfdb2f1d3acc50750207b2c1d19369222" datatype="html">
+        <source>
+              <x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Crea Nuovo
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/articoli/articoli.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fbaaeb297e70b9a800acf841b9d26c19d60651ef" datatype="html">
+        <source>Alias</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/articoli/articoli.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="29f476c15ac55e0d315c7eb858f6021950e4e799" datatype="html">
+        <source>ID Customer</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/articoli/articoli.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2a8d66efbeff665600bae184428a4731c64a9c02" datatype="html">
+        <source>Dettagli Articolo <x id="INTERPOLATION" equiv-text="{{ nomeArticolo }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/visualizzarticolo/visualizzarticolo.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e35358d863d2ffdd8e2cf8e8b55224bd77ffe721" datatype="html">
+        <source>Salva</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/visualizzarticolo/visualizzarticolo.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6bd9f22d2aff43f87620457a5c75565203f2ef4f" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>SI<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/visualizzarticolo/visualizzarticolo.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="43a384f7a85a3a8fd23e363650d7522fe0461f9b" datatype="html">
+        <source>&gt; smartiKette by Promelit</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/login/login.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="eb77ecdd6fad05a9fb977c6924b10dc53ce28ec7" datatype="html">
+        <source>Etichette elettroniche e digital signage al top.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/login/login.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f9c96ee8062a68308d14eaa287b3893a04e5ac91" datatype="html">
+        <source>
+              <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Credenziali errate!<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> Per favore riprova.
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/login/login.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1ef50054c93bac084e52b98095d83d83251f63ac" datatype="html">
+        <source>SmartikEtte 3.2</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/login/login.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="44dc995bb226f16a724b3849a1ecb7b272f2dba2" datatype="html">
+        <source>Autenticazione</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/login/login.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b8f4fbd0a9fd8095aa46f1c3ef8229bd7df2c74f" datatype="html">
+        <source>Ricordami</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/login/login.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f02931dbfa67047a0030175a69e3890e6d121893" datatype="html">
+        <source>Accedi</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/login/login.component.html</context>
+          <context context-type="linenumber">68</context>
         </context-group>
       </trans-unit>
     </body>

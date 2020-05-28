@@ -1,178 +1,171 @@
 <div class="header bg-gradient-info pb-8 pt-5 pt-md-5"></div>
-
 <!-- Modal DELETE Label -->
 <ng-template #content let-modal>
-    <div class="modal-header"  data-backdrop="static">
-        <h4 class="modal-title" id="modal-basic-title">Conferma eliminazione</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.close()">
-        <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <p>Sicuro di voler eliminare l'etichetta <strong>{{ label_name }}</strong>?</p>
-    </div>
-    <div class="modal-footer">
-		<button class="btn btn-danger" (click)="deleteLabel()" type="button">Elimina</button>
-        <button type="button" class="btn btn-outline-default" (click)="modal.close()">Anulla</button>
-    </div>
+  <div class="modal-header"  data-backdrop="static">
+    <h4 i18n class="modal-title" id="modal-basic-title">Conferma eliminazione</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+    <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p i18n>Sicuro di voler eliminare l'etichetta <strong>{{ label_name }}</strong>?</p>
+  </div>
+  <div class="modal-footer">
+    <button i18n class="btn btn-danger" (click)="deleteLabel()" type="button">Elimina</button>
+    <button i18n type="button" class="btn btn-outline-default" (click)="modal.close()">Anulla</button>
+  </div>
 </ng-template>
-
 <!-- Modal POST Label - Manual -->
 <ng-template #addManual let-modal>
-    <div class="modal-header"  data-backdrop="static">
-        <h4 class="modal-title" id="modal-basic-title">Richiesta registrazione etichette manuale</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.close()">
-        <span aria-hidden="true">&times;</span>
-        </button>
+  <div class="modal-header"  data-backdrop="static">
+    <h4 i18n class="modal-title" id="modal-basic-title">Richiesta registrazione etichette manuale</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+    <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form>
+    <div class="modal-body">
+      <div class="form-group">
+        <label i18n>Inserisci gli ID delle etichette separate da spazi o virgole.</label>
+        <input type="text" class="form-control" [(ngModel)]='stringaID' name='stringaID' [value]='stringaID' id="stringaID" placeholder="labelID0, labelID1, ...">
+        <div *ngIf="valid_label_id">
+          <small i18n>Inserisci almeno un ID!</small>
+        </div>
+      </div>
     </div>
-    <form>
-        <div class="modal-body">
-            <div class="form-group">
-                <label>Inserisci gli ID delle etichette separate da spazi o virgole.</label>
-                <input type="text" class="form-control" [(ngModel)]='stringaID' name='stringaID' [value]='stringaID' id="stringaID" placeholder="labelID0, labelID1, ...">
-                <div *ngIf="valid_label_id">
-                    <small>Inserisci almeno un ID!</small>
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" (click)="postManual(stringaID)" type="submit">Registra</button>
-            <button type="button" class="btn btn-outline-default" (click)="modal.close()">Anulla</button>
-        </div>
-    </form>
+    <div class="modal-footer">
+      <button i18n class="btn btn-primary" (click)="postManual(stringaID)" type="submit">Registra</button>
+      <button i18n type="button" class="btn btn-outline-default" (click)="modal.close()">Anulla</button>
+    </div>
+  </form>
 </ng-template>
-
 <!-- Modal POST Label - File  (WiP) -->
 <ng-template #addFile let-modal>
-    <div class="modal-header"  data-backdrop="static">
-        <h4 class="modal-title" id="modal-basic-title">Richiesta registrazione etichette con file</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.close()">
-        <span aria-hidden="true">&times;</span>
-        </button>
+  <div class="modal-header" data-backdrop="static">
+    <h4 i18n class="modal-title" id="modal-basic-title">Richiesta registrazione etichette con file</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+    <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form>
+    <div class="modal-body">
+      <div class="form-group">
+        <label i18n>Scegli il file da caricare:</label>
+        <div class="file-field md-form">
+          <div mdbBtn color="primary" size="sm" class="waves-light" mdbWavesEffect>
+            <input type="file" mdbFileSelect (uploadOutput)="onUploadOutput($event)" [(ngModel)]='filePath' name='filePath' id="filePath">
+          </div>
+        </div>
+      </div>
     </div>
-    <form>
-        <div class="modal-body">
-            <div class="form-group">
-                <label>Scegli il file da caricare:</label>
-                <div class="file-field md-form">
-                    <div mdbBtn color="primary" size="sm" class="waves-light" mdbWavesEffect>
-                      <input type="file" mdbFileSelect (uploadOutput)="onUploadOutput($event)" [(ngModel)]='filePath' name='filePath' id="filePath">
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" (click)="postFile(stringaID)" type="submit" [disabled]="true">Carica</button>
-            <button type="button" class="btn btn-outline-default" (click)="modal.close()">Anulla</button>
-        </div>
-    </form>
+    <div class="modal-footer">
+      <button i18n class="btn btn-primary" (click)="postFile(stringaID)" type="submit" [disabled]="true">Carica</button>
+      <button i18n type="button" class="btn btn-outline-default" (click)="modal.close()">Anulla</button>
+    </div>
+  </form>
 </ng-template>
-
-
 <!-- Contenuto della pagina -->
 <div class="container-fluid mt--7">
-    <!-- Alerts -->
-    <div class="row">
-		<div class="col-md-12">
-			<!-- Alert Conferma Eliminazione -->
-			<ngb-alert *ngIf="successMessage" type="danger" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
-			<!-- Alert Conferma Aggiunta -->
-			<ngb-alert *ngIf="successMessageAdd" type="success" (close)="successMessageAdd = ''">{{ successMessageAdd }}</ngb-alert>
-		</div>
+  <!-- Alerts -->
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Alert Conferma Eliminazione -->
+      <ngb-alert *ngIf="successMessage" type="danger" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
+      <!-- Alert Conferma Aggiunta -->
+      <ngb-alert *ngIf="successMessageAdd" type="success" (close)="successMessageAdd = ''">{{ successMessageAdd }}</ngb-alert>
     </div>
-    
-    <div class="row">
-       <div class="col">
-            <div class="card shadow">
-                <!-- Header -->
-                <div class="card-header bg-transparent">
-                    <div class="row">
-                        <!-- Titolo -->
-                        <div class="col">
-                            <h2 class="mb-0">Lista Etichette</h2>
-                        </div>
-                        <!-- Preview Etichetta Attiva -->
-                        <div class="col text-center">
-                            <div *ngIf="showPrev">
-                                <i class='fa fa-2x fa-picture-o'></i> <img style='max-width: 100%;max-height: 80%;' src='data:image/png;base64,{{ prev }}'/>
-                            </div>
-                        </div>
-                        <!-- Registra Etichetta -->
-                        <div class="col text-right">
-                            <div ngbDropdown class="d-inline-block">
-                                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-                                    <i class="fas fa-caret-down"></i> Registra Etichetta
-                                </button>
-                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                    <button ngbDropdownItem (click)="openManual(addManual)">Manualmente</button>
-                                    <button ngbDropdownItem (click)="openManual(addFile)" disabled="true">Da file</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-				<!-- Contenuto -->
-                <div class="card-body">
-                    <!-- Tabella Etichette -->
-                    <div class="table-responsive" id="stampare">
-                        <table class="display table table-striped align-items-center table-flush" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">ID Etichetta</th>
-                                    <th scope="col">Tipo</th>
-									<th scope="col">Power Status</th>
-									<th scope="col">Connection Status</th>
-                                    <th scope="col">Data Revisione</th>
-                                    <th scope="col">ID Access Point</th>
-                                    <th></th>
-                                </tr>
-                             </thead>
-                            <tbody>
-                                <tr *ngFor="let label of labels$">
-                                    <th>
-                                        <a [routerLink]="view-label" (click)="viewLabel(label.LabelId)">
-                                            {{ label.LabelId }}
-                                        </a>
-                                    </th>
-                                    <td>{{ label.Type }}</td>
-                                    <td *ngIf=" label.PowerStatus > 20; else elseBlock">
-                                        <div class="progress" style="height: 30px;">
-                                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ 1 * label.PowerStatus }}%;">{{ label.PowerStatus }}%</div>
-                                        </div>
-									</td>
-									<ng-template #elseBlock>
-										<td>
-                                            <div class="progress" style="height: 30px;">
-                                                <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ 1 * label.PowerStatus }}%;">{{ label.PowerStatus }}%</div>
-                                            </div>
-										</td>
-									</ng-template>	
-									<td>
-                                        <i class="fas fa-power-off"></i>
-                                        <strong> {{ label.ConnectionStatus }}</strong>
-									</td>						
-                                    <td>{{ label.UpdatedAt }}</td>
-                                    <td>{{ label.AccessPointId }}</td>
-                                    <td>
-                                        <div class="btn-group btn-group-sm" role="group" aria-label="Tools">
-											<button type="button" class="btn btn-secondary" (click)="openPreview(label.LabelId)">
-												<i class="fas fa-eye"></i>
-											</button>
-											<button type="button" class="btn btn-secondary" (click)="putDeactivateMatch(label.LabelId)">
-												<i class="fas fa-unlink"></i>
-											</button>
-											<button type="button" class="btn btn-danger" (click)="open(content, label.LabelId)">
-												<i class="fas fa-trash"></i>
-											</button>
-										</div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>   
-                    </div>
-                </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <!-- Header -->
+        <div class="card-header bg-transparent">
+          <div class="row">
+            <!-- Titolo -->
+            <div class="col">
+              <h2 i18n class="mb-0">Lista Etichette</h2>
             </div>
+            <!-- Preview Etichetta Attiva -->
+            <div class="col text-center">
+              <div *ngIf="showPrev">
+                <i class='fa fa-2x fa-picture-o'></i> <img style='max-width: 100%;max-height: 80%;' src='data:image/png;base64,{{ prev }}'/>
+              </div>
+            </div>
+            <!-- Registra Etichetta -->
+            <div class="col text-right">
+              <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                <i i18n class="fas fa-caret-down"></i> Registra Etichetta
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                  <button i18n ngbDropdownItem (click)="openManual(addManual)">Manualmente</button>
+                  <button i18n ngbDropdownItem (click)="openManual(addFile)" disabled="true">Da file</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        <!-- Contenuto -->
+        <div class="card-body">
+          <!-- Tabella Etichette -->
+          <div class="table-responsive" id="stampare">
+            <table class="display table table-striped align-items-center table-flush" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+            <thead class="thead-light">
+              <tr>
+                <th i18n scope="col">ID Etichetta</th>
+                <th i18n scope="col">Tipo</th>
+                <th i18n scope="col">Power Status</th>
+                <th i18n scope="col">Connection Status</th>
+                <th i18n scope="col">Data Revisione</th>
+                <th i18n scope="col">ID Access Point</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let label of labels$">
+                <th>
+                  <a [routerLink]="view-label" (click)="viewLabel(label.LabelId)">
+                  {{ label.LabelId }}
+                  </a>
+                </th>
+                <td>{{ label.Type }}</td>
+                <td *ngIf=" label.PowerStatus > 20; else elseBlock">
+                  <div class="progress" style="height: 30px;">
+                    <div class="progress-bar bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ 1 * label.PowerStatus }}%;">{{ label.PowerStatus }}%</div>
+                  </div>
+                </td>
+                <ng-template #elseBlock>
+                  <td>
+                    <div class="progress" style="height: 30px;">
+                      <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ 1 * label.PowerStatus }}%;">{{ label.PowerStatus }}%</div>
+                    </div>
+                  </td>
+                </ng-template>
+                <td>
+                  <i class="fas fa-power-off"></i>
+                  <strong> {{ label.ConnectionStatus }}</strong>
+                </td>
+                <td>{{ label.UpdatedAt }}</td>
+                <td>{{ label.AccessPointId }}</td>
+                <td>
+                  <div class="btn-group btn-group-sm" role="group" aria-label="Tools">
+                    <button type="button" class="btn btn-secondary" (click)="openPreview(label.LabelId)">
+                    <i class="fas fa-eye"></i>
+                    </button>
+                    <button type="button" class="btn btn-secondary" (click)="putDeactivateMatch(label.LabelId)">
+                    <i class="fas fa-unlink"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger" (click)="open(content, label.LabelId)">
+                    <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            </table>   
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

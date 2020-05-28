@@ -1,185 +1,177 @@
 <div class="header bg-gradient-info pb-8 pt-5 pt-md-5"></div>
-
 <!-- Modal DELETE Location -->
 <ng-template #content let-modal>
-    <div class="modal-header"  data-backdrop="static">
-      	<h4 class="modal-title" id="modal-basic-title">Conferma eliminazione</h4>
-      	<button type="button" class="close" aria-label="Close" (click)="modal.close()">
-		<span aria-hidden="true">&times;</span>
-      	</button>
-    </div>
-    <div class="modal-body">
-        <p>Sicuro di voler eliminare la Location <strong>{{ alias }}</strong>?</p>
-    </div>
-    <div class="modal-footer">
-		<button class="btn btn-danger" (click)="deleteLocation()" type="button">Elimina</button>
-      	<button type="button" class="btn btn-outline-default" (click)="modal.close()">Anulla</button>
-    </div>
+  <div class="modal-header"  data-backdrop="static">
+    <h4 i18n class="modal-title" id="modal-basic-title">Conferma eliminazione</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+    <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p i18n>Sicuro di voler eliminare la Location <strong>{{ alias }}</strong>?</p>
+  </div>
+  <div class="modal-footer">
+    <button i18n class="btn btn-danger" (click)="deleteLocation()" type="button">Elimina</button>
+    <button i18n type="button" class="btn btn-outline-default" (click)="modal.close()">Anulla</button>
+  </div>
 </ng-template>
-
-
-
 <!-- Contenuto della pagina -->
 <div class="container-fluid mt--7" id="stampare">
-	<div class="row">
-		<div class="col-md-12">
-			<!-- Alert Conferma Eliminazione -->
-			<ngb-alert *ngIf="deleteMessage" type="danger" (close)="deleteMessage = ''">{{ deleteMessage }}</ngb-alert>
-			<!-- Alert Conferma Aggiunta -->
-			<ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
-		</div>
-	</div>
-	<div class="row">
-
-		<!-- Corsie -->
-		<div class="col-xl-4">
-			<div class="card shadow">
-				<!-- Header -->
-				<div class="card-header bg-transparent">
-					<div class="row align-items-center">
-						<div class="col">
-							<h6 class="text-uppercase text-muted ls-1 mb-1">Corsie</h6>
-							<h2 class="mb-0">Elenco delle corsie</h2>
-						</div>
-					</div>
-				</div>
-				<!-- Body -->
-				<div class="card-body">
-					<!-- Aggiungi Corsia -->
-					<div class="input-group mb-3">
-						<input type="text" class="form-control" #nomeCorsia name="nomeCorsia" placeholder="Aggiungi corsia" aria-label="Recipient's username" aria-describedby="button-addon2">
-						<div class="input-group-append">
-							<button class="btn btn-inline-primary" type="submit" id="button-addon2" (click)="postCorsia(nomeCorsia.value, '1')" for='nomeCorsia'>
-								<i class="ni ni-fat-add"></i>
-							</button>
-						</div>
-					</div>
-					<!-- Elenco Corsie -->
-					<table class="table align-items-center table-flush">
-						<thead class="thead-light">
-							<tr>
-								<th scope="col">Nome</th>
-								<th scope="col"></th>
-							</tr>
-						</thead>
-						<tbody>	
-							<tr *ngFor="let corsia of locations$">
-								<ng-template [ngIf]="corsia.location_type.id == 1 && corsia.is_active">
-									<th>{{ corsia.name }}</th>
-									<td align="right">
-										<div class="btn-group btn-group-sm" role="group" aria-label="Tools">
-											<button type="button" class="btn btn-danger" (click)="open(content, corsia.id, corsia.name)">
-												<i class="fas fa-trash"></i>
-											</button>
-										</div>
-									</td>
-								</ng-template>
-							</tr>	
-						</tbody>
-					</table>
-					</div>
-				</div>
-			</div>
-
-		<!-- Posizioni -->
-		<div class="col-xl-4">
-			<div class="card shadow">
-				<!-- Header -->
-				<div class="card-header bg-transparent">
-					<div class="row align-items-center">
-						<div class="col">
-							<h6 class="text-uppercase text-muted ls-1 mb-1">Posizione</h6>
-							<h2 class="mb-0">Elenco delle posizioni</h2>
-						</div>
-					</div>
-				</div>
-				<!-- Body -->
-				<div class="card-body">
-					<!-- Aggiungi Posizione -->
-					<div class="input-group mb-3">
-						<input type="text" class="form-control" #nomePosizione name="nomePosizione" placeholder="Aggiungi posizione" aria-label="Recipient's username" aria-describedby="button-addon2">
-						<div class="input-group-append">
-							<button class="btn btn-inline-primary" type="submit" id="button-addon2" (click)="postCorsia(nomePosizione.value, '2')" for='nomePosizione'>
-								<i class="ni ni-fat-add"></i>
-							</button>
-						</div>
-					</div>
-					<!-- Elenco Posizioni -->
-					<table class="table align-items-center table-flush">
-						<thead class="thead-light">
-							<tr>
-								<th scope="col">Nome</th>
-								<th scope="col"></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr *ngFor="let corsia of locations$">
-								<ng-template [ngIf]="corsia.location_type.id == 2 && corsia.is_active">
-									<th>{{ corsia.name }}</th>
-									<td align="right">
-										<div class="btn-group btn-group-sm" role="group" aria-label="Tools">
-											<button type="button" class="btn btn-danger" (click)="open(content, corsia.id, corsia.name)">
-												<i class="fas fa-trash"></i>
-											</button>
-										</div>
-									</td>
-								</ng-template>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-
-		<!-- Ripiani -->
-		<div class="col-xl-4">
-			<div class="card shadow">
-				<!-- Header -->
-				<div class="card-header bg-transparent">
-					<div class="row align-items-center">
-						<div class="col">
-							<h6 class="text-uppercase text-muted ls-1 mb-1">Ripiano</h6>
-							<h2 class="mb-0">Elenco dei ripiani</h2>
-						</div>
-					</div>
-				</div>
-				<!-- Body -->
-				<div class="card-body">
-					<!-- Aggiungi Ripiano -->
-					<div class="input-group mb-3">
-						<input type="text" class="form-control" #nomeRipiano name="nomeRipiano" placeholder="Aggiungi ripiano" aria-label="Recipient's username" aria-describedby="button-addon2">
-						<div class="input-group-append">
-							<button class="btn btn-inline-primary" type="submit" id="button-addon2" (click)="postCorsia(nomeRipiano.value, '3')" for='nomeRipiano'>
-								<i class="ni ni-fat-add"></i>
-							</button>
-						</div>
-					</div>
-					<!-- Elenco Ripiani -->
-					<table class="table align-items-center table-flush">
-						<thead class="thead-light">
-							<tr>
-								<th scope="col">Nome</th>
-								<th scope="col"></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr *ngFor="let corsia of locations$">
-								<ng-template [ngIf]="corsia.location_type.id == 3 && corsia.is_active">
-									<th>{{ corsia.name }}</th>
-									<td align="right">
-										<div class="btn-group btn-group-sm" role="group" aria-label="Tools">
-											<button type="button" class="btn btn-danger" (click)="open(content, corsia.id, corsia.name)">
-												<i class="fas fa-trash"></i>
-											</button>
-										</div>
-									</td>
-								</ng-template>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-
-	</div>
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Alert Conferma Eliminazione -->
+      <ngb-alert *ngIf="deleteMessage" type="danger" (close)="deleteMessage = ''">{{ deleteMessage }}</ngb-alert>
+      <!-- Alert Conferma Aggiunta -->
+      <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
+    </div>
+  </div>
+  <div class="row">
+    <!-- Corsie -->
+    <div class="col-xl-4">
+      <div class="card shadow">
+        <!-- Header -->
+        <div class="card-header bg-transparent">
+          <div class="row align-items-center">
+            <div class="col">
+              <h6 i18n class="text-uppercase text-muted ls-1 mb-1">Corsie</h6>
+              <h2 i18n class="mb-0">Elenco delle corsie</h2>
+            </div>
+          </div>
+        </div>
+        <!-- Body -->
+        <div class="card-body">
+          <!-- Aggiungi Corsia -->
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" #nomeCorsia name="nomeCorsia" placeholder="Aggiungi corsia" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-inline-primary" type="submit" id="button-addon2" (click)="postCorsia(nomeCorsia.value, '1')" for='nomeCorsia'>
+              <i class="ni ni-fat-add"></i>
+              </button>
+            </div>
+          </div>
+          <!-- Elenco Corsie -->
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th i18n scope="col">Nome</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let corsia of locations$">
+                <ng-template [ngIf]="corsia.location_type.id == 1 && corsia.is_active">
+                  <th>{{ corsia.name }}</th>
+                  <td align="right">
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Tools">
+                      <button type="button" class="btn btn-danger" (click)="open(content, corsia.id, corsia.name)">
+                      <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </ng-template>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- Posizioni -->
+    <div class="col-xl-4">
+      <div class="card shadow">
+        <!-- Header -->
+        <div class="card-header bg-transparent">
+          <div class="row align-items-center">
+            <div class="col">
+              <h6 i18n class="text-uppercase text-muted ls-1 mb-1">Posizione</h6>
+              <h2 i18n class="mb-0">Elenco delle posizioni</h2>
+            </div>
+          </div>
+        </div>
+        <!-- Body -->
+        <div class="card-body">
+          <!-- Aggiungi Posizione -->
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" #nomePosizione name="nomePosizione" placeholder="Aggiungi posizione" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-inline-primary" type="submit" id="button-addon2" (click)="postCorsia(nomePosizione.value, '2')" for='nomePosizione'>
+              <i class="ni ni-fat-add"></i>
+              </button>
+            </div>
+          </div>
+          <!-- Elenco Posizioni -->
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th i18n scope="col">Nome</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let corsia of locations$">
+                <ng-template [ngIf]="corsia.location_type.id == 2 && corsia.is_active">
+                  <th>{{ corsia.name }}</th>
+                  <td align="right">
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Tools">
+                      <button type="button" class="btn btn-danger" (click)="open(content, corsia.id, corsia.name)">
+                      <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </ng-template>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- Ripiani -->
+    <div class="col-xl-4">
+      <div class="card shadow">
+        <!-- Header -->
+        <div class="card-header bg-transparent">
+          <div class="row align-items-center">
+            <div class="col">
+              <h6 i18n class="text-uppercase text-muted ls-1 mb-1">Ripiano</h6>
+              <h2 i18n class="mb-0">Elenco dei ripiani</h2>
+            </div>
+          </div>
+        </div>
+        <!-- Body -->
+        <div class="card-body">
+          <!-- Aggiungi Ripiano -->
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" #nomeRipiano name="nomeRipiano" placeholder="Aggiungi ripiano" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-inline-primary" type="submit" id="button-addon2" (click)="postCorsia(nomeRipiano.value, '3')" for='nomeRipiano'>
+              <i class="ni ni-fat-add"></i>
+              </button>
+            </div>
+          </div>
+          <!-- Elenco Ripiani -->
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th i18n scope="col">Nome</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let corsia of locations$">
+                <ng-template [ngIf]="corsia.location_type.id == 3 && corsia.is_active">
+                  <th>{{ corsia.name }}</th>
+                  <td align="right">
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Tools">
+                      <button type="button" class="btn btn-danger" (click)="open(content, corsia.id, corsia.name)">
+                      <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </ng-template>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -3,11 +3,7 @@ import {
   OnInit,
   OnDestroy,
   ViewChild,
-  OnChanges,
   Input,
-  SimpleChange,
-  ɵConsole,
-  HostListener
 } from '@angular/core';
 import {
   HttpClient,
@@ -34,9 +30,6 @@ import {
 import {
   Router
 } from '@angular/router';
-import {
-  SidebarComponent
-} from '../../components/sidebar/sidebar.component';
 
 var del_item_id: String;
 
@@ -172,7 +165,6 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
       })
       .toPromise().then((data: any) => {
         this.varItem = data.itemtype;
-        // console.log(this.varItem[0].id);
         this.selectedOption = this.varItem[0].id;
         this.getItemTypeTemplate(this.selectedOption);
       }, error => {
@@ -218,7 +210,6 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
 
 
   // Aggiungi SmartMatch ----------------------------------------------------------------------------
-  // addSm(items, template_name, label_id, decorators, is_active, bypass_promo) {
   addSm(template_name, label_id: string, decorators) {
     // Header
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
@@ -232,13 +223,13 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
       .set('is_active', this.checkActiveC.toString())
       .set('bypass_promo', this.checkPromoC.toString());
 
-      // Controllo se ci sono più item da aggiungere al match ---- DA CONVERTIRE IL BARCODE IN ID
-      let index = 1;
-      this.itemArray.forEach(element => {
-        params = params
-          .set('items[' + index + ']', this.itemArray[index - 1]);
-        index ++;
-      });
+    // Controllo se ci sono più item da aggiungere al match ---- DA CONVERTIRE IL BARCODE IN ID
+    let index = 1;
+    this.itemArray.forEach(element => {
+      params = params
+        .set('items[' + index + ']', this.itemArray[index - 1]);
+      index++;
+    });
 
     // Decorators
     if (decorators != 0) {
@@ -365,95 +356,33 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
     return new Array(i);
   }
 
-  validArray(i: number) {
-    // 
-    return true;
-  }
 
-  getMultiName(id: string, template: string) {
-    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-    let itemId;
-
-
-    this.httpClient.get(environment.URL_ROOT + '/item/search/fastmatch/' + template + '/' + id, {
-        headers
-      })
-      .toPromise().then((data: any) => {
-        itemId = data.id;
-        // this.testItem = itemId;
-        // this.itemValid = true;
-        this.httpClient.get(environment.URL_ROOT + '/item/concrete/' + this.testItem, {
-            headers
-          })
-          .toPromise().then((data: any) => {
-            // console.log(data);
-            // this.testItemName = data.reserved_alias;
-          });
-
-      }, error => {
-        this.itemValid = false;
-      });
-
-    // return
-  }
-
-  getMultiId() {
-
-    return
-  }
-
-
+  // Funzione per ottenere le informazioni degli item collegati ai barcode aggiunti
   ngOnChangesMoreItem(template: string, index) {
     let itemId;
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-
     let newItem = (document.getElementById("item_barcode_" + index) as HTMLInputElement).value;
-    // this.itemArray[index] = newItem;
-
 
 
     // Verifico che esista il barcode sia corretto e ne prendo l'ID
     this.httpClient.get(environment.URL_ROOT + '/item/search/fastmatch/' + template + '/' + newItem, {
-      headers
-    })
-    .toPromise().then((data: any) => {
-      itemId = data.id;
-      this.itemArray[index] = itemId;
-      // this.testItem = itemId;
-      // this.itemValid = true;
-      this.httpClient.get(environment.URL_ROOT + '/item/concrete/' + this.testItem, {
+        headers
+      })
+      .toPromise().then((data: any) => {
+        itemId = data.id;
+        this.itemArray[index] = itemId;
+        // this.testItem = itemId;
+        // this.itemValid = true;
+        this.httpClient.get(environment.URL_ROOT + '/item/concrete/' + this.testItem, {
           headers
         })
         // Chiamata per prendere il nome dell'articolo
         //.toPromise().then((data: any) => {
         //  this.testItemName = data.reserved_alias;
         //});
-    }, error => {
-      console.log(error);
-      //this.itemValid = false;
-    });
-
-
-
-
-
-    //this.httpClient.get(environment.URL_ROOT + '/item/search/fastmatch/' + template + '/' + id, {
-    //    headers
-    //  })
-    //  .toPromise().then((data: any) => {
-    //    itemId = data.id;
-        // this.testItem = itemId;
-        // this.itemValid = true;
-    //    this.httpClient.get(environment.URL_ROOT + '/item/concrete/' + this.testItem, {
-    //        headers
-    //      })
-    //      .toPromise().then((data: any) => {
-            // this.testItemName = data.reserved_alias;
-    //      });
-
-    //  }, error => {
-    //    this.itemValid = false;
-    //  });
+      }, error => {
+        console.log(error);
+      });
   }
 
 

@@ -1,8 +1,21 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Credentials } from 'src/app/variables/credentials';
-import { Router } from '@angular/router';
-import { environment } from './../../../environments/environment';
+import {
+  Component,
+  OnInit,
+  OnDestroy
+} from '@angular/core';
+import {
+  HttpClient,
+  HttpHeaders
+} from '@angular/common/http';
+import {
+  Credentials
+} from 'src/app/variables/credentials';
+import {
+  Router
+} from '@angular/router';
+import {
+  environment
+} from './../../../environments/environment';
 
 
 @Component({
@@ -18,42 +31,43 @@ export class LoginComponent implements OnInit, OnDestroy {
   // Login Fallito
   showErrorMessage = false;
 
- 
+
   // Costruttore
-  constructor(private httpClient: HttpClient, private router: Router) { }
+  constructor(private httpClient: HttpClient, private router: Router) {}
 
   ngOnInit() {
-    //if (localStorage.getItem('apikey') != null) {
-    //  this.router.navigate(['../dashboard']);
-    //}
+    if (localStorage.getItem('apikey') != null) {
+      this.router.navigate(['../dashboard']);
+    }
   }
 
-  ngOnDestroy() {
-  }
+  ngOnDestroy() {}
 
   // Accedi
   onSubmit() {
     // Header
     let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
     // Richiesta ApiKey
-    this.httpClient.post(environment.URL_ROOT + '/apikey', 'username=' + this.userModel.username + '&password=' + this.userModel.password, { headers })
-    .toPromise().then((data:any) => {
-      // Assegno il valore di apikey alla variabile key - e al localStorage
-      this.key = data.apikey;
-      localStorage.setItem('apikey', this.key);
+    this.httpClient.post(environment.URL_ROOT + '/apikey', 'username=' + this.userModel.username + '&password=' + this.userModel.password, {
+        headers
+      })
+      .toPromise().then((data: any) => {
+        // Assegno il valore di apikey alla variabile key - e al localStorage
+        this.key = data.apikey;
+        localStorage.setItem('apikey', this.key);
 
-      // Redirect alla Dashboard
-      if (this.key == null) {
-        this.showErrorMessage = true;
-      } else {
-        this.router.navigate(['../dashboard']);
-      }
-    }, error =>{
-      console.log(error);
-    });
+        // Redirect alla Dashboard
+        if (this.key == null) {
+          this.showErrorMessage = true;
+        } else {
+          this.router.navigate(['../dashboard']);
+        }
+      }, error => {
+        console.log(error);
+      });
 
     // Funzione ricordami
-    if (this.userModel.remember){
+    if (this.userModel.remember) {
       localStorage.setItem('username', this.userModel.username);
       localStorage.setItem('password', this.userModel.password);
     } else {
