@@ -149,6 +149,8 @@
             <ngb-alert *ngIf="successMessage" type="danger" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
             <!-- Alert Conferma Aggiunta -->
             <ngb-alert *ngIf="successMessageAdd" type="success" (close)="successMessageAdd = ''">{{ successMessageAdd }}</ngb-alert>
+            <!-- Alert Aggiunta Fallita -->
+            <ngb-alert *ngIf="failedMessageAdd" type="danger" (close)="failedMessageAdd = ''">{{ failedMessageAdd }}</ngb-alert>
         </div>
     </div>
     <br>

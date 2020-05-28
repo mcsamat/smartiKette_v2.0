@@ -79,11 +79,15 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
   // Alert e Modal
   private _success = new Subject < string > ();
   private _successAdd = new Subject < string > ();
+  // private _failed = new Subject < string > ();
+  private _failedAdd = new Subject < string > ();
   staticAlertClosed = false;
   alias: String;
   providers: [NgbModalConfig, NgbModal]
   successMessage = '';
   successMessageAdd = '';
+  failedMessage = '';
+  failedMessageAdd = '';
 
   // Preview
   prev;
@@ -96,6 +100,9 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
   // Checkbox
   checkActiveC = 1;
   checkPromoC = 1;
+
+  // Errori
+  smError = '';
 
 
   constructor(private httpClient: HttpClient, private modalService: NgbModal, config: NgbModalConfig, private router: Router) {
@@ -213,9 +220,10 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
   // Aggiungi SmartMatch ----------------------------------------------------------------------------
   // addSm(items, template_name, label_id, decorators, is_active, bypass_promo) {
   addSm(template_name, label_id: string, decorators) {
-    // Header generale
+    // Header
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
     headers.set('Content-Type', 'application/x-www-form-urlencoded');
+
     // Parametri
     let params = new HttpParams()
       .set('items[0]', this.testItem) // TEMP
@@ -229,18 +237,15 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
       this.itemArray.forEach(element => {
         params = params
           .set('items[' + index + ']', this.itemArray[index - 1]);
-        // console.log('Test: ' + this.itemArray[index - 1]);
         index ++;
       });
 
+    // Decorators
     if (decorators != 0) {
       params = params.set('decorators[]', decorators);
     }
 
-    console.log(params);
-
-
-    // Aggiungo SmartMatch
+    // Aggiungo SmartMatch - Chiamata API
     this.httpClient.post(environment.URL_ROOT + '/matching', params, {
       headers
     }).subscribe(data => {
@@ -249,6 +254,8 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
       // console.log(data);
     }, error => {
       console.log(error);
+      this.smError = error.message;
+      this.showAlertAddFailed();
     });
   }
 
@@ -291,6 +298,15 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
     ).subscribe(() => this.successMessageAdd = '');
 
     this._successAdd.next('SmartMatch creato correttamente!');
+  }
+  // Alert Errore POST
+  public showAlertAddFailed() {
+    this._failedAdd.subscribe(message => this.failedMessageAdd = message);
+    this._failedAdd.pipe(
+      debounceTime(5000)
+    ).subscribe(() => this.failedMessageAdd = '');
+
+    this._failedAdd.next('Errore! Impossibile create lo SmartMatch. Codice: ' + this.smError);
   }
 
 
