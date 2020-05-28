@@ -16,6 +16,22 @@
       	<button type="button" class="btn btn-outline-default" (click)="modal.close()">Anulla</button>
     </div>
 </ng-template>
+<!-- Modal DELETE Multiple Items -->
+<ng-template #multiple let-modal>
+    <div class="modal-header"  data-backdrop="static">
+      	<h4 class="modal-title" id="modal-basic-title">Conferma eliminazione multipla</h4>
+      	<button type="button" class="close" aria-label="Close" (click)="modal.close()">
+		<span aria-hidden="true">&times;</span>
+      	</button>
+    </div>
+    <div class="modal-body">
+        <p>Sicuro di voler eliminare gli articoli selezionati ({{ index }})?</p>
+    </div>
+    <div class="modal-footer">
+		<button class="btn btn-danger" (click)="deleteMultiple()" type="button">Elimina</button>
+      	<button type="button" class="btn btn-outline-default" (click)="modal.close()">Anulla</button>
+    </div>
+</ng-template>
 
 <!-- Contenuto della pagina -->
 <div class="container-fluid mt--7">
