@@ -64,4 +64,9 @@ export class CrearticoloComponent implements OnInit {
     });
   }
 
+  // Pulsante Annulla
+  goBack(){
+    this.router.navigateByUrl('/articoli');
+  }
+
 }

@@ -30,6 +30,8 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
   // var Item
   varItem;
   selectedOption;
+  selectedOption2;
+  selectedOption3;
   selectedDecoration;
   // Var Templates via ItemType.ID
   templates;

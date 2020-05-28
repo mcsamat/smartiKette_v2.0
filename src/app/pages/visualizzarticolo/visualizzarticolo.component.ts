@@ -19,6 +19,7 @@ export class VisualizzarticoloComponent implements OnInit {
   item_id;
   parametri$: any[] = [];
   valori$: any[] = [];
+  nomeArticolo;
 
   matchs$ = [];
 
@@ -50,6 +51,7 @@ export class VisualizzarticoloComponent implements OnInit {
       this.currentFields$ = data.current_fields;
       this.parametri$ = Object.keys(data.current_fields);
       this.valori$ = data.current_fields;
+      this.nomeArticolo = data.current_fields.ArticoloDes;
       // console.log(this.valori$);
     }, error =>{
       console.log(error);

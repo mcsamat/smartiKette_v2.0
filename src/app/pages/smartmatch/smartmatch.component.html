@@ -45,10 +45,10 @@
                                 <div class="form-group">
                                     <label>Tipo Barcode</label>
                                     <select [(ngModel)]="selectedOption3" class="form-control" name="barcodeS" id="barcode" disable="false">
-                                        <option [value]="barcode">ITEM BARCODE</option>
-                                        <option [value]="ean13">EAN 13</option>
-                                        <option [value]="decimale">MINSAN decimale</option>
-                                        <option [value]="alfa">MINSAN alfa</option>
+                                        <option #barcode>ITEM BARCODE</option>
+                                        <option #ean13>EAN 13</option>
+                                        <option #decimale>MINSAN decimale</option>
+                                        <option #alfa>MINSAN alfa</option>
 									</select>
                                 </div>
                             </div>

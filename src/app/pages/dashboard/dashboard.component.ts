@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
   varAps;
   // Var Articoli
   varItem: any[] = [];
+  totalItemType;
   varTotItem;
   // Var Importazioni
   varImport;
@@ -119,6 +120,7 @@ export class DashboardComponent implements OnInit {
       this.httpClient.get(environment.URL_ROOT + '/item/type', { headers })
       .toPromise().then((data:any) => {
         this.varItem = data.itemtype;
+        this.totalItemType = data.total_itemtype;
         // console.log(this.varItem[0].id);
         this.selectedOption = this.varItem[0].id;
         this.getItemTypeTemplate(this.selectedOption);

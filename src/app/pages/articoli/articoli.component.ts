@@ -90,7 +90,11 @@ export class ArticoliComponent implements OnInit, OnDestroy {
 			})
 			.toPromise().then((data: any) => {
 				this.items$ = data.items;
-				// this.dtTrigger.next();
+				this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+					dtInstance.destroy();
+					// this.getItems();
+				});
+				this.dtTrigger.next();
 			}, error => {
 				console.log(error);
 			});
@@ -116,9 +120,7 @@ export class ArticoliComponent implements OnInit, OnDestroy {
 	// --------------------------------------------------------------------------------------------------------------------------------------------
 	// Funzione Crea Nuovo Articolo
 	getItemType() {
-		// Header generale
 		let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
-		// Item Type API
 		this.httpClient.get(environment.URL_ROOT + '/item/type', {
 				headers
 			})
@@ -169,11 +171,11 @@ export class ArticoliComponent implements OnInit, OnDestroy {
 				this.delItems$[this.indexDel] = element.nativeElement.id;
 				this.indexDel++;
 			}
-    });
+    	});
     
 		let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
 		headers.set('Content-Type', 'application/x-www-form-urlencoded');
-    let i;
+    	let i;
     
 		this.delItems$.forEach(element => {
 			this.httpClient.delete(environment.URL_ROOT + '/item/concrete/' + element, {
