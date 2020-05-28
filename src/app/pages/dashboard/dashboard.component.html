@@ -23,8 +23,8 @@
                                 </div>
                             </div>
                             <p class="mt-3 mb-0 text-muted text-sm">
-                                <span class="text-success mr-2">{{ varInstallation.installation_type }}</span>
-                                <span class="text-nowrap">Tipologia installazione</span>
+                                <span class="text-success mr-2">{{ varInstallationType }}</span>
+                                <span i18n class="text-nowrap">Tipologia installazione</span>
                             </p>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h5 i18n class="card-title text-uppercase text-muted mb-0">Etichette online</h5>
-                                    <span class="h2 font-weight-bold mb-0">{{ varLabelStat.connection.online }}</span>
+                                    <span class="h2 font-weight-bold mb-0">{{ labelOnline }}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-success text-white rounded-circle shadow">
@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                             <p class="mt-3 mb-0 text-muted text-sm">
-                                <span class="text-danger mr-2">{{ varLabelStat.connection.offline }}</span>
+                                <span class="text-danger mr-2">{{ labelOffline }}</span>
                                 <span i18n class="text-nowrap">Etichette offline</span>
                             </p>
                         </div>
@@ -58,7 +58,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h5 i18n class="card-title text-uppercase text-muted mb-0">Batterie scariche</h5>
-                                    <span class="h2 font-weight-bold mb-0">{{ varLabelStat.battery.bad }}</span>
+                                    <span class="h2 font-weight-bold mb-0">{{ batteryBad }}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                             <p class="mt-3 mb-0 text-muted text-sm">
-                                <span class="text-success mr-2">{{ varLabelStat.battery.good }}</span>
+                                <span class="text-success mr-2">{{ batteryGood }}</span>
                                 <span i18n class="text-nowrap">In buono stato</span>
                             </p>
                         </div>
@@ -98,11 +98,11 @@
 				<!-- Contenuto Info -->
                 <div class="card-body">
                     <p i18n class="card-text">Nome: <strong>{{ varInstName }}</strong></p>
-                    <p i18n class="card-text">Tipologia: <strong>{{ varInstallation.installation_type }}</strong></p>
-                    <ng-template [ngIf]="varInstallation.installation_type == 'multistore'">
+                    <p i18n class="card-text">Tipologia: <strong>{{ varInstallationType }}</strong></p>
+                    <ng-template [ngIf]="varInstallationType == 'multistore'">
                         <p i18n class="card-text">Ruolo: <i class="fab fa-linode" aria-hidden="true"></i><strong> Nodo</strong></p>
                     </ng-template>
-                    <p i18n class="card-text">Import patch: <strong>{{ varInstallation.import_base_path }}</strong></p>
+                    <p i18n class="card-text">Import patch: <strong>{{ importBasePath }}</strong></p>
                 </div>
             </div>
 			<br>
@@ -168,8 +168,8 @@
                         <div class="col">
                             <h2 i18n class="mb-0"><i class="fas fa-tags"></i> Etichette</h2>
                             <!-- Stato etichette -->
-                            <p i18n class="card-text">Online <span class="badge badge-success">{{ varLabelStat.connection.online }}</span> - Offline <span class="badge badge-danger">{{ varLabelStat.connection.offline }}</span></p>
-                            <p i18n class="card-text">Battery Good <span class="badge badge-success">{{ varLabelStat.battery.good }}</span> - Battery Bad <span class="badge badge-danger">{{ varLabelStat.battery.bad }}</span></p>
+                            <p i18n class="card-text">Online <span class="badge badge-success">{{ labelOnline }}</span> - Offline <span class="badge badge-danger">{{ labelOffline }}</span></p>
+                            <p i18n class="card-text">Battery Good <span class="badge badge-success">{{ batteryGood }}</span> - Battery Bad <span class="badge badge-danger">{{ batteryBad }}</span></p>
                             <p i18n class="card-text">Totale Etichette Match Attivi <span class="badge badge-success">{{ varTotMatch }}</span></p>
                         </div>
                     </div>
@@ -184,7 +184,7 @@
                     <div class="row align-items-center">
                         <div class="col">
                             <h6 i18n class="text-uppercase text-muted ls-1 mb-1">APs</h6>
-                            <h2 i18n class="mb-0"><i class="fas fa-wifi"></i> Access Points <span class="badge badge-pill badge-default">{{ varAps.total_access_point }}</span></h2>
+                            <h2 i18n class="mb-0"><i class="fas fa-wifi"></i> Access Points <span class="badge badge-pill badge-default">{{ totalAP }}</span></h2>
                         </div>
                     </div>
 				</div>
@@ -202,7 +202,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let ap of varAps.access_point">
+                                <tr *ngFor="let ap of ap$">
                                     <th>{{ ap.id }}</th>
                                     <td>{{ ap.connection_status }}</td>
                                     <td>{{ ap.name }}</td>
@@ -225,7 +225,7 @@
                     <div class="row align-items-center">
                         <div class="col">
                             <h6 i18n class="text-uppercase text-muted ls-1 mb-1">Oggetti</h6>
-                            <h2 i18n class="mb-0"><i class="fas fa-list"></i> Articoli <span class="badge badge-pill badge-default">{{ varTotItem.total_items }}</span></h2>
+                            <h2 i18n class="mb-0"><i class="fas fa-list"></i> Articoli <span class="badge badge-pill badge-default">{{ varTotItem }}</span></h2>
                         </div>
                     </div>
                 </div>
@@ -281,7 +281,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let import of varImport.importqueue">
+                                <tr *ngFor="let import of varImport">
                                     <th>{{ import.end_process_date }}</th>
                                     <td>{{ import.updated_items }}</td>
                                 </tr>
@@ -314,7 +314,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let mobile of varMobile.mobile_device">
+                            <tr *ngFor="let mobile of varMobile">
                                 <th>{{ mobile.id }}</th>
                                 <td>{{ mobile.imei }}</td>
                                 <td>{{ mobile.device_name }}</td>
@@ -355,28 +355,28 @@
                             <div class="progress">
                                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ system_info.system_disk_free_space / system_info.system_disk_total_space * 100.0 }}%;"></div>
                             </div>
-                            <p class="card-text">Boot Time: <strong>{{ system_info.system_boot_time }}</strong></p>
-                            <p class="card-text">Disk Total Space: <strong>{{ system_info.system_disk_total_space }} GB</strong></p>
-                            <p class="card-text">Disk Free Space: <strong>{{ system_info.system_disk_free_space }} GB</strong></p>
+                            <p i18n class="card-text">Boot Time: <strong>{{ system_info.system_boot_time }}</strong></p>
+                            <p i18n class="card-text">Disk Total Space: <strong>{{ system_info.system_disk_total_space }} GB</strong></p>
+                            <p i18n class="card-text">Disk Free Space: <strong>{{ system_info.system_disk_free_space }} GB</strong></p>
                         </div>
                         <div class="col-xl-2">
-                            <h4><i class="fas fa-code"></i> PHP <span class="badge badge-pill badge-info">{{ system_info.php_version }}</span></h4>
-                            <p class="card-text">PHP version: <strong>{{ system_info.php_version }}</strong></p>
+                            <h4 i18n><i class="fas fa-code"></i> PHP <span class="badge badge-pill badge-info">{{ system_info.php_version }}</span></h4>
+                            <p i18n class="card-text">PHP version: <strong>{{ system_info.php_version }}</strong></p>
                         </div>
                         <div class="col-xl-2">
-                            <h4><i class="fas fa-feather-alt"></i> Apache <span class="badge badge-pill badge-info">{{ system_info.apache_version }}</span></h4>
-                            <p class="card-text">Apache version: <strong>{{ system_info.apache_version }}</strong></p>
-                            <p class="card-text">Apache uptime: <strong>{{ system_info.apache_uptime }}</strong></p>
+                            <h4 i18n><i class="fas fa-feather-alt"></i> Apache <span class="badge badge-pill badge-info">{{ system_info.apache_version }}</span></h4>
+                            <p i18n class="card-text">Apache version: <strong>{{ system_info.apache_version }}</strong></p>
+                            <p i18n class="card-text">Apache uptime: <strong>{{ system_info.apache_uptime }}</strong></p>
                         </div>
                         <div class="col-xl-2">
-                            <h4><i class="fas fa-database"></i> MongoDB <span class="badge badge-pill badge-info">{{ system_info.mongodb_version }}</span></h4>
-                            <p class="card-text">MongoDB version: <strong>{{ system_info.mongodb_version }}</strong></p>
-                            <p class="card-text">MongoDB uptime: <strong>{{ system_info.mongodb_uptime }}</strong></p>
+                            <h4 i18n><i class="fas fa-database"></i> MongoDB <span class="badge badge-pill badge-info">{{ system_info.mongodb_version }}</span></h4>
+                            <p i18n class="card-text">MongoDB version: <strong>{{ system_info.mongodb_version }}</strong></p>
+                            <p i18n class="card-text">MongoDB uptime: <strong>{{ system_info.mongodb_uptime }}</strong></p>
                         </div>
                         <div class="col-xl-2">
-                            <h4><i class="fas fa-database"></i> MariaDB <span class="badge badge-pill badge-info">{{ system_info.mariadb_version }}</span></h4>
-                            <p class="card-text">MariaDB version: <strong>{{ system_info.mariadb_version }}</strong></p>
-                            <p class="card-text">MariaDB uptime: <strong>{{ system_info.mariadb_uptime }}</strong></p>
+                            <h4 i18n><i class="fas fa-database"></i> MariaDB <span class="badge badge-pill badge-info">{{ system_info.mariadb_version }}</span></h4>
+                            <p i18n class="card-text">MariaDB version: <strong>{{ system_info.mariadb_version }}</strong></p>
+                            <p i18n class="card-text">MariaDB uptime: <strong>{{ system_info.mariadb_uptime }}</strong></p>
                         </div>
                     </div>
                 </div>

@@ -12,12 +12,18 @@ import { environment } from './../../../environments/environment';
 export class DashboardComponent implements OnInit {
   // Var Installazione
   varInstallation;
+  varInstallationType;
   varInstName;
+  importBasePath;
   // Var Display&Etichette
-  varLabelStat;
+  labelOnline;
+  labelOffline;
+  batteryGood;
+  batteryBad;
   varTotMatch;
   // Var APs
-  varAps;
+  ap$;
+  totalAP;
   // Var Articoli
   varItem: any[] = [];
   totalItemType;
@@ -67,6 +73,8 @@ export class DashboardComponent implements OnInit {
         let temp = data.configurations;
         this.varInstallation = temp;
         this.varInstName = temp.installation_name;
+        this.varInstallationType = temp.installation_type;
+        this.importBasePath = temp.import_base_path;
       }, error =>{
         console.log(error);
       });
@@ -88,7 +96,11 @@ export class DashboardComponent implements OnInit {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
       this.httpClient.get(environment.URL_ROOT + '/labelinfo/statistics', { headers })
       .toPromise().then((data:any) => {
-        this.varLabelStat = data;
+        let temp = data;
+        this.labelOnline = temp.connection.online;
+        this.labelOffline = temp.connection.offline;
+        this.batteryGood = temp.battery.good;
+        this.batteryBad = temp.battery.bad;
       }, error =>{
         console.log(error);
       });
@@ -108,7 +120,9 @@ export class DashboardComponent implements OnInit {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
       this.httpClient.get(environment.URL_ROOT + '/accesspoint', { headers })
       .toPromise().then((data:any) => {
-        this.varAps = data;
+        let temp = data;
+        this.totalAP = temp.total_access_point;
+        this.ap$ = temp.access_point;
       }, error =>{
         console.log(error);
       });
@@ -133,7 +147,8 @@ export class DashboardComponent implements OnInit {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
       this.httpClient.get(environment.URL_ROOT + '/item/concrete', { headers })
       .toPromise().then((data:any) => {
-        this.varTotItem = data;
+        let temp = data.total_items;
+        this.varTotItem = temp;
       }, error =>{
         console.log(error);
       });
@@ -142,7 +157,8 @@ export class DashboardComponent implements OnInit {
     getImport(){
       this.httpClient.get(environment.URL_ROOT + '/import/queue')
       .toPromise().then((data:any) => {
-        this.varImport = data;
+        let temp = data;
+        this.varImport = temp.importqueue;
       }, error =>{
         console.log(error);
       });
@@ -153,8 +169,9 @@ export class DashboardComponent implements OnInit {
     getMobile() {
       let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
       this.httpClient.get(environment.URL_ROOT + '/mobiledevice', { headers })
-      .toPromise().then((mobileAPI:any) => {
-        this.varMobile = mobileAPI;
+      .toPromise().then((data:any) => {
+        let temp = data.mobile_device;
+        this.varMobile = temp;
       }, error =>{
         console.log(error);
       });
