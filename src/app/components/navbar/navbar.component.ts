@@ -59,7 +59,7 @@ export class NavbarComponent implements OnInit {
 
   logout(){
     console.log('logout');
-    localStorage.setItem('apikey', '');
+    localStorage.setItem('apikey', null);
     this.router.navigate(['../login']);
   }
 

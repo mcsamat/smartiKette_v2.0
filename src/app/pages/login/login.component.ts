@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (localStorage.getItem('apikey') != null) {
-      this.router.navigate(['../dashboard']);
+      console.log('Sessione già attiva.')
     }
   }
 
