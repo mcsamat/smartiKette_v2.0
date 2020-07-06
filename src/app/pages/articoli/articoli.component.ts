@@ -211,7 +211,7 @@ import {
 		  // Parte Grafica
 		  this.getItems();
 		  this.modalService.dismissAll();
-		  this.showAlert();
+		  this.showAlertMultiple();
 		  // Rimuovere item dall'array
 		  this.delItems$.splice(i, 1);
 		  this.index--;
@@ -254,6 +254,14 @@ import {
 	  ).subscribe(() => this.successMessage = '');
 	  this._success.next('Articolo ' + this.alias + ' rimosso con successo!');
 	}
+	// Alert di Conferma Multiplo
+	public showAlertMultiple() {
+		this._success.subscribe(message => this.successMessage = message);
+		this._success.pipe(
+		  debounceTime(5000)
+		).subscribe(() => this.successMessage = '');
+		this._success.next('Articoli rimossi con successo!');
+	  }
   
 	// Rerender Tabella
 	rerender(): void {
