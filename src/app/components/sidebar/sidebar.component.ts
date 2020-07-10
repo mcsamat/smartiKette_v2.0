@@ -36,14 +36,7 @@ export class SidebarComponent implements OnInit {
 
   constructor(private router: Router, private renderer: Renderer2) { 
 
-    this.renderer.listen('window', 'click',(e:Event)=>{
-      if(e.target !== this.navv.nativeElement && this.isCollapsed === false && this.index){
-        this.isCollapsed = true;
-        this.index = false;
-      } else {
-        this.index = true;
-      }
-    });
+    
 
     
 }
@@ -149,6 +142,18 @@ export class SidebarComponent implements OnInit {
     //  }
 
     //}
+
+    toggleClick() {
+      console.log('Prima di premere il bottone menu: ' + this.isCollapsed);
+      this.isCollapsed = false;
+      console.log('Dopo aver premuto il bottone menu: ' + this.isCollapsed);
+    }
+
+    singleClick() {
+      console.log('Prima di premere il link: ' + this.isCollapsed);
+      this.isCollapsed = true;
+      console.log('Dopo aver premuto il link: ' + this.isCollapsed);
+    }
 
     
 
