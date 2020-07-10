@@ -55,7 +55,7 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
   varItem;
   selectedOption;
   // selectedOption2;
-  selectedOption3;
+  selectedOption3 = 'barcode';
   selectedDecoration;
   // Var Templates via ItemType.ID
   templates;
@@ -248,6 +248,9 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
       this.smError = error.message;
       this.showAlertAddFailed();
     });
+
+    // Redirect 
+
   }
 
 
@@ -350,6 +353,18 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
   // Add More Items
   moreItem() {
     this.nrItems = this.nrItems + 1;
+  }
+
+  deleteCurrentItem(index) {
+    
+    var deleteItem = document.getElementById("div_item_barcode_" + index);
+    deleteItem.remove();
+
+    // this.nrItems = this.nrItems - 1;
+    //console.log(index);
+    //console.log(this.itemArray[index]);
+    //this.itemArray.splice(index, 1);
+    //console.log(this.itemArray[index]);
   }
 
   counter(i: number) {

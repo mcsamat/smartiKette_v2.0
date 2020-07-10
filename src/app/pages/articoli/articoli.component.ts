@@ -31,6 +31,7 @@ import {
 	environment
   } from './../../../environments/environment';
   
+  
   var del_item_id: String;
   
   // Componente principale

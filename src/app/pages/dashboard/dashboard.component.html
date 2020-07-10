@@ -129,8 +129,8 @@
                 <!-- Scegli Tipologia Template -->
                 <div class="form-group">
                    <label i18n for="itemType">Tiplogia</label>
-                   <select [(ngModel)]="selectedOption" class="form-control" name="itemType" id="itemType">
-                   <option *ngFor="let item of varItem" [value]="item.id" (click)="getItemTypeTemplate($event.target.value)">{{ item.name }}</option>
+                   <select [(ngModel)]="selectedOption" class="form-control" name="itemType" id="itemType" (change)="getItemTypeTemplate($event.target.value)">
+                   <option *ngFor="let item of varItem" [value]="item.id">{{ item.name }}</option>
                    </select>
                 </div>
                 <!-- Lista templates -->
