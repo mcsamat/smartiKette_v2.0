@@ -36,8 +36,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(private httpClient: HttpClient, private router: Router) {}
 
   ngOnInit() {
-    if (localStorage.getItem('apikey') != null) {
-      console.log('Sessione già attiva.')
+    if (localStorage.getItem('logged') == 'true') {
+      this.router.navigate(['../dashboard']);
     }
   }
 
@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         // Assegno il valore di apikey alla variabile key - e al localStorage
         this.key = data.apikey;
         localStorage.setItem('apikey', this.key);
+        localStorage.setItem('logged', 'true');
 
         // Redirect alla Dashboard
         if (this.key == null) {

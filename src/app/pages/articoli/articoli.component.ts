@@ -31,7 +31,6 @@ import {
 	environment
   } from './../../../environments/environment';
   
-  
   var del_item_id: String;
   
   // Componente principale
@@ -68,6 +67,9 @@ import {
 	indexDel = 0;
 	delItems$: any[] = [];
 	toZero: boolean = true;
+	 // altro
+	 nomeBtn: string = 'Seleziona Tutti';
+	 totalCheck: number = 0;
   
   
 	constructor(private httpClient: HttpClient, private modalService: NgbModal, config: NgbModalConfig, private router: Router) {
@@ -222,24 +224,48 @@ import {
   
 	  });
 	}
-  
-	// Aggiungi tutti gli ITEM alla lista
+   
+		// Aggiungi tutti gli ITEM alla lista
 	checkAll() {
-	  this.checkboxes.forEach((element) => {
-		element.nativeElement.checked = true;
-		this.getIndex()
-	  });
+		this.getIndex();
+		if (this.index == this.totalCheck) {
+			this.checkboxes.forEach((element) => {
+				element.nativeElement.checked = false;
+				this.getIndex();
+
+			});
+			this.nomeBtn = 'Seleziona Tutti';
+
+		} else {
+			this.checkboxes.forEach((element) => {
+				element.nativeElement.checked = true;
+				this.getIndex();
+
+			});
+			this.nomeBtn = 'Deseleziona Tutti';
+		}
 	}
   
 	// Singolo Chechbox control
 	ngOnSelected() {
 	  this.getIndex();
+
+	  if (this.index == this.totalCheck) {
+		
+		this.nomeBtn = 'Deseleziona Tutti';
+
+	} else {
+		
+		this.nomeBtn = 'Seleziona Tutti';
+	}
 	}
   
 	// Conteggio Articoli Selezionati
 	getIndex() {
 	  this.index = 0;
+	  this.totalCheck = 0;
 	  this.checkboxes.forEach((element) => {
+		  this.totalCheck++;
 		if (element.nativeElement.checked == true) {
 		  this.index++;
 		}
