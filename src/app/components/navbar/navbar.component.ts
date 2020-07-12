@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit {
 
 
   ngOnInit() {
-    if (localStorage.getItem('logged') == 'true') {
+    //if (localStorage.getItem('logged') == 'true') {
       // Verificare se sia o meno presente l'apikey in locale (nell'Admin layout)
       this.listTitles = ROUTES.filter(listTitle => listTitle);
       this.username = localStorage.getItem('username');
@@ -41,9 +41,9 @@ export class NavbarComponent implements OnInit {
       }, error =>{
         console.log(error);
       });
-    } else {
-      this.router.navigate(['../login']);
-    }
+    //} else {
+      //this.router.navigate(['../login']);
+    //}
     
 
   }

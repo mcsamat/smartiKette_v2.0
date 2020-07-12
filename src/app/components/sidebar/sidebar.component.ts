@@ -36,7 +36,16 @@ export class SidebarComponent implements OnInit {
 
   constructor(private router: Router, private renderer: Renderer2) { 
 
-    
+    this.renderer.listen('window', 'click',(e:Event)=>{
+      if(e.target !== this.navv.nativeElement && this.isCollapsed === false && this.index){
+        this.isCollapsed = true;
+        this.index = false;
+        console.log('QUESTO DOVREBBE COMPRIMERE');
+      } else {
+        this.index = !this.index;
+        console.log('Questo invece boh');
+      }
+    });
 
     
 }
@@ -154,6 +163,8 @@ export class SidebarComponent implements OnInit {
       this.isCollapsed = true;
       console.log('Dopo aver premuto il link: ' + this.isCollapsed);
     }
+
+    
 
     
 
