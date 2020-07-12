@@ -1,7 +1,7 @@
 <nav #navbarT class="navbar navbar-vertical navbar-expand-md navbar-light bg-white" id="sidenav-main">
 	<div class="container-fluid">
 		<!-- Toggler -->
-		<button class="navbar-toggler" type="button" (click)="toggleClick()"
+		<button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
 		aria-controls="sidenav-collapse-main">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -14,7 +14,7 @@
 		<!-- Voci del menu -->
 		<ul class="navbar-nav">
 			<li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
-				<a routerLinkActive="active" #rla="routerLinkActive" [routerLink]="[menuItem.path]" class="nav-link" (click)="singleClick()">
+				<a routerLinkActive="active" #rla="routerLinkActive" [routerLink]="[menuItem.path]" class="nav-link" (click)="isCollapsed = !isCollapsed">
 					<i class="ni {{menuItem.icon}}"></i>
 					{{menuItem.title}}
 				</a>

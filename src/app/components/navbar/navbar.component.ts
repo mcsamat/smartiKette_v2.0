@@ -25,26 +25,21 @@ export class NavbarComponent implements OnInit {
 
 
   ngOnInit() {
-    if (localStorage.getItem('logged') == 'true') {
-      // Verificare se sia o meno presente l'apikey in locale (nell'Admin layout)
-      this.listTitles = ROUTES.filter(listTitle => listTitle);
-      this.username = localStorage.getItem('username');
+    // Verificare se sia o meno presente l'apikey in locale (nell'Admin layout)
+    this.listTitles = ROUTES.filter(listTitle => listTitle);
+    this.username = localStorage.getItem('username');
 
-      // Header generale
-      let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
+    // Header generale
+    let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
 
-      // Name API
-      this.httpClient.get(environment.URL_ROOT + '/system/configuration', { headers })
-      .toPromise().then((infoconf:any) => {
-        // Passo i valori presi da API
-        this.confname = infoconf.configurations.installation_name;
-      }, error =>{
-        console.log(error);
-      });
-    } else {
-      this.router.navigate(['../login']);
-    }
-    
+    // Name API
+    this.httpClient.get(environment.URL_ROOT + '/system/configuration', { headers })
+    .toPromise().then((infoconf:any) => {
+      // Passo i valori presi da API
+      this.confname = infoconf.configurations.installation_name;
+    }, error =>{
+      console.log(error);
+    });
 
   }
 

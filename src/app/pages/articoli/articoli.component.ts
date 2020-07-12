@@ -67,9 +67,6 @@ import {
 	indexDel = 0;
 	delItems$: any[] = [];
 	toZero: boolean = true;
-	 // altro
-	 nomeBtn: string = 'Seleziona Tutti';
-	 totalCheck: number = 0;
   
   
 	constructor(private httpClient: HttpClient, private modalService: NgbModal, config: NgbModalConfig, private router: Router) {
@@ -214,7 +211,7 @@ import {
 		  // Parte Grafica
 		  this.getItems();
 		  this.modalService.dismissAll();
-		  this.showAlertMultiple();
+		  this.showAlert();
 		  // Rimuovere item dall'array
 		  this.delItems$.splice(i, 1);
 		  this.index--;
@@ -224,48 +221,24 @@ import {
   
 	  });
 	}
-   
-		// Aggiungi tutti gli ITEM alla lista
+  
+	// Aggiungi tutti gli ITEM alla lista
 	checkAll() {
-		this.getIndex();
-		if (this.index == this.totalCheck) {
-			this.checkboxes.forEach((element) => {
-				element.nativeElement.checked = false;
-				this.getIndex();
-
-			});
-			this.nomeBtn = 'Seleziona Tutti';
-
-		} else {
-			this.checkboxes.forEach((element) => {
-				element.nativeElement.checked = true;
-				this.getIndex();
-
-			});
-			this.nomeBtn = 'Deseleziona Tutti';
-		}
+	  this.checkboxes.forEach((element) => {
+		element.nativeElement.checked = true;
+		this.getIndex()
+	  });
 	}
   
 	// Singolo Chechbox control
 	ngOnSelected() {
 	  this.getIndex();
-
-	  if (this.index == this.totalCheck) {
-		
-		this.nomeBtn = 'Deseleziona Tutti';
-
-	} else {
-		
-		this.nomeBtn = 'Seleziona Tutti';
-	}
 	}
   
 	// Conteggio Articoli Selezionati
 	getIndex() {
 	  this.index = 0;
-	  this.totalCheck = 0;
 	  this.checkboxes.forEach((element) => {
-		  this.totalCheck++;
 		if (element.nativeElement.checked == true) {
 		  this.index++;
 		}
@@ -281,14 +254,6 @@ import {
 	  ).subscribe(() => this.successMessage = '');
 	  this._success.next('Articolo ' + this.alias + ' rimosso con successo!');
 	}
-	// Alert di Conferma Multiplo
-	public showAlertMultiple() {
-		this._success.subscribe(message => this.successMessage = message);
-		this._success.pipe(
-		  debounceTime(5000)
-		).subscribe(() => this.successMessage = '');
-		this._success.next('Articoli rimossi con successo!');
-	  }
   
 	// Rerender Tabella
 	rerender(): void {

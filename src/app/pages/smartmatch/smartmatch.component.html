@@ -33,7 +33,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label i18n for="itemType">Tipo Articolo</label>
-                  <select [(ngModel)]="selectedOption" #itemType class="form-control" name="itemType" id="itemType" (change)="getItemTypeTemplate($event.target.value)">
+                  <select [(ngModel)]="selectedOption" #itemType class="form-control" name="itemType" id="itemType" (click)="getItemTypeTemplate($event.target.value)">
                   <option *ngFor="let item of varItem" [value]="item.id">{{ item.name }}</option>
                   </select>
                 </div>
@@ -42,16 +42,15 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label i18n>Tipo Barcode</label>
-                  <select [(ngModel)]="selectedOption3" class="form-control" name="barcodeS" id="barcode">
-                  <option i18n #barcode value="barcode">ITEM BARCODE</option>
+                  <select [(ngModel)]="selectedOption3" class="form-control" name="barcodeS" id="barcode" disable="false">
+                  <option i18n #barcode>ITEM BARCODE</option>
                   <option i18n #ean13>EAN 13</option>
                   <option i18n #decimale>MINSAN decimale</option>
                   <option i18n #alfa>MINSAN alfa</option>
                   </select>
                 </div>
               </div>
-            </div>              
-
+            </div>
             <!-- Seconda Riga -->
             <div class="row">
               <!-- Item Barcode -->
@@ -60,13 +59,12 @@
                   <label i18n>Item Barcode</label>
                   <div [className]="itemValid == true ? 'form-group input-group' : 'form-group input-group'">
                     <input type="text" [className]="itemValid == true ? 'form-control is-valid' : 'form-control is-invalid'" #item_barcode id="item_barcode" placeholder="item_barcode" (change)="ngOnChangesItem(item_barcode.value, itemType.value)">
-                    <!-- Add Another Item -->
                     <div class="input-group-append">
                       <button class="btn btn-outline-default" type="button" (click)="moreItem()">+</button>
                     </div>
                   </div>
                   <div *ngIf="itemValid">
-                    <!-- <option i18n class="form-control">ID: {{ testItem }}</option> -->
+                    <option i18n class="form-control">ID: {{ testItem }}</option>
                     <option i18n class="form-control">Nome: {{ testItemName }}</option>
                   </div>
                 </div>
@@ -81,28 +79,6 @@
                 </div>
               </div>
             </div>
-
-            <!-- +More Items+ -->
-            <div class="row mr-2 ml-2" *ngFor="let in of counter(nrItems); let i = index" id="div_item_barcode_{{ i }}">
-              <label i18n>Item Barcode</label>
-              <div [className]="itemArray[i] != null ? 'form-group input-group' : 'form-group input-group'">
-                <input type="text" [className]="itemArray[i] != null ? 'form-control is-valid' : 'form-control is-invalid'" #item_barcode_{{i}} id="item_barcode_{{ i }}" placeholder="item_barcode" (change)="ngOnChangesMoreItem(itemType.value, i)">
-                <!-- Delete Current Item -->
-                <div class="input-group-append">
-                  <button class="btn btn-outline-danger" type="button" (click)="deleteCurrentItem(i)"><i class="fas fa-trash"></i></button>
-                </div>
-                <!-- Add Another Item -->
-                <div class="input-group-append">
-                  <button class="btn btn-outline-default" type="button" (click)="moreItem()">+</button>
-                </div>
-              </div>
-              <div *ngIf="itemArray[i] != null">
-                <!-- ngIf* -- > return != null -->
-                <option i18n class="form-control">ID: {{ itemArray[i] }}</option>
-                <!-- <option i18n class="form-control">Nome: {{ testItemName }}</option> -->
-              </div>
-            </div>
-
             <!-- Terza Riga -->
             <div class="row">
               <!-- Template -->
@@ -148,7 +124,19 @@
               </div>
             </div>
             <br>
-            
+            <!-- +More Items+ -->
+            <div *ngFor="let in of counter(nrItems); let i = index">
+              <label i18n>Item Barcode</label>
+              <div [className]="itemArray[i] != null ? 'form-group input-group' : 'form-group input-group'">
+                <input type="text" [className]="itemArray[i] != null ? 'form-control is-valid' : 'form-control is-invalid'" #item_barcode_{{i}} id="item_barcode_{{ i }}" placeholder="item_barcode" (change)="ngOnChangesMoreItem(itemType.value, i)">
+              </div>
+              <div *ngIf="itemArray[i] != null">
+                <!-- ngIf* -- > return != null -->
+                <option i18n class="form-control">ID: {{ itemArray[i] }}</option>
+                <!-- <option i18n class="form-control">Nome: {{ testItemName }}</option> -->
+              </div>
+              <br>
+            </div>
           </form>
         </div>
       </div>
