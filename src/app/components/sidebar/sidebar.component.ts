@@ -40,10 +40,8 @@ export class SidebarComponent implements OnInit {
       if(e.target !== this.navv.nativeElement && this.isCollapsed === false && this.index){
         this.isCollapsed = true;
         this.index = false;
-        console.log('QUESTO DOVREBBE COMPRIMERE');
       } else {
         this.index = !this.index;
-        console.log('Questo invece boh');
       }
     });
 
