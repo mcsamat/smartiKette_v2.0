@@ -34,6 +34,7 @@ import {
 var del_item_id: String;
 
 
+
 @Component({
   selector: 'app-smartmatch',
   templateUrl: './smartmatch.component.html',
@@ -55,7 +56,7 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
   varItem;
   selectedOption;
   // selectedOption2;
-  selectedOption3 = 'barcode';
+  selectedOption3 = '0';
   selectedDecoration;
   // Var Templates via ItemType.ID
   templates;
@@ -96,6 +97,9 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
 
   // Errori
   smError = '';
+
+  // check barcode
+  checkB = 0;
 
 
   constructor(private httpClient: HttpClient, private modalService: NgbModal, config: NgbModalConfig, private router: Router) {
@@ -250,7 +254,14 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
     });
 
     // Redirect 
+    this.viewMatches(label_id);
+  }
 
+  // Redirect lista match
+  viewMatches(labelId) {
+    localStorage.removeItem('label_id');
+    localStorage.setItem('label_id', labelId);
+    this.router.navigateByUrl('/view-label');
   }
 
 
@@ -327,6 +338,8 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
 
   // Controllo se il barcode (principale) esiste
   ngOnChangesItem(id: string, template: string) {
+    if (this.checkB == 0 || id.length == this.checkB){
+    
     let itemId;
     let headers = new HttpHeaders().set('apikey', localStorage.getItem('apikey'));
     // Verifico che esista il barcode sia corretto e ne prendo l'ID
@@ -347,6 +360,7 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
       }, error => {
         this.itemValid = false;
       });
+  }
   }
 
 
@@ -399,6 +413,9 @@ export class SmartmatchComponent implements OnInit, OnDestroy {
         console.log(error);
       });
   }
+  checkBarcode(checkLength){
+    this.checkB= checkLength;
 
+  }
 
 }

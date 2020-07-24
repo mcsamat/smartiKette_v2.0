@@ -42,11 +42,11 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label i18n>Tipo Barcode</label>
-                  <select [(ngModel)]="selectedOption3" class="form-control" name="barcodeS" id="barcode">
-                  <option i18n #barcode value="barcode">ITEM BARCODE</option>
-                  <option i18n #ean13>EAN 13</option>
-                  <option i18n #decimale>MINSAN decimale</option>
-                  <option i18n #alfa>MINSAN alfa</option>
+                  <select [(ngModel)]="selectedOption3" class="form-control" name="barcodeS" id="barcode" (change)="checkBarcode(selectedOption3)">
+                  <option i18n #barcode value="0">ITEM BARCODE</option>
+                  <option i18n #ean13 value="8">EAN 13</option>
+                  <option i18n #decimale value="8">MINSAN decimale</option>
+                  <option i18n #alfa value="6">MINSAN alfa</option>
                   </select>
                 </div>
               </div>
